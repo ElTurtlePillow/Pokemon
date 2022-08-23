@@ -1,4 +1,4 @@
-import Overworld from "../overworld/Overworld"
+import Overworld from "../overworld/Overworld";
 
 export default function init() {
    const overworld = new Overworld({
