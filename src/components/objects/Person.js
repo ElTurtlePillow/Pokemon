@@ -12,23 +12,52 @@ export default class Person extends GameObject {
             "down": ["y", 1],
             "left": ["x", -1],
             "right": ["x", 1],
-        }
+        };
     };
 
     update(state) {
-        this.updatePosition();
+        if (this.movingProgressRemaining > 0) {
+            this.updatePosition();
+        } else {
 
-        if (this.isPlayerControlled && this.movingProgressRemaining === 0 && state.arrow) {
-            this.direction = state.arrow;
+            // case : keyboard ready & arrow pressed
+            if (this.isPlayerControlled && state.arrow) {
+                this.startBehavior(state, {
+                    type: "walk",
+                    direction: state.arrow
+                });
+            };
+            this.updateSprite(state);
+        };
+    };
+
+    startBehavior(state, behavior) {
+        // set character direction
+        this.direction = behavior.direction;
+        if (behavior.type === "walk") {
+            // stop if no space
+            if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+                return;
+            };
+
+            // walk
+            state.map.moveWall(this.x, this.y, this.direction);
             this.movingProgressRemaining = 32;
-        }
-    }
+            this.updateSprite(state);
+        };
+    };
 
     updatePosition() {
+        const [property, change] = this.directionUpdate[this.direction];
+        this[property] += change;
+        this.movingProgressRemaining -= 1;
+    };
+
+    updateSprite() {
         if (this.movingProgressRemaining > 0) {
-            const [property, change] = this.directionUpdate[this.direction];
-            this[property] += change;
-            this.movingProgressRemaining -= 1;
-        }
-    }
+            this.sprite.setAnimation("walk-" + this.direction);
+            return;
+        };
+        this.sprite.setAnimation("idle-" + this.direction);
+    };
 };

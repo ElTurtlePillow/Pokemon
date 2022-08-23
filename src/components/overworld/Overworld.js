@@ -24,18 +24,28 @@ export default class Overworld extends React.Component {
 
             // clear
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            
-            // draw lower layer
-            this.map.drawLowerImage(this.ctx);
-            // draw game objects
+
+            // establish camera person (or anything)
+            const cameraPerson = this.map.gameObjects.player;
+
+            // update all objects
             Object.values(this.map.gameObjects).forEach(obj => {
+                // if too much objects handle here to do
                 obj.update({
                     arrow: this.directionInput.direction,
+                    map: this.map,
                 })
-                obj.sprite.draw(this.ctx);
+            })
+            
+            // draw lower layer
+            this.map.drawLowerImage(this.ctx, cameraPerson);
+            // draw game objects
+            Object.values(this.map.gameObjects).forEach(obj => {
+                
+                obj.sprite.draw(this.ctx, cameraPerson);
             });
             // draw upper layer
-            this.map.drawUpperImage(this.ctx);
+            this.map.drawUpperImage(this.ctx, cameraPerson);
 
             requestAnimationFrame(() => {
                 step();
@@ -48,6 +58,7 @@ export default class Overworld extends React.Component {
         this.map = new OverworldMap(
             window.OverworldMaps.DemoRoom,
         )
+        this.map.mountObjects();
         this.directionInput = new DirectionInputs();
         this.directionInput.init();
 

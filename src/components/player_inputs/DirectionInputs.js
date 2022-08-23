@@ -27,7 +27,6 @@ export default class DirectionInputs extends React.Component {
             const dir = this.map[e.code];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir)
-                console.log(this.heldDirections);
             }
         });
         document.addEventListener("keyup" , (e) => {
@@ -35,7 +34,6 @@ export default class DirectionInputs extends React.Component {
             const index = this.heldDirections.indexOf(dir);
             if (index > -1) {
                 this.heldDirections.splice(index, 1);
-                console.log(this.heldDirections);
             }
         });
     };
