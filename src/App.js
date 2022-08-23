@@ -1,7 +1,9 @@
-function App() {
+import Main from "./components/main/Main";
+
+const App = () => {
   return (
     <div className="App">
-      <h1>Hello World!</h1>
+      <Main />
     </div>
   );
 }
