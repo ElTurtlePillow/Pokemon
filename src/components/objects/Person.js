@@ -1,3 +1,4 @@
+import { emitEvent } from '../../Utils';
 import GameObject from './GameObject';
 
 export default class Person extends GameObject { 
@@ -5,6 +6,7 @@ export default class Person extends GameObject {
         super(config);
 
         this.movingProgressRemaining = 0;
+        this.isStanding = false;
         this.isPlayerControlled = config.isPlayerControlled || false;
 
         this.directionUpdate = {
@@ -21,7 +23,7 @@ export default class Person extends GameObject {
         } else {
 
             // case : keyboard ready & arrow pressed
-            if (this.isPlayerControlled && state.arrow) {
+            if (!state.map.isCutscenePlaying && this.isPlayerControlled && state.arrow) {
                 this.startBehavior(state, {
                     type: "walk",
                     direction: state.arrow
@@ -34,9 +36,15 @@ export default class Person extends GameObject {
     startBehavior(state, behavior) {
         // set character direction
         this.direction = behavior.direction;
+
+        // walk
         if (behavior.type === "walk") {
             // stop if no space
             if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+
+                behavior.retry && setTimeout(() => {
+                    this.startBehavior(state, behavior)
+                }, 10)
                 return;
             };
 
@@ -45,12 +53,29 @@ export default class Person extends GameObject {
             this.movingProgressRemaining = 32;
             this.updateSprite(state);
         };
+
+        // stand
+        if (behavior.type === "stand") {
+            this.isStanding = true;
+            setTimeout(() => {
+                emitEvent("PersonStandComplete", {
+                    whoId: this.id
+                })
+                this.isStanding = false;
+            }, behavior.time)
+        }
     };
 
     updatePosition() {
         const [property, change] = this.directionUpdate[this.direction];
         this[property] += change;
         this.movingProgressRemaining -= 1;
+
+        if (this.movingProgressRemaining === 0) {
+            emitEvent("PersonWalkingComplete", {
+                whoId: this.id
+            });
+        };
     };
 
     updateSprite() {

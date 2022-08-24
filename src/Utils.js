@@ -24,17 +24,24 @@ export const nextPosition = (initialX, initialY, direction) => {
 
 export const loadWall = (mapCollision) =>  {
     const boundaries = [];
-		for (let i = 0; i < mapCollision.length; i += 100) {
+		for (let i = 0; i < mapCollision.length; i += 64) {
 			const mapCollisionArray = [];
-			mapCollisionArray.push(mapCollision.slice(i, 100 + i));
+			mapCollisionArray.push(mapCollision.slice(i, 64 + i));
 
-			let k = (i / 100) * 16;
+			let k = (i / 64);
 			mapCollisionArray.forEach((row, i) => {
 				row.forEach((symbol, j) => {
-					if (symbol !== 0) boundaries.push([`${(j * 16)},${(k)}`, true]);
+					if (symbol !== 0) boundaries.push([asGridCoords(j, k), true]);
 				});
 			});
 		}
 		const boundariesObj = Object.fromEntries(boundaries);
 		return boundariesObj;
+}
+
+export const emitEvent = (name, detail) => {
+    const event = new CustomEvent(name, {
+        detail
+    });
+    document.dispatchEvent(event);
 }

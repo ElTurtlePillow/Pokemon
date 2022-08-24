@@ -1,11 +1,5 @@
 import React from 'react';
 
-import GameObject from "../objects/GameObject";
-
-import mapImg from "../../assets/map.png";
-import playerImg from "../../assets/player.png";
-import momImg from "../../assets/mother.png";
-
 import OverworldMap from './map/OverworldMap';
 import DirectionInputs from '../player_inputs/DirectionInputs';
 
@@ -40,19 +34,25 @@ export default class Overworld extends React.Component {
             // draw lower layer
             this.map.drawLowerImage(this.ctx, cameraPerson);
             // draw game objects
-            Object.values(this.map.gameObjects).forEach(obj => {
-                
+            Object.values(this.map.gameObjects).sort((a, b) => {
+                return a.y - b.y;
+            }).forEach(obj => {
                 obj.sprite.draw(this.ctx, cameraPerson);
             });
             // draw upper layer
             this.map.drawUpperImage(this.ctx, cameraPerson);
 
+
+            const fps = 90;
+            setTimeout(() => {
             requestAnimationFrame(() => {
                 step();
             })
+            }, 1000 / fps);
         }
         step();
     }
+    
 
     init() {
         this.map = new OverworldMap(
@@ -64,5 +64,11 @@ export default class Overworld extends React.Component {
 
 
         this.startGameLoop();
+
+        // this.map.startCutScene([
+        //     { who:"player", type: "walk", direction: "up", },
+        //     { who:"player", type: "walk", direction: "up", },
+        //     { who:"npcA", type: "walk", direction: "right", },
+        // ]);
     };
 };
