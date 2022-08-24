@@ -1,6 +1,7 @@
 import React from 'react';
 import { oppositeDirection } from '../../../Utils';
 import TextMessage from '../../text/TextMessage';
+import SceneTransition from './SceneTransition';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -64,12 +65,17 @@ export default class OverworldEvent extends React.Component {
 		message.init(document.querySelector(".game-container"));
 	}
 
-    changeMap(resolve) {
-        this.map.overworld.startMap( window.OverworldMaps[this.event.map] )
-        resolve();
-    }
+  changeMap(resolve) {
+		const sceneTransition = new SceneTransition();
+		sceneTransition.init(document.querySelector(".game-container"), () => {
+			this.map.overworld.startMap(window.OverworldMaps[this.event.map]);
+			resolve();
 
-    init() {
+			sceneTransition.fadeOut();
+		});
+	}
+
+  init() {
         return new Promise(resolve => {
           this[this.event.type](resolve)      
         })

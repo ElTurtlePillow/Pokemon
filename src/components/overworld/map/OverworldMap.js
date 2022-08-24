@@ -159,7 +159,7 @@ window.OverworldMaps = {
 				{
                     events: [
                         { who: "player", type: "walk", direction: "right"},
-                        { type: "textMessage", text:"Sionop"},
+                        { type: "textMessage", text:"Sionop rg r ger eg erzger ezrgz ethezth zeth zth eth zerh ze"},
                     ]
                 }
             ],

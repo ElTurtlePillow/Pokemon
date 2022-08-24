@@ -86,10 +86,7 @@ export default class Overworld extends React.Component {
         this.startGameLoop();
 
         // this.map.startCutScene([
-        //     {type : "textMessage", text : "Hello world"}
-        //     { who:"player", type: "walk", direction: "up", },
-        //     { who:"player", type: "walk", direction: "up", },
-        //     { who:"npcA", type: "walk", direction: "right", },
+        //     {type : "changeMap", map : "DemoRoom"},
         // ]);
     };
 };
