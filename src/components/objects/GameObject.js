@@ -22,6 +22,8 @@ export default class GameObject extends React.Component {
 
         this.behaviorLoop = config.behaviorLoop || [];
         this.behaviorLoopIndex = 0;
+
+        this.talking = config.talking || [];
     };
 
     mount(map) {

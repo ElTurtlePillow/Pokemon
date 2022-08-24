@@ -2,8 +2,12 @@ export const withGrid = (n) =>  {
     return n * 32;
 }
 
-export const asGridCoords = (x, y) => {
+export const setGridCoords = (x, y) => {
     return `${x * 32}, ${y * 32}`
+}
+
+export const asGridCoords = (x, y) => {
+    return `${x * 32},${y * 32}`
 }
 
 export const nextPosition = (initialX, initialY, direction) => {
@@ -22,16 +26,29 @@ export const nextPosition = (initialX, initialY, direction) => {
     return { x , y };
 }
 
+export const oppositeDirection = (direction) => {
+    if (direction === "left") {
+        return "right";
+    }
+    if (direction === "right") {
+        return "left";
+    }
+    if (direction === "up") {
+        return "down";
+    }
+    return "up";
+}
+
 export const loadWall = (mapCollision) =>  {
     const boundaries = [];
-		for (let i = 0; i < mapCollision.length; i += 64) {
+		for (let i = 0; i < mapCollision.length; i += Math.sqrt(mapCollision.length)) {
 			const mapCollisionArray = [];
-			mapCollisionArray.push(mapCollision.slice(i, 64 + i));
+			mapCollisionArray.push(mapCollision.slice(i, Math.sqrt(mapCollision.length) + i));
 
-			let k = (i / 64);
+			let k = (i / Math.sqrt(mapCollision.length));
 			mapCollisionArray.forEach((row, i) => {
 				row.forEach((symbol, j) => {
-					if (symbol !== 0) boundaries.push([asGridCoords(j, k), true]);
+					if (symbol !== 0) boundaries.push([setGridCoords(j, k), true]);
 				});
 			});
 		}

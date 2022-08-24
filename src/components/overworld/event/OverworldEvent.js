@@ -1,13 +1,16 @@
 import React from 'react';
+import { oppositeDirection } from '../../../Utils';
+import TextMessage from '../../text/TextMessage';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
-        super(event);
+        super(map);
 
         this.map = map;
         this.event = event;
     };
 
+    // stand
     stand(resolve) {
         const who = this.map.gameObjects[ this.event.who ];
         who.startBehavior({
@@ -27,6 +30,7 @@ export default class OverworldEvent extends React.Component {
         document.addEventListener("PersonStandComplete", completeHandler)
       }
 
+    // walk
     walk(resolve) {
         const who = this.map.gameObjects[ this.event.who ];
         who.startBehavior({
@@ -45,7 +49,24 @@ export default class OverworldEvent extends React.Component {
             }
         }
         document.addEventListener("PersonWalkingComplete", completeHandler)
+    }
 
+    textMessage(resolve) {
+		if (this.event.facePlayer) {
+			const obj = this.map.gameObjects[this.event.facePlayer];
+			obj.direction = oppositeDirection(this.map.gameObjects["player"].direction);
+		}
+
+		const message = new TextMessage({
+			text: this.event.text,
+			onComplete: () => resolve(),
+		});
+		message.init(document.querySelector(".game-container"));
+	}
+
+    changeMap(resolve) {
+        this.map.overworld.startMap( window.OverworldMaps[this.event.map] )
+        resolve();
     }
 
     init() {

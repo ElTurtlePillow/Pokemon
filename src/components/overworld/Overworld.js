@@ -2,6 +2,7 @@ import React from 'react';
 
 import OverworldMap from './map/OverworldMap';
 import DirectionInputs from '../player_inputs/DirectionInputs';
+import KeyPressListener from '../player_inputs/KeyPressListener';
 
 export default class Overworld extends React.Component { 
     constructor(config) {
@@ -43,7 +44,7 @@ export default class Overworld extends React.Component {
             this.map.drawUpperImage(this.ctx, cameraPerson);
 
 
-            const fps = 90;
+            const fps = 120;
             setTimeout(() => {
             requestAnimationFrame(() => {
                 step();
@@ -53,12 +54,31 @@ export default class Overworld extends React.Component {
         step();
     }
     
+    bindActionInput() {
+        new KeyPressListener("Enter", () => {this.map.checkForActionCutscene()})
+        new KeyPressListener("Space", () => {this.map.checkForActionCutscene()})
+    }
+
+    bindPlayerPositionCheck() {
+        document.addEventListener("PersonWalkingComplete", e => {
+            if (e.detail.whoId === "player") {
+                this.map.checkForFootstepCutscene();
+            }
+        })
+    }
+
+    startMap(mapConfig) {
+        this.map = new OverworldMap(mapConfig)
+        this.map.overworld = this;
+        this.map.mountObjects();
+    }
 
     init() {
-        this.map = new OverworldMap(
-            window.OverworldMaps.DemoRoom,
-        )
-        this.map.mountObjects();
+        this.startMap(window.OverworldMaps.DemoRoom);
+
+        this.bindActionInput();
+        this.bindPlayerPositionCheck();
+
         this.directionInput = new DirectionInputs();
         this.directionInput.init();
 
@@ -66,6 +86,7 @@ export default class Overworld extends React.Component {
         this.startGameLoop();
 
         // this.map.startCutScene([
+        //     {type : "textMessage", text : "Hello world"}
         //     { who:"player", type: "walk", direction: "up", },
         //     { who:"player", type: "walk", direction: "up", },
         //     { who:"npcA", type: "walk", direction: "right", },
