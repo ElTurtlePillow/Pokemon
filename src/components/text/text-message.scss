@@ -8,18 +8,19 @@ $color-tertiary: #4467e4;
 	left: 50%;
 	transform: translate(-50%);
 	bottom: 4px;
-	height: 44px;
-    padding: 5px 12px;
+	height: 56px;
+    padding: 4px 12px;
 	background: white;
     outline: 2px solid $color-primary;
 	border: 2px solid $color-secondary;
 	color: $color-tertiary;
 	border-radius: 10px;
 	z-index: 1;
-    font-size: 11px;
+    font-size: 12px;
     .text-message-p {
         text-shadow: 1px 1px 1px rgb(175, 175, 175);
-        line-height: 15px;
+        line-height: 22px;
+        user-select: none;
     }
     .text-message-p span {
         opacity: 0;

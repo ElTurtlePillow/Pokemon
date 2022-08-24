@@ -132,6 +132,13 @@ window.OverworldMaps = {
                     { type: "walk", direction: "right", },
                     { type: "walk", direction: "down", },
                     { type: "walk", direction: "left", },
+                ],
+                talking : [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hello world", facePlayer: "npcA"},
+                        ]
+                    }
                 ]
             }),
             npcA: new Person({
