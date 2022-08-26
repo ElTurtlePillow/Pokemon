@@ -3,7 +3,7 @@ import React from 'react';
 import Sprite from "./Sprite";
 import OverworldEvent from '../overworld/event/OverworldEvent';
 
-import playerImg from "../../assets/player.png";
+import playerImg from "../../assets/graphics/characters/player.png";
 
 export default class GameObject extends React.Component { 
     constructor(config) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { oppositeDirection } from '../../../Utils';
+import Battle from '../../battle/Battle';
 import TextMessage from '../../text/TextMessage';
 import SceneTransition from './SceneTransition';
 
@@ -10,8 +11,7 @@ export default class OverworldEvent extends React.Component {
         this.map = map;
         this.event = event;
     };
-
-    // stand
+  
     stand(resolve) {
         const who = this.map.gameObjects[ this.event.who ];
         who.startBehavior({
@@ -29,9 +29,8 @@ export default class OverworldEvent extends React.Component {
           }
         }
         document.addEventListener("PersonStandComplete", completeHandler)
-      }
+    }
 
-    // walk
     walk(resolve) {
         const who = this.map.gameObjects[ this.event.who ];
         who.startBehavior({
@@ -63,9 +62,9 @@ export default class OverworldEvent extends React.Component {
 			onComplete: () => resolve(),
 		});
 		message.init(document.querySelector(".game-container"));
-	}
+	  }
 
-  changeMap(resolve) {
+    changeMap(resolve) {
 		const sceneTransition = new SceneTransition();
 		sceneTransition.init(document.querySelector(".game-container"), () => {
 			this.map.overworld.startMap(window.OverworldMaps[this.event.map]);
@@ -73,9 +72,18 @@ export default class OverworldEvent extends React.Component {
 
 			sceneTransition.fadeOut();
 		});
-	}
+	  }
 
-  init() {
+    battle(resolve) {
+      const battle = new Battle({
+        onComplete: () => {
+          resolve();
+        }
+      })
+      battle.init(document.querySelector(".game-container"))
+    }
+
+    init() {
         return new Promise(resolve => {
           this[this.event.type](resolve)      
         })

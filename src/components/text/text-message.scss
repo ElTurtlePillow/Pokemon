@@ -1,7 +1,3 @@
-$color-primary: #4e8098;
-$color-secondary: #98c5d5;
-$color-tertiary: #4467e4;
-
 .text-message {
 	position: absolute;
 	width: 95%;
@@ -11,9 +7,9 @@ $color-tertiary: #4467e4;
 	height: 56px;
     padding: 4px 12px;
 	background: white;
-    outline: 2px solid $color-primary;
-	border: 2px solid $color-secondary;
-	color: $color-tertiary;
+    outline: 2px solid #4e8098;
+	border: 2px solid #98c5d5;
+	color: #4467e4;
 	border-radius: 10px;
 	z-index: 1;
     font-size: 12px;

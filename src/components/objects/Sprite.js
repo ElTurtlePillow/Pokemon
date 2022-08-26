@@ -1,6 +1,6 @@
 import React from 'react';
 
-import shadowImg from "../../assets/shadow.png";
+import shadowImg from "../../assets/graphics/characters/shadow.png";
 import { withGrid } from '../../Utils';
 
 export default class Sprite extends React.Component { 

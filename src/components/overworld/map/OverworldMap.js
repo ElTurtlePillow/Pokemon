@@ -1,14 +1,14 @@
 import React from 'react';
 import Person from '../../objects/Person';
 
-import lowerImg from "../../../assets/map.png";
-import upperImg from "../../../assets/mapupper.png";
+import lowerImg from "../../../assets/graphics/maps/map.png";
+import upperImg from "../../../assets/graphics/maps/mapupper.png";
 
-import demoRimg from "../../../assets/map1.png"
-import demoRimup from "../../../assets/map1d.png"
+import demoRimg from "../../../assets/graphics/maps/map1.png"
+import demoRimup from "../../../assets/graphics/maps/map1d.png"
 
-import momImg from "../../../assets/mother.png";
-import npcAImg from "../../../assets/npcA.png";
+import momImg from "../../../assets/graphics/characters/mother.png";
+import npcAImg from "../../../assets/graphics/characters/npcA.png";
 
 import { collisions } from './MapCollision';
 import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../Utils';
