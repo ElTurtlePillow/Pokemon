@@ -54,7 +54,7 @@ export default class KeyboardMenu extends React.Component {
 		this.descriptionElement.classList.add("description-box");
 		this.descriptionElement.innerHTML = `
             <div class="description-box-text">
-                <p>Indormations</p>
+                <p>Informations</p>
             </div>
         `;
 		this.descriptionElementText = this.descriptionElement.querySelector("p");

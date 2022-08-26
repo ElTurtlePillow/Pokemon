@@ -2,15 +2,34 @@ import React from 'react';
 import "./submission-menu.scss"
 
 import {moves} from "../../content/Moves"
+import {items} from "../../content/Items"
 import KeyboardMenu from './KeyboardMenu';
 
 export default class SubmissionMenu extends React.Component { 
-    constructor({ caster, enemy, onComplete }) {
+    constructor({ caster, enemy, onComplete, items }) {
         super(onComplete);
 
         this.caster = caster;
         this.enemy = enemy;
         this.onComplete = onComplete;
+
+        let quantityMap = {};
+        items.forEach(item => {
+            if (item.team === caster.team) {
+
+                let existing = quantityMap[item.itemId];
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    quantityMap[item.itemId] = {
+                        itemId: item.itemId,
+                        quantity: 1,
+                        instanceId: item.instanceId
+                    }
+                }
+            }
+        })
+        this.item = Object.values(quantityMap);
     };
 
     getPages() {
@@ -68,19 +87,19 @@ export default class SubmissionMenu extends React.Component {
 				backOption,
 			],
 			items: [
-				// ...this.items.map((item) => {
-				// 	const move = moves[item.moveId];
-				// 	return {
-				// 		label: move.Name,
-				// 		description: move.Description,
-				// 		right: () => {
-				// 			return "x" + item.quantity;
-				// 		},
-				// 		handler: () => {
-				// 			this.menuSubmit(move, item.instanceId);
-				// 		},
-				// 	};
-				// }),
+				...this.items.map((i) => {
+					const item = items[i.itemId];
+					return {
+						label: item.Name,
+						description: item.Description,
+						right: () => {
+							return "x" + item.quantity;
+						},
+						handler: () => {
+							this.menuSubmit(item, item.instanceId);
+						},
+					};
+				}),
 				backOption,
 			],
 			replacements: [

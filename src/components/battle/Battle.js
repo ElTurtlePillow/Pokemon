@@ -49,11 +49,17 @@ export default class Battle extends React.Component {
                 level: 1,
                 status: null,
             }, this)
-        }
+        };
         this.activeCombatants = {
             player: "player1",
             enemy: "enemy1"
-        }
+        };
+        this.items = [
+            { itemId: "FULLHEAL", instanceId: "p1", team: "player"},
+            { itemId: "FULLHEAL", instanceId: "p2", team: "player"},
+            { itemId: "POTION", instanceId: "p3", team: "player"},
+            { itemId: "FULLHEAL", instanceId: "p4", team: "enemy"},
+        ]
     };
 
 
