@@ -160,7 +160,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
-		actions: ["damage1"],
+		Moves: ["THUNDERSHOCK"],
 	},
     charmander: {
 		Name: "Charmander",
@@ -195,7 +195,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["CHARMELEON", "Level", 16],
-		actions: ["damage1"],
+		Moves: ["SCRATCH"],
 	},
     eevee: {
 		Name: "Eevee",
@@ -230,6 +230,6 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 2,
 		Evolutions: ["VAPOREON", "Item", "WATERSTONE", "JOLTEON", "Item", "THUNDER STONE", "FLAREON", "Item", "FIRESTONE", "LEAFEON", "Location", "28", "GLACEON", "Location", "34", "SYLVEON", "HappinessMoveType", "FAIRY", "ESPEON", "HappinessDay","UMBREON", "HappinessNight"],
-		actions: ["confusionStatus", "damage1", "healStatus"],
+		Moves: ["GROWL"],
 	},
 }

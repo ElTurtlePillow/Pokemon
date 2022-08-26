@@ -33,7 +33,6 @@ export default class Combatant extends React.Component {
       
 
     createElement() {
-
         // display pokemon's info
 		this.hudElement = document.createElement("div");
 		this.hudElement.classList.add("combatant");

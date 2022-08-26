@@ -1,14 +1,14 @@
 export const withGrid = (n) =>  {
     return n * 32;
-}
+};
 
 export const setGridCoords = (x, y) => {
     return `${x * 32}, ${y * 32}`
-}
+};
 
 export const asGridCoords = (x, y) => {
     return `${x * 32},${y * 32}`
-}
+};
 
 export const nextPosition = (initialX, initialY, direction) => {
     let x = initialX;
@@ -24,7 +24,7 @@ export const nextPosition = (initialX, initialY, direction) => {
         y += size;
     }
     return { x , y };
-}
+};
 
 export const oppositeDirection = (direction) => {
     if (direction === "left") {
@@ -37,7 +37,7 @@ export const oppositeDirection = (direction) => {
         return "down";
     }
     return "up";
-}
+};
 
 export const loadWall = (mapCollision) =>  {
     const boundaries = [];
@@ -52,13 +52,21 @@ export const loadWall = (mapCollision) =>  {
 				});
 			});
 		}
-		const boundariesObj = Object.fromEntries(boundaries);
-		return boundariesObj;
-}
+	const boundariesObj = Object.fromEntries(boundaries);
+	return boundariesObj;
+};
+
+export const wait = (ms) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+};
 
 export const emitEvent = (name, detail) => {
     const event = new CustomEvent(name, {
         detail
     });
     document.dispatchEvent(event);
-}
+};

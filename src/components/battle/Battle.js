@@ -1,6 +1,10 @@
 import React from 'react';
+
 import "./battle.scss"
+
 import Combatant from './combatant/Combatant';
+import BattleEvent from './events/BattleEvent';
+import TurnCycle from './TurnCycle';
 
 import {pokemon} from "../content/Pokemon"
 
@@ -53,7 +57,6 @@ export default class Battle extends React.Component {
 
 
     createElement() {
-        console.log(pokemon);
 		this.element = document.createElement("div");
 		this.element.classList.add("battle");
 
@@ -78,5 +81,16 @@ export default class Battle extends React.Component {
             combatant.id = key;
             combatant.init(this.element)
         })
+
+        this.turnCycle = new TurnCycle({
+            battle: this,
+            onNewEvent: event => {
+                return new Promise(resolve => {
+                    const battleEvent = new BattleEvent(event, this);
+                    battleEvent.init(resolve);
+                })
+            }
+        })
+        this.turnCycle.init();
     };
 };
