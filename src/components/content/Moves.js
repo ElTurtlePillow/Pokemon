@@ -67,7 +67,7 @@ export const moves = {
 	},
 	THUNDERSHOCK: {
 		Name: "Thunder Shock",
-		Description : "A jolt of electricity is hurled at the foe to inflict damage. It may also leave the target with paralysis.",
+		Description : "A jolt of electricity is hurled to inflict damage. May leave the target with paralysis.",
 		Accuracy: 90,
 		MoveType: "ELECTRIC",
 		// TargetType: "friendly",

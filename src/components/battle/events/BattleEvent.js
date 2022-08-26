@@ -30,10 +30,6 @@ export default class BattleEvent extends React.Component {
         const {caster, target, damage, recover, statusHandler, move} = this.event;
         let who = this.event.onCaster ? caster : target;
 
-        if (move.TargetType === "friendly") {
-            who = caster;
-        };
-
         // damage
         if (damage) {
             target.update({
@@ -55,7 +51,6 @@ export default class BattleEvent extends React.Component {
 
         // status
         if (statusHandler) {
-            console.log(statusHandler);
             if (randomFromArray(statusHandler.probability)) {
                 who.update({
                     status:  {...statusHandler}

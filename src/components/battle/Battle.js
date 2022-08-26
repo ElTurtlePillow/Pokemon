@@ -27,6 +27,7 @@ export default class Battle extends React.Component {
                 maxXp: 100,
                 level: 1,
                 status: null,
+                isPlayerControlled: true,
             }, this),
 
             "enemy1": new Combatant({

@@ -124,7 +124,6 @@ export default class Combatant extends React.Component {
     }
 
     getReplacedEvents(originalEvents) {
-        
 		if (this.status?.type === "par" && randomFromArray([0,0,1])) {
 			return [
 				{
@@ -133,7 +132,6 @@ export default class Combatant extends React.Component {
 				},
 			];
 		}
-
 		return originalEvents;
 	}
 

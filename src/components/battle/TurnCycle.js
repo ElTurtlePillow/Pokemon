@@ -23,9 +23,8 @@ export default class TurnCycle extends React.Component {
 			enemy,
         })
 
+        
         const resultingEvents = caster.getReplacedEvents(submission.move.Success)
-
-
         for (let i = 0; i < resultingEvents.length; i++) {
             const event = {
                 ...resultingEvents[i],
@@ -56,7 +55,7 @@ export default class TurnCycle extends React.Component {
 		if (expiredEvent) {
             await this.onNewEvent(expiredEvent);
 		}
-        
+
         this.nextTurn();
     };
 
@@ -66,10 +65,10 @@ export default class TurnCycle extends React.Component {
 	}
 
     async init() {
-        await this.onNewEvent({
-            type: "textMessage",
-            text: "The battle start"
-        })
+        // await this.onNewEvent({
+        //     type: "textMessage",
+        //     text: "The battle start"
+        // })
 
         // start first turn
         this.turn();
