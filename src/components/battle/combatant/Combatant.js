@@ -2,6 +2,7 @@ import React from 'react';
 import "./combatant.scss"
 
 import supportImg from "../../../assets/graphics/battle/city_base1.png"
+import { randomFromArray } from '../../../Utils';
 
 export default class Combatant extends React.Component { 
     constructor(config, battle) {
@@ -88,6 +89,7 @@ export default class Combatant extends React.Component {
 		}
 		this.pokemonElement.setAttribute("alt", this.Name);
 		this.pokemonElement.setAttribute("data-team", this.team);
+
     }
 
     update(changes={}) {
@@ -108,7 +110,64 @@ export default class Combatant extends React.Component {
 
         // update lvl
 		this.hudElement.querySelector(".combatant-lvl").innerText = this.level;
+
+        // update status
+        const statusElement = this.hudElement.querySelector(".combatant_status");
+		if (this.status) {
+			statusElement.innerText = this.status.type;
+			statusElement.setAttribute("data-status", this.status.type);
+			statusElement.style.display = "block";
+		} else {
+			statusElement.innerText = "";
+			statusElement.style.display = "none";
+		}
     }
+
+    getReplacedEvents(originalEvents) {
+        
+		if (this.status?.type === "par" && randomFromArray([0,0,1])) {
+			return [
+				{
+					type: "textMessage",
+					text: `${this.Name} is paralised, ha can't attack !`,
+				},
+			];
+		}
+
+		return originalEvents;
+	}
+
+    getPostsEvents() {
+        if (this.status?.type === "hea") {
+			return [
+				{
+					type: "textMessage",
+					text: "{USER} is healing",
+				},
+				{
+					type: "stateChange",
+					recover: 5,
+					onCaster: true,
+				},
+			];
+		}
+		return [];
+    }
+
+    decrementStatus() {
+		if (this.status?.expiresIn > 0) {
+			this.status.expiresIn--;
+			if (this.status?.expiresIn === 0) {
+				const statusType = this.status.type;
+				this.update({ status: null });
+				return {
+					type: "textMessage",
+					text: `${this.Name} is no longer ${statusType}`,
+				};
+			}
+		}
+		return null;
+	}
 
     init(container) {
         this.createElement();

@@ -160,7 +160,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
-		Moves: ["THUNDERSHOCK"],
+		Moves: ["THUNDERSHOCK", "SCRATCH"],
 	},
     charmander: {
 		Name: "Charmander",
@@ -195,7 +195,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["CHARMELEON", "Level", 16],
-		Moves: ["SCRATCH"],
+		Moves: ["THUNDERSHOCK"],
 	},
     eevee: {
 		Name: "Eevee",

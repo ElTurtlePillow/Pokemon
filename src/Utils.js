@@ -64,6 +64,10 @@ export const wait = (ms) => {
     });
 };
 
+export const randomFromArray = (array) =>  {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 export const emitEvent = (name, detail) => {
     const event = new CustomEvent(name, {
         detail

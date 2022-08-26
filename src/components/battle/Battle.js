@@ -61,9 +61,11 @@ export default class Battle extends React.Component {
 		this.element.classList.add("battle");
 
 		this.element.innerHTML = `
+            <div class="player-animation"></div>
             <div class="battle-player">
                 <img src=${playerImg} alt="player" />
             </div>
+            <div class="enemy-animation"></div>
             <div class="battle-enemy">
                 <img src="${rivalImg}" alt=${0} />
             </div>

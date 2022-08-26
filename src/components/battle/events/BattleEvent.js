@@ -1,7 +1,7 @@
 import React from 'react';
 import "./battle-event.scss"
 
-import { wait } from '../../../Utils';
+import { randomFromArray, wait } from '../../../Utils';
 
 import TextMessage from "../../text/TextMessage"
 import SubmissionMenu from '../menu/SubmissionMenu';
@@ -27,14 +27,46 @@ export default class BattleEvent extends React.Component {
     }
 
     async stateChange(resolve) {
-        const {caster, target, damage} = this.event;
+        const {caster, target, damage, recover, statusHandler, move} = this.event;
+        let who = this.event.onCaster ? caster : target;
+
+        if (move.TargetType === "friendly") {
+            who = caster;
+        };
+
+        // damage
         if (damage) {
             target.update({
                 hp: target.hp - damage
             });
-            console.log(target.pokemonElement);
             target.pokemonElement.classList.add('battle-damage-blink');
+        };
+
+        // recover
+        if (recover) {
+            let newHp = who.hp + recover;
+            if (newHp > who.maxHp) {
+                newHp = who.maxHp
+            }
+            who.update({
+                hp: newHp
+            })
+        };
+
+        // status
+        if (statusHandler) {
+            console.log(statusHandler);
+            if (randomFromArray(statusHandler.probability)) {
+                who.update({
+                    status:  {...statusHandler}
+                })
+            } 
         }
+        if (statusHandler === null) {
+			who.update({
+				status: null,
+			});
+		}
 
         await wait(600)
         target.pokemonElement.classList.remove('battle-damage-blink');

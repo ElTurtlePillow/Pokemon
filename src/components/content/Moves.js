@@ -3,6 +3,7 @@ export const moves = {
 		Name: "Scratch",
 		Description: "Hard, pointed, and sharp claws rake the target to inflict damage.",
 		Accuracy: 100,
+		MoveType: "NORMAL",
 		Success: [
 			{
 				type: "textMessage",
@@ -16,16 +17,13 @@ export const moves = {
 				type: "stateChange",
 				damage: 35,
 			},
-			{
-				type: "moveType",
-				moveType: "NORMAL"
-			}
 		]
 	},
 	GROWL: {
 		Name: "Growl",
 		Description: "The user growls in an endearing way, making the foe less wary. The foe's Attack stat is lowered.",
 		Accuracy: 100,
+		MoveType: "NORMAL",
 		Success: [
 			{
 				type: "textMessage",
@@ -42,16 +40,13 @@ export const moves = {
 					expiresIn: 3,
 				},
 			},
-			{
-				type: "moveType",
-				moveType: "NORMAL"
-			}
 		]
 	},
 	TAILWHIP: {
 		Name: "Tail Whip",
 		Description: "The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.",
 		Accuracy: 90,
+		MoveType: "NORMAL",
 		Success: [
 			{
 				type: "textMessage",
@@ -67,10 +62,6 @@ export const moves = {
 					type: "low-def",
 					expiresIn: 3,
 				},
-			},
-			{
-				type: "moveType",
-				moveType: "NORMAL"
 			}
 		]
 	},
@@ -78,6 +69,8 @@ export const moves = {
 		Name: "Thunder Shock",
 		Description : "A jolt of electricity is hurled at the foe to inflict damage. It may also leave the target with paralysis.",
 		Accuracy: 90,
+		MoveType: "ELECTRIC",
+		// TargetType: "friendly",
 		Success: [
 			{
 				type: "textMessage",
@@ -85,20 +78,22 @@ export const moves = {
 			},
 			{
 				type: "animation",
-				animation: "THUNDERSHOCK",
+				animation: "THUNDERSHOCK" , 
+				color: "#db32a5"
 			},
 			{
 				type: "stateChange",
 				damage: 30,
+			},
+			{
+				type: "stateChange",
 				statusHandler: {
 					type: "par",
 					expiresIn: 3,
+					probability: [false, false, true],
 				},
+				// onCaster: true
 			},
-			{
-				type: "moveType",
-				moveType: "ELECTRIC"
-			}
 		]
 	}
 }

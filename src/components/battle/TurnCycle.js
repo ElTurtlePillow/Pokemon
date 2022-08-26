@@ -22,7 +22,9 @@ export default class TurnCycle extends React.Component {
             caster,
 			enemy,
         })
-        const resultingEvents = submission.move.Success;
+
+        const resultingEvents = caster.getReplacedEvents(submission.move.Success)
+
 
         for (let i = 0; i < resultingEvents.length; i++) {
             const event = {
@@ -35,9 +37,33 @@ export default class TurnCycle extends React.Component {
             await this.onNewEvent(event);
         }
 
-        this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
-        this.turn();
+        // check for post events
+        const postEvents = caster.getPostsEvents();
+        for (let i = 0; i < postEvents.length; i ++) {
+            const event = {
+                ...postEvents[i],
+                submission,
+                move: submission.move,
+                caster,
+                target: submission.target
+            }
+            await this.onNewEvent(event)
+        }
+
+        
+        // check for status expire
+        const expiredEvent = caster.decrementStatus();
+		if (expiredEvent) {
+            await this.onNewEvent(expiredEvent);
+		}
+        
+        this.nextTurn();
     };
+
+    nextTurn() {
+		this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
+		this.turn();
+	}
 
     async init() {
         await this.onNewEvent({
