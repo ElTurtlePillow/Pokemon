@@ -1,6 +1,9 @@
 import React from 'react';
 import { oppositeDirection } from '../../../Utils';
 import Battle from '../../battle/Battle';
+
+import { enemies } from '../../content/Enemies';
+
 import TextMessage from '../../text/TextMessage';
 import SceneTransition from './SceneTransition';
 
@@ -76,6 +79,7 @@ export default class OverworldEvent extends React.Component {
 
     battle(resolve) {
       const battle = new Battle({
+        enemy: enemies[this.event.enemyId],
         onComplete: () => {
           resolve();
         }

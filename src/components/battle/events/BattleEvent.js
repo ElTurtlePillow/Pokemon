@@ -104,13 +104,13 @@ export default class BattleEvent extends React.Component {
     async replace(resolve) {
 		const { replacement } = this.event;
 
-		// clear out the old monster
+		// clear out the old pokemon
 		const prevCombatant = this.battle.combatants[this.battle.activeCombatants[replacement.team]];
 		this.battle.activeCombatants[replacement.team] = null;
 		prevCombatant.update();
 		await wait(800);
 
-		// with the new monster
+		// with the new pokemon
 		this.battle.activeCombatants[replacement.team] = replacement.id;
 		replacement.update();
 		await wait(800);
@@ -120,6 +120,30 @@ export default class BattleEvent extends React.Component {
         this.battle.enemyTeam.update();
 
 		resolve();
+	}
+
+    giveXp(resolve) {
+		let amount = this.event.xp;
+		const { combatant } = this.event;
+		const step = () => {
+			if (amount > 0) {
+				amount -= 1;
+				combatant.xp += 1;
+
+				// check if we've hit level up point
+				if (combatant.xp === combatant.maxXp) {
+					combatant.xp = 0;
+					combatant.maxXp = 100;
+					combatant.level += 1;
+				}
+
+				combatant.update();
+				requestAnimationFrame(step);
+				return;
+			}
+			resolve();
+		};
+		requestAnimationFrame(step);
 	}
 
     animation(resolve) {

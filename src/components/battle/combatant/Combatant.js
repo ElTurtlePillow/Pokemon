@@ -29,7 +29,7 @@ export default class Combatant extends React.Component {
 	}
 
 	get givesXp() {
-		return this.level * 20;
+		return this.level * this.BaseEXP;
 	}
       
 

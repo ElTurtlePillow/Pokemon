@@ -1,11 +1,12 @@
 import React from 'react';
 
 export default class TurnCycle extends React.Component { 
-    constructor({battle, onNewEvent}) {
+    constructor({battle, onNewEvent, onWinner}) {
         super(battle)
 
         this.battle = battle;
         this.onNewEvent = onNewEvent;
+        this.onWinner = onWinner;
         this.currentTeam = "player"
     };
 
@@ -38,6 +39,10 @@ export default class TurnCycle extends React.Component {
         }
 
         if (submission.instanceId) {
+            // persistance
+            this.battle.usedInstanceIds[submission.instanceId] = true;
+
+            // remove from battle state 
             this.battle.items = this.battle.items.filter(i => i.instanceId !== submission.instanceId)
         }
 
@@ -60,6 +65,21 @@ export default class TurnCycle extends React.Component {
             await this.onNewEvent({
                 type: "textMessage", text: `${submission.target.Name} is dead.`
             })
+
+            if (submission.target.team === "enemy") {
+				const playerActivePokemon = this.battle.activeCombatants.player;
+				const xp = submission.target.givesXp;
+
+				await this.onNewEvent({
+					type: "textMessage",
+					text: `${caster.Name} gained ${xp} XP!`,
+				});
+				await this.onNewEvent({
+					type: "giveXp",
+					xp,
+					combatant: this.battle.combatants[playerActivePokemon],
+				});
+			}
         }
 
         // winning team ?
@@ -70,6 +90,7 @@ export default class TurnCycle extends React.Component {
                 text: "WINNER"
             })
 
+            this.onWinner(winner)
             return;
         }
 
@@ -134,10 +155,10 @@ export default class TurnCycle extends React.Component {
 	}
 
     async init() {
-        // await this.onNewEvent({
-        //     type: "textMessage",
-        //     text: "The battle start"
-        // })
+        await this.onNewEvent({
+            type: "textMessage",
+            text: `${this.battle.enemy.name} wants to fight !`
+        })
 
         // start first turn
         this.turn();

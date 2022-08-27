@@ -10,74 +10,73 @@ import {pokemon} from "../content/Pokemon"
 
 
 import playerImg from "./../../assets/graphics/battle/trainers/player.png";
-import rivalImg from "./../../assets/graphics/battle/trainers/rival.png";
+// import rivalImg from "./../../assets/graphics/battle/trainers/rival.png";
 import Team from './team/Team';
+import PlayerState from '../state/PlayerState';
+import { emitEvent } from '../../Utils';
 
 
 export default class Battle extends React.Component { 
-    constructor(config) {
-        super(config)
+    constructor({enemy, onComplete}) {
+        super(enemy)
 
-        this.combatants = {
-            "player1": new Combatant({
-                ...pokemon.pikachu,
-                team: "player",
-                hp: 50,
-                maxHp: 50,
-                xp: 75,
-                maxXp: 100,
-                level: 5,
-                status: null,
-                isPlayerControlled: true,
-            }, this),
-            "player2": new Combatant({
-                ...pokemon.bulbasaur,
-                team: "player",
-                hp: 50,
-                maxHp: 50,
-                xp: 75,
-                maxXp: 100,
-                level: 5,
-                status: null,
-                isPlayerControlled: true,
-            }, this),
+        this.enemy = enemy;
+        this.onComplete = onComplete;
 
-            "enemy1": new Combatant({
-                ...pokemon.charmander,
-                team: "enemy",
-                hp: 50,
-                maxHp: 50,
-                xp: 0,
-                level: 5,
-                status: null,
-            }, this),
-
-            "enemy2": new Combatant({
-                ...pokemon.eevee,
-                team: "enemy",
-                hp: 50,
-                maxHp: 50,
-                xp: 0,
-                level: 5,
-                status: null,
-            }, this)
-        };
+        this.combatants = {};
+        
         this.activeCombatants = {
-            player: "player1",
-            enemy: "enemy1"
+            player: null, // "player1",
+            enemy: null, // "enemy1"
         };
-        this.items = [
-            { itemId: "FULLHEAL", instanceId: "p1", team: "player"},
-            { itemId: "FULLHEAL", instanceId: "p2", team: "player"},
-            { itemId: "POTION", instanceId: "p3", team: "player"},
-            { itemId: "FULLHEAL", instanceId: "p4", team: "enemy"},
-        ]
+
+        // dynamically add player team
+        window.playerState.lineup.forEach(id => {
+            this.addCombatant(id, "player", window.playerState.pokemons[id])
+        })
+        // then enemy
+        Object.keys(this.enemy.pokemons).forEach((key) => {
+			this.addCombatant("e_" + key, "enemy", this.enemy.pokemons[key]);
+		});
+
+		// add player items
+        this.items = [];
+		window.playerState.items.forEach((item) => {
+			this.items.push({
+				...item,
+				team: "player",
+			});
+		});
+        this.usedInstanceIds = {};
     };
+
+    addCombatant(id, team, config) {
+		this.combatants[id] = new Combatant(
+			{
+				...pokemon[config.pokemonId],
+				...config,
+				team,
+				isPlayerControlled: team === "player",
+			},
+			this
+		);
+
+		// populate 1st pokemon
+		this.activeCombatants[team] = this.activeCombatants[id] || id;
+	}
 
 
     createElement() {
 		this.element = document.createElement("div");
 		this.element.classList.add("battle");
+
+        function importAll(r) {
+            let images = {};
+            r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); return true});
+            return images;
+        }
+        const enemiesImg = importAll(require.context('./../../assets/graphics/battle/trainers', false, /\.(png|jpe?g|svg)$/));
+        // to do change here to pick up source and not name
 
 		this.element.innerHTML = `
             <div class="player-animation"></div>
@@ -86,11 +85,12 @@ export default class Battle extends React.Component {
             </div>
             <div class="enemy-animation"></div>
             <div class="battle-enemy">
-                <img src="${rivalImg}" alt=${0} />
+                <img src=${enemiesImg[`${this.enemy.name}.png`]} alt=${this.enemy.name} />
             </div>
             <div class="text-container">
             </div>
         `;
+        
 	}
 
     init(container) {
@@ -105,7 +105,7 @@ export default class Battle extends React.Component {
             combatant.id = key;
             combatant.init(this.element)
 
-            //Add to correct team
+            // add to correct team
 			if (combatant.team === "player") {
 				this.playerTeam.combatants.push(combatant);
 			} else if (combatant.team === "enemy") {
@@ -123,6 +123,35 @@ export default class Battle extends React.Component {
                     const battleEvent = new BattleEvent(event, this);
                     battleEvent.init(resolve);
                 })
+            },
+            onWinner: winner => {
+
+                if (winner === "player") {
+                    const playerState = window.playerState;
+                    Object.keys(playerState.pokemons).forEach(id => {
+                        const playerStatePokemon = playerState.pokemons[id];
+                        const combatant = this.combatants[id];
+                        if (combatant) {
+                            playerStatePokemon.hp = combatant.hp;
+                            playerStatePokemon.xp = combatant.xp;
+                            playerStatePokemon.maxXp = combatant.maxXp;
+                            playerStatePokemon.level = combatant.level;
+                        };
+                    });
+                    // get rid of player used items
+					playerState.items = playerState.items.filter((item) => {
+						return !this.usedInstanceIds[item.instanceId];
+					});
+
+					// send signal to update
+					emitEvent("PlayerStateUpdated");
+                };
+
+                
+
+                // animate ending battle here
+                this.element.remove();
+                this.onComplete();
             }
         })
         this.turnCycle.init();
