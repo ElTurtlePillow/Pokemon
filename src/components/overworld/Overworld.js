@@ -45,12 +45,15 @@ export default class Overworld extends React.Component {
             this.map.drawUpperImage(this.ctx, cameraPerson);
 
 
-            const fps = 120;
-            setTimeout(() => {
-            requestAnimationFrame(() => {
-                step();
-            })
-            }, 1000 / fps);
+            // FPS
+            if (!this.map.isPaused) {
+                const fps = 120;
+                setTimeout(() => {
+                requestAnimationFrame(() => {
+                    step();
+                })
+                }, 1000 / fps);
+            }
         }
         step();
     }
@@ -58,6 +61,13 @@ export default class Overworld extends React.Component {
     bindActionInput() {
         new KeyPressListener("Enter", () => {this.map.checkForActionCutscene()})
         new KeyPressListener("Space", () => {this.map.checkForActionCutscene()})
+        new KeyPressListener("Escape", () => {
+            if (!this.map.isCutscenePlaying) {
+                this.map.startCutScene([
+                    {type: "pause"}
+                ])
+            }
+        })
     }
 
     bindPlayerPositionCheck() {

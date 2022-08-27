@@ -31,6 +31,7 @@ export default class OverworldMap extends React.Component {
         this.upperImage.src = config.upperSrc;
 
         this.isCutscenePlaying = false;
+        this.isPaused = false;
     };
 
     drawLowerImage(ctx, cameraPerson) {

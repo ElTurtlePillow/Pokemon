@@ -69,12 +69,11 @@ export default class KeyboardMenu extends React.Component {
 		this.left.unbind();
 		this.right.unbind();
 	}
-
-
-    
     
     init(container) {
         this.createElement();
+        // (this.descriptionContainer || container).appendChild(this.descriptionElement);
+
         container.appendChild(this.descriptionElement)
         container.appendChild(this.element)
 

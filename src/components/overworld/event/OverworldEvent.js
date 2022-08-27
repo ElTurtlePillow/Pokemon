@@ -5,6 +5,7 @@ import Battle from '../../battle/Battle';
 import { enemies } from '../../content/Enemies';
 
 import TextMessage from '../../text/TextMessage';
+import PauseMenu from '../pause_menu/PauseMenu';
 import SceneTransition from './SceneTransition';
 
 export default class OverworldEvent extends React.Component { 
@@ -85,6 +86,18 @@ export default class OverworldEvent extends React.Component {
         }
       })
       battle.init(document.querySelector(".game-container"))
+    }
+
+    pause(resolve) {
+      this.map.isPaused = true;
+      const menu = new PauseMenu({
+        onComplete: () => {
+          resolve();
+          this.map.isPaused = false;
+          this.map.overworld.startGameLoop();
+        }
+      });
+      menu.init(document.querySelector('.game-container'))
     }
 
     init() {

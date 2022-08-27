@@ -1,0 +1,30 @@
+.pause-menu {
+	position: absolute;
+    display: flex;
+	right: 5px;
+	top: 5px;
+	z-index: 2;
+	width: 98%;
+    height: 97%;
+    .description-box {
+        width: 100%;
+        border-radius: 3px;	
+        background: white;
+        outline: 2px solid #4e8098;
+        border: 2px solid #98c5d5;
+        color: #4467e4;
+        p {
+            text-shadow: 1px 1px 1px rgba(175, 175, 175, 1);
+        }
+    }
+    .keyboard-menu {
+        right: 5px;
+        &::before {
+        border-radius: 3px;
+        padding-top: 10px;
+        }
+        .keyboard-menu-option {
+            margin: 3px 0 0 4px;
+        }
+    }
+}
