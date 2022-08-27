@@ -40,6 +40,10 @@ export default class Combatant extends React.Component {
 		this.hudElement.setAttribute("data-combatant", this.id);
 		this.hudElement.setAttribute("data-team", this.team);
 
+
+		// get ico for overworl hud
+        const icoImage = importAll(require.context('../../../assets/graphics/pokemon/icons', false, /\.(png|jpe?g|svg)$/));
+
 		this.hudElement.innerHTML = `
             <p class="combatant_name">${this.Name}</p>
             <p class="combatant_status"></p>
@@ -64,7 +68,7 @@ export default class Combatant extends React.Component {
             }
             
             <img class="support" src=${supportImg} alt="support" data-team=${this.team} />
-            <img class="combatant_icon" src="../assets/graphics/pokemon/icons/${this.Name}.png" alt="${this.Name}" />
+            <img class="combatant_icon" src=${icoImage[`${this.InternalName}.png`]} alt="${this.Name}" />
         `;
 
 		this.hpFills = this.hudElement.querySelectorAll(".combatant_life-container");
@@ -89,6 +93,7 @@ export default class Combatant extends React.Component {
 		}
 		this.pokemonElement.setAttribute("alt", this.Name);
 		this.pokemonElement.setAttribute("data-team", this.team);
+
 
     }
 

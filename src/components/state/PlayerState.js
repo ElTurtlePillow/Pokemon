@@ -8,7 +8,7 @@ export default class PlayerState extends React.Component {
             p1: {
                 pokemonId: "pikachu",
                 team: "player",
-                hp: 50,
+                hp: 40,
                 maxHp: 50,
                 xp: 75,
                 maxXp: 100,

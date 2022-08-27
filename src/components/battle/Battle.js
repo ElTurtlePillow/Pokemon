@@ -146,7 +146,6 @@ export default class Battle extends React.Component {
 					// send signal to update
 					emitEvent("PlayerStateUpdated");
                 };
-
                 
 
                 // animate ending battle here

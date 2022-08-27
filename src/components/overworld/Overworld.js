@@ -3,6 +3,7 @@ import React from 'react';
 import OverworldMap from './map/OverworldMap';
 import DirectionInputs from '../player_inputs/DirectionInputs';
 import KeyPressListener from '../player_inputs/KeyPressListener';
+import Hud from "./hud/Hud"
 
 export default class Overworld extends React.Component { 
     constructor(config) {
@@ -74,6 +75,9 @@ export default class Overworld extends React.Component {
     }
 
     init() {
+        this.hud = new Hud();
+        this.hud.init(document.querySelector(".game-container"))
+
         this.startMap(window.OverworldMaps.DemoRoom);
 
         this.bindActionInput();
