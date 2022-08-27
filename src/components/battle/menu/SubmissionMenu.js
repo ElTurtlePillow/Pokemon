@@ -6,11 +6,12 @@ import {items} from "../../content/Items"
 import KeyboardMenu from './KeyboardMenu';
 
 export default class SubmissionMenu extends React.Component { 
-    constructor({ caster, enemy, onComplete, items }) {
+    constructor({ caster, enemy, onComplete, items, replacements }) {
         super(onComplete);
 
         this.caster = caster;
         this.enemy = enemy;
+		this.replacements = replacements;
         this.onComplete = onComplete;
 
         let quantityMap = {};
@@ -87,46 +88,46 @@ export default class SubmissionMenu extends React.Component {
 				backOption,
 			],
 			items: [
-				...this.items.map((i) => {
+				...this.item.map((i) => {
 					const item = items[i.itemId];
 					return {
+						// img src : 
 						label: item.Name,
 						description: item.Description,
 						right: () => {
-							return "x" + item.quantity;
+							return "x" + i.quantity;
 						},
 						handler: () => {
-							this.menuSubmit(item, item.instanceId);
+							this.menuSubmit(item, i.instanceId);
 						},
 					};
 				}),
 				backOption,
 			],
 			replacements: [
-			// 	...this.replacements.map((replacement) => {
-			// 		return {
-			// 			label: replacement.Name,
-			// 			description: replacement.Description,
-			// 			handler: () => {
-			// 				this.menuSubmitReplacement(replacement);
-			// 			},
-			// 		};
-			// 	}),
+				...this.replacements.map((replacement) => {
+					return {
+						label: replacement.Name,
+						description: replacement.Pokedex,
+						handler: () => {
+							this.menuSubmitReplacement(replacement);
+						},
+					};
+				}),
 				backOption,
 			],
             run: [
-                // 	...this.replacements.map((replacement) => {
-                // 		return {
-                // 			label: replacement.Name,
-                // 			description: replacement.Description,
-                // 			handler: () => {
-                // 				this.menuSubmitReplacement(replacement);
-                // 			},
-                // 		};
-                // 	}),
+            //    RUN
                     backOption,
                 ],
 		};
+	}
+
+	menuSubmitReplacement(replacement) {
+		this.keyboardMenu?.end();
+		this.onComplete({
+			replacement
+		})
 	}
 
     menuSubmit(move, instanceId = null) {

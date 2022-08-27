@@ -23,6 +23,24 @@ export default class TurnCycle extends React.Component {
 			enemy,
         })
 
+        // stop here if remplacing pokemon
+        if (submission.replacement) {
+            await this.onNewEvent({
+                type: "replace",
+                replacement: submission.replacement
+            })
+            await this.onNewEvent({
+                type: "textMessage",
+                text: `${submission.replacement.Name}, i choose you !`
+            })
+            this.nextTurn();
+            return;
+        }
+
+        if (submission.instanceId) {
+            this.battle.items = this.battle.items.filter(i => i.instanceId !== submission.instanceId)
+        }
+
         
         const resultingEvents = caster.getReplacedEvents(submission.move.Success)
         for (let i = 0; i < resultingEvents.length; i++) {
@@ -34,6 +52,41 @@ export default class TurnCycle extends React.Component {
                 target: submission.target
             }
             await this.onNewEvent(event);
+        }
+
+        // did a pokemon die?
+        const targetDead = submission.target.hp <= 0;
+        if (targetDead) {
+            await this.onNewEvent({
+                type: "textMessage", text: `${submission.target.Name} is dead.`
+            })
+        }
+
+        // winning team ?
+        const winner = this.getWinningTeam();
+        if (winner) {
+            await this.onNewEvent({
+                type: "textMessage",
+                text: "WINNER"
+            })
+
+            return;
+        }
+
+        // dead pokemon but no winner -> replacement
+        if (targetDead) {
+            const replacement = await this.onNewEvent({
+                type: "replacementMenu",
+                team: submission.target.team
+            })
+            await this.onNewEvent({
+                type: "replace",
+                replacement: replacement
+            })
+            await this.onNewEvent({
+                type: "textMessage",
+                text: `${replacement.Name}, GO !`
+            })
         }
 
         // check for post events
@@ -62,6 +115,22 @@ export default class TurnCycle extends React.Component {
     nextTurn() {
 		this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
 		this.turn();
+	}
+
+    getWinningTeam() {
+		let aliveTeams = {};
+		Object.values(this.battle.combatants).forEach((c) => {
+			if (c.hp > 0) {
+				aliveTeams[c.team] = true;
+			}
+		});
+		if (!aliveTeams["player"]) {
+			return "enemy";
+		}
+		if (!aliveTeams["enemy"]) {
+			return "player";
+		}
+		return null;
 	}
 
     async init() {

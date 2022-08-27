@@ -21,11 +21,22 @@ export default class Battle extends React.Component {
             "player1": new Combatant({
                 ...pokemon.pikachu,
                 team: "player",
-                hp: 25,
+                hp: 50,
                 maxHp: 50,
                 xp: 75,
                 maxXp: 100,
-                level: 1,
+                level: 5,
+                status: null,
+                isPlayerControlled: true,
+            }, this),
+            "player2": new Combatant({
+                ...pokemon.bulbasaur,
+                team: "player",
+                hp: 50,
+                maxHp: 50,
+                xp: 75,
+                maxXp: 100,
+                level: 5,
                 status: null,
                 isPlayerControlled: true,
             }, this),
@@ -36,7 +47,7 @@ export default class Battle extends React.Component {
                 hp: 50,
                 maxHp: 50,
                 xp: 0,
-                level: 1,
+                level: 5,
                 status: null,
             }, this),
 
@@ -46,7 +57,7 @@ export default class Battle extends React.Component {
                 hp: 50,
                 maxHp: 50,
                 xp: 0,
-                level: 1,
+                level: 5,
                 status: null,
             }, this)
         };

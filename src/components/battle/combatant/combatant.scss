@@ -188,6 +188,8 @@ $cfs: rgb(255, 160, 17);
 	top: 20px;
 	right: -10px;
 }
+
+// switching pokemon animation
 .pokemon[data-active="false"] {
 	opacity: 0;
 	transform: translateY(40px) scale(0.6);

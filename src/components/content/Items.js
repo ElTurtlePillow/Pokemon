@@ -15,11 +15,7 @@ export const items = {
 			},
 			{
 				type: "stateChange",
-				statusHandler: {
-					type: "hea",
-                    recover: 20,
-					expiresIn: 0,
-				},
+                recover: 20,
 			},
             {
 				type: "textMessage",
