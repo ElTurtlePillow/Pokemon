@@ -1,0 +1,36 @@
+.team {
+	display: flex;
+	position: absolute;
+	top: 4px;
+	gap: 4px;
+}
+.pokeball-battle {
+	width: 12px;
+	height: 12px;
+}
+.team[data-team="player"] {
+	left: 4px;
+}
+.team[data-team="enemy"] {
+	right: 4px;
+}
+
+// start stateful paths as display:none 
+.team .dead-pokemon {
+	display: none;
+}
+.team .active-pokemon-indicator {
+	display: none;
+}
+
+// display them as opted in by data-attributes 
+.team [data-dead="true"]  {
+	img {
+        filter: grayscale(1) brightness(0.8);
+    }
+}
+.team [data-active="true"] .active-pokemon-indicator {
+        position: absolute;
+        display: block;
+        font-size: 8px;
+}

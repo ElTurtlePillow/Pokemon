@@ -103,6 +103,7 @@ export default class Combatant extends React.Component {
 
         // update hp and xp
 		if (this.hpNumber) {
+			if (this.hp < 0) this.hp = 0;
 			this.hpNumber.innerText = `${this.hp}/${this.maxHp}`;
 		}
 		this.hpFills.forEach((fill) => (fill.style.width = `${this.hpPercent}%`));

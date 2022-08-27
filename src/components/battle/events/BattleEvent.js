@@ -64,6 +64,10 @@ export default class BattleEvent extends React.Component {
 			});
 		}
 
+        // update team
+        this.battle.playerTeam.update();
+        this.battle.enemyTeam.update();
+
         await wait(600)
         target.pokemonElement.classList.remove('battle-damage-blink');
         resolve();
@@ -110,6 +114,10 @@ export default class BattleEvent extends React.Component {
 		this.battle.activeCombatants[replacement.team] = replacement.id;
 		replacement.update();
 		await wait(800);
+
+        // update team
+        this.battle.playerTeam.update();
+        this.battle.enemyTeam.update();
 
 		resolve();
 	}
