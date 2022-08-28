@@ -1,4 +1,5 @@
 import React from 'react';
+import {emitEvent} from "../../Utils"
 
 export default class PlayerState extends React.Component { 
     constructor() {
@@ -44,6 +45,18 @@ export default class PlayerState extends React.Component {
             { itemId: "POTION", instanceId: "item3", },
         ]
     };
+
+    swapLineup(oldId, incomingId) {
+        const oldIndex = this.lineup.indexOf(oldId);
+        this.lineup[oldIndex] = incomingId;
+        emitEvent("LineupChanged")
+    }
+
+    moveTofront(futureFrontId) {
+        this.lineup = this.lineup.filter(id => id !== futureFrontId);
+        this.lineup.unshift(futureFrontId)
+        emitEvent("LineupChanged")
+    }
 
 };
 window.playerState = new PlayerState();

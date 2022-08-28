@@ -18,7 +18,7 @@ export default class Hud extends React.Component {
 	createElement() {
 		if (this.element) {
 			this.element.remove();
-			this.scoreboard = [];
+			this.scoreboards = [];
 		}
 
 		this.element = document.createElement("div");
@@ -47,9 +47,9 @@ export default class Hud extends React.Component {
 			this.update();
 		});
 
-		// document.addEventListener("LineupChanged", () => {
-		// 	this.createElement();
-		// 	container.appendChild(this.element);
-		// });
+		document.addEventListener("LineupChanged", () => {
+			this.createElement();
+			container.appendChild(this.element);
+		});
 	}
 };

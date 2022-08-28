@@ -19,9 +19,12 @@
     }
     .keyboard-menu {
         right: 5px;
+        height: 190px;
+        width: 90px;
         &::before {
         border-radius: 3px;
         padding-top: 10px;
+        height: 100%;
         }
         .keyboard-menu-option {
             margin: 3px 0 0 4px;
