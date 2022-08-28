@@ -129,6 +129,7 @@ export default class OverworldMap extends React.Component {
 
 window.OverworldMaps = {
     DemoRoom: {
+        id: "DemoRoom",
         lowerSrc: lowerImg,
         upperSrc: upperImg,
         gameObjects: {
@@ -202,20 +203,27 @@ window.OverworldMaps = {
             [asGridCoords(7, 7)]: [
 				{
                     events: [
-                        { type: "changeMap", map: "DemoMo"},
+                        { 
+                            type: "changeMap", 
+                            map: "DemoMo",
+                            x: withGrid(2),
+                            y: withGrid(0),
+                            direction: 'up',
+                        },
                     ]
                 }
             ]
         }
     },
     DemoMo: {
+        id: "DemoMo",
         lowerSrc: demoRimg,
         upperSrc: demoRimup,
         gameObjects: {
             player: new Person({
                 isPlayerControlled: true,
-                x: withGrid(2),
-                y: withGrid(2),
+                x: withGrid(-1),
+                y: withGrid(-1),
             }),
             npcMom: new Person({
                 x: withGrid(3),

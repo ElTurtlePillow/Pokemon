@@ -10,8 +10,9 @@ import PlayerState from '../../state/PlayerState';
 import { pokemon } from '../../content/Pokemon';
 
 export default class PauseMenu extends React.Component { 
-    constructor({onComplete}) {
+    constructor({onComplete, progress}) {
         super(onComplete);
+		this.progress = progress;
 
         this.onComplete = onComplete
     }
@@ -38,7 +39,8 @@ export default class PauseMenu extends React.Component {
 					label: "Save",
 					description: "Save your progress.",
 					handler: () => {
-						//
+						this.progress.save();
+						this.close();
 					},
 				},
                 {

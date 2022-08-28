@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Progress from "../progress/Progress"
+
 import OverworldMap from './map/OverworldMap';
 import DirectionInputs from '../player_inputs/DirectionInputs';
 import KeyPressListener from '../player_inputs/KeyPressListener';
@@ -78,25 +80,60 @@ export default class Overworld extends React.Component {
         })
     }
 
-    startMap(mapConfig) {
+    startMap(mapConfig, playerInitialState=null) {
         this.map = new OverworldMap(mapConfig)
         this.map.overworld = this;
         this.map.mountObjects();
+
+        if (playerInitialState) {
+            const {player} = this.map.gameObjects;
+            this.map.removeWall(player.x, player.y)
+            player.x = playerInitialState.x;
+            player.y = playerInitialState.y;
+            player.direction = playerInitialState.direction;
+            this.map.addWall(player.x, player.y)
+
+        }
+
+        this.progress.mapId = mapConfig.id;
+        this.progress.startingPlayerX = this.map.gameObjects.player.x;
+        this.progress.startingPlayerY = this.map.gameObjects.player.y;
+        this.progress.startingPlayerDirection = this.map.gameObjects.player.direction;
     }
 
     init() {
+
+        // create progress tracker
+        this.progress = new Progress();
+
+        // saved data?
+        let initialPlayerState = null;
+        const saveFile = this.progress.getSaveFile();
+        if (saveFile) {
+            this.progress.load();
+            initialPlayerState = {
+                x: this.progress.startingPlayerX,
+                y: this.progress.startingPlayerY,
+                direction: this.progress.startingPlayerDirection,
+            }
+        }
+
+        // load the hud
         this.hud = new Hud();
         this.hud.init(document.querySelector(".game-container"))
 
-        this.startMap(window.OverworldMaps.DemoRoom);
+        // start 1st map
+        console.log(this.progress.mapId);
+        this.startMap(window.OverworldMaps[this.progress.mapId], initialPlayerState);
 
+        // create controls
         this.bindActionInput();
         this.bindPlayerPositionCheck();
 
         this.directionInput = new DirectionInputs();
         this.directionInput.init();
 
-
+        // launch
         this.startGameLoop();
 
         // this.map.startCutScene([

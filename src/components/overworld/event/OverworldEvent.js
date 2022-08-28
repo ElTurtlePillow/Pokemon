@@ -59,13 +59,13 @@ export default class OverworldEvent extends React.Component {
 
     textMessage(resolve) {
 		if (this.event.facePlayer) {
-			const obj = this.map.gameObjects[this.event.facePlayer];
-			obj.direction = oppositeDirection(this.map.gameObjects["player"].direction);
+			  const obj = this.map.gameObjects[this.event.facePlayer];
+			  obj.direction = oppositeDirection(this.map.gameObjects["player"].direction);
 		}
 
 		const message = new TextMessage({
-			text: this.event.text,
-			onComplete: () => resolve(),
+			  text: this.event.text,
+			  onComplete: () => resolve(),
 		});
 		message.init(document.querySelector(".game-container"));
 	  }
@@ -73,26 +73,31 @@ export default class OverworldEvent extends React.Component {
     changeMap(resolve) {
 		const sceneTransition = new SceneTransition();
 		sceneTransition.init(document.querySelector(".game-container"), () => {
-			this.map.overworld.startMap(window.OverworldMaps[this.event.map]);
-			resolve();
+		    this.map.overworld.startMap(window.OverworldMaps[this.event.map], {
+            x: this.event.x,
+            y: this.event.y,
+            direction: this.event.direction
+        });
+			  resolve();
 
-			sceneTransition.fadeOut();
+			  sceneTransition.fadeOut();
 		});
 	  }
 
     battle(resolve) {
-      const battle = new Battle({
-        enemy: enemies[this.event.enemyId],
-        onComplete: (didWin) => {
-          resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
-        }
-      })
+        const battle = new Battle({
+            enemy: enemies[this.event.enemyId],
+            onComplete: (didWin) => {
+            resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+            }
+        })
       battle.init(document.querySelector(".game-container"))
     }
 
     pause(resolve) {
       this.map.isPaused = true;
       const menu = new PauseMenu({
+        progress: this.map.overworld.progress,
         onComplete: () => {
           resolve();
           this.map.isPaused = false;
