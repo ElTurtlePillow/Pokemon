@@ -13,6 +13,7 @@ import npcAImg from "../../../assets/graphics/characters/npcA.png";
 import { collisions } from './MapCollision';
 import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../Utils';
 import OverworldEvent from '../event/OverworldEvent';
+import PlayerState from '../../state/PlayerState';
 
 export default class OverworldMap extends React.Component { 
     constructor(config) {
@@ -73,7 +74,10 @@ export default class OverworldMap extends React.Component {
 				event: events[i],
 				map: this,
 			});
-            await eventHandler.init();
+            const result = await eventHandler.init();
+            if (result === "LOST_BATTLE") {
+                break;
+            }
         }
 
         this.isCutscenePlaying = false;
@@ -88,7 +92,14 @@ export default class OverworldMap extends React.Component {
 			return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
 		});
 		if (!this.isCutscenePlaying && match && match.talking.length) {
-            this.startCutScene(match.talking[0].events);
+
+            const relevantScenario = match.talking.find((scenario) => {
+                return (scenario.required || []).every((sf) => {
+                    return window.playerState.storyFlags[sf]
+                })
+            })
+
+            relevantScenario && this.startCutScene(relevantScenario.events);
         };
 	};
 
@@ -137,7 +148,8 @@ window.OverworldMaps = {
                 talking : [
                     {
                         events: [
-                            { type: "textMessage", text: "Hello world", facePlayer: "npcA"},
+                            { type: "textMessage", text: "Hello world", facePlayer: "npcA" },
+                            { type: "addStoryFlag", flag:"TALKD_TO_MOM"},
                         ]
                     }
                 ]
@@ -152,9 +164,17 @@ window.OverworldMaps = {
                 ],
                 talking : [
                     {
+                        required: ["TALKD_TO_MOM"],
                         events: [
-                            { type: "textMessage", text: "Let's fight biach", facePlayer: "npcA"},
-                            { type:"battle", enemyId: "beth" }
+                            { type: "textMessage", text: "Well well well", facePlayer: "npcA"},
+                        ]
+                    },
+                    {
+                        events: [
+                            { type: "textMessage", text: "My pokemons are the best !", facePlayer: "npcA"},
+                            { type: "battle", enemyId: "beth" },
+                            { type: "addStoryFlag", flag: "DEFEATED_BETH"},
+                            { type: "textMessage", text: "You're the king bro", facePlayer: "npcA"},
                         ]
                     }
                 ]

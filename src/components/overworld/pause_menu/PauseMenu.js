@@ -94,7 +94,7 @@ export default class PauseMenu extends React.Component {
         //         label: "Front",
         //         description: "Move the pokemon on front of team",
         //         handler:() => {
-        // 				playerState.swapLineup()
+        // 				playerState.moveToFront(pageKey)
         //             	this.keyboardMenu.setOptions(this.getOptions("root"));
         //         }
         //     },

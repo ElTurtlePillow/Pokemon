@@ -150,7 +150,7 @@ export default class Battle extends React.Component {
 
                 // animate ending battle here
                 this.element.remove();
-                this.onComplete();
+                this.onComplete(winner === "player");
             }
         })
         this.turnCycle.init();
