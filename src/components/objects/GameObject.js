@@ -24,11 +24,12 @@ export default class GameObject extends React.Component {
         this.behaviorLoopIndex = 0;
 
         this.talking = config.talking || [];
+        this.retryTimeout = null;
     };
 
     mount(map) {
         this.isMaounted = true;
-        map.addWall(this.x, this.y);
+        // map.addWall(this.x, this.y);
 
         // start behavior after n sec
         setTimeout(() => {
@@ -40,9 +41,20 @@ export default class GameObject extends React.Component {
 
     async doBehaviorEvent(map) {
         // stop if cutscene
-        if (map.isCutscenePlaying || this.behaviorLoop.length === 0 || this.isStanding) {
+        if (this.behaviorLoop.length === 0) {
             return;
         };
+
+        if (map.isCutscenePlaying) {
+            if (this.retryTimeout) {
+                clearTimeout(this.retryTimeout)
+            }
+
+            this.retryTimeout = setTimeout(() => {
+                this.doBehaviorEvent(map)
+            }, 1000)
+            return;
+        }
 
         // event with info
         let eventConfig = this.behaviorLoop[this.behaviorLoopIndex];

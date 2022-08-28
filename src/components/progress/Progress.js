@@ -4,7 +4,8 @@ export default class InteractiveObject extends React.Component  {
     constructor(config) {
         super(config);
 
-        this.mapId = "DemoRoom";
+        // set initial map
+        this.mapId = "MomHouseSecondFloor";
         this.startingPlayerX = 0;
         this.startingPlayerY = 0;
         this.startingPlayerDirection = "down";

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TitleScreen from "../title_screen/TitleScreen"
 import Progress from "../progress/Progress"
 
 import OverworldMap from './map/OverworldMap';
@@ -87,11 +88,11 @@ export default class Overworld extends React.Component {
 
         if (playerInitialState) {
             const {player} = this.map.gameObjects;
-            this.map.removeWall(player.x, player.y)
+            // this.map.removeWall(player.x, player.y)
             player.x = playerInitialState.x;
             player.y = playerInitialState.y;
             player.direction = playerInitialState.direction;
-            this.map.addWall(player.x, player.y)
+            // this.map.addWall(player.x, player.y)
 
         }
 
@@ -101,15 +102,22 @@ export default class Overworld extends React.Component {
         this.progress.startingPlayerDirection = this.map.gameObjects.player.direction;
     }
 
-    init() {
+    async init() {
+
+        const container = document.querySelector(".game-container")
 
         // create progress tracker
         this.progress = new Progress();
 
+        // show title screen
+        this.titleScreen = new TitleScreen( {
+            progress: this.progress
+        }); 
+        const useSaveFile = await this.titleScreen.init(container)
+
         // saved data?
         let initialPlayerState = null;
-        const saveFile = this.progress.getSaveFile();
-        if (saveFile) {
+        if (useSaveFile) {
             this.progress.load();
             initialPlayerState = {
                 x: this.progress.startingPlayerX,
@@ -120,10 +128,9 @@ export default class Overworld extends React.Component {
 
         // load the hud
         this.hud = new Hud();
-        this.hud.init(document.querySelector(".game-container"))
+        this.hud.init(container)
 
         // start 1st map
-        console.log(this.progress.mapId);
         this.startMap(window.OverworldMaps[this.progress.mapId], initialPlayerState);
 
         // create controls

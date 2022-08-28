@@ -58,19 +58,25 @@ export default class OverworldEvent extends React.Component {
     }
 
     textMessage(resolve) {
-		if (this.event.facePlayer) {
-			  const obj = this.map.gameObjects[this.event.facePlayer];
-			  obj.direction = oppositeDirection(this.map.gameObjects["player"].direction);
-		}
+        if (this.event.facePlayer) {
+            const obj = this.map.gameObjects[this.event.facePlayer];
+            obj.direction = oppositeDirection(this.map.gameObjects["player"].direction);
+        }
 
-		const message = new TextMessage({
-			  text: this.event.text,
-			  onComplete: () => resolve(),
-		});
-		message.init(document.querySelector(".game-container"));
-	  }
+        const message = new TextMessage({
+            text: this.event.text,
+            onComplete: () => resolve(),
+        });
+        message.init(document.querySelector(".game-container"));
+    }
 
     changeMap(resolve) {
+
+      // desactivate pld pbject
+      Object.values(this.map.gameObjects).forEach(obj => {
+        obj.isMaounted = false;
+      })
+
 		const sceneTransition = new SceneTransition();
 		sceneTransition.init(document.querySelector(".game-container"), () => {
 		    this.map.overworld.startMap(window.OverworldMaps[this.event.map], {

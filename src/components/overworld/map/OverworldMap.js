@@ -1,22 +1,18 @@
 import React from 'react';
 import Person from '../../objects/Person';
-
-import lowerImg from "../../../assets/graphics/maps/map.png";
-import upperImg from "../../../assets/graphics/maps/mapupper.png";
-
-import demoRimg from "../../../assets/graphics/maps/map1.png"
-import demoRimup from "../../../assets/graphics/maps/map1d.png"
-
-import momImg from "../../../assets/graphics/characters/mother.png";
-import npcAImg from "../../../assets/graphics/characters/npcA.png";
-
-import { collisions } from './MapCollision';
-import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../Utils';
 import OverworldEvent from '../event/OverworldEvent';
-
+import InteractiveObject from '../../objects/InteractiveObject';
 import PlayerState from '../../state/PlayerState';
 
-import InteractiveObject from '../../objects/InteractiveObject';
+import {  nextPosition, withGrid } from '../../../Utils';
+
+import { MomHouseSecondFloor } from './maps/pallet_town/houses/mom_house/second_floor/MomHouseSecondFloor'
+import { MomHouseFirstFloor } from './maps/pallet_town/houses/mom_house/first_floor/MomHouseFirstFloor'
+
+import { PalletTown } from './maps/pallet_town/PalletTown';
+
+// import { DemoRoom } from './maps/demo/DemoRoom';
+
 
 export default class OverworldMap extends React.Component { 
     constructor(config) {
@@ -24,7 +20,9 @@ export default class OverworldMap extends React.Component {
         
         this.overworld = null;
 
-        this.gameObjects = config.gameObjects;
+        this.gameObjects = {}; // live objects
+        this.configObjects = config.configObjects; // config content
+
         this.cutsceneSpaces = config.cutsceneSpaces || {};
         this.walls = config.walls || {};
 
@@ -55,17 +53,34 @@ export default class OverworldMap extends React.Component {
 
     isSpaceTaken(currentX, currentY, direction) {
         const { x, y } = nextPosition(currentX, currentY, direction);
-        return this.walls[`${x}, ${y}`] || false;
+        if (this.walls[`${x}, ${y}`]) {
+            return true;
+        }
+        // check for game objects
+        return Object.values(this.gameObjects).find(obj => {
+            if (obj.x === x && obj.y === y) {return true};
+            if (obj.intentPosition && obj.intentPosition[0] === x && obj.intentPosition[1] === y) {return true}
+            return false
+        })
     };
 
     mountObjects() {
-        Object.keys(this.gameObjects).forEach(key => {
+        Object.keys(this.configObjects).forEach(key => {
 
-            let obj = this.gameObjects[key];
+            let obj = this.configObjects[key];
             obj.id = key;
 
-            // to do : determine if the object can be mount
-            obj.mount(this);
+
+            let instance;
+            if (obj.type === "Person") {
+                instance = new Person(obj)
+            }
+            if (obj.type === "InteractiveObject") {
+                instance = new InteractiveObject(obj)
+            }
+            this.gameObjects[key] = instance;
+            this.gameObjects[key].id = key;
+            instance.mount(this);
         });
     };
 
@@ -85,7 +100,7 @@ export default class OverworldMap extends React.Component {
 
         this.isCutscenePlaying = false;
         // reset npcs to their behavior
-        Object.values(this.gameObjects).forEach(obj => obj.doBehaviorEvent(this));
+        // Object.values(this.gameObjects).forEach(obj => obj.doBehaviorEvent(this));
     }
 
     checkForActionCutscene() {
@@ -114,129 +129,21 @@ export default class OverworldMap extends React.Component {
         };
     };
 
-    addWall(x, y) {
-        this.walls[`${x}, ${y}`] = true;
-    };
-    removeWall(x, y) {
-        delete this.walls[`${x}, ${y}`];
-    };
-    moveWall(wasX, wasY, direction) {
-        this.removeWall(wasX, wasY);
-        const { x, y } = nextPosition(wasX, wasY, direction);
-        this.addWall(x, y);
-    }
+    // addWall(x, y) {
+    //     this.walls[`${x}, ${y}`] = true;
+    // };
+    // removeWall(x, y) {
+    //     delete this.walls[`${x}, ${y}`];
+    // };
+    // moveWall(wasX, wasY, direction) {
+    //     this.removeWall(wasX, wasY);
+    //     const { x, y } = nextPosition(wasX, wasY, direction);
+    //     this.addWall(x, y);
+    // }
 };
 
 window.OverworldMaps = {
-    DemoRoom: {
-        id: "DemoRoom",
-        lowerSrc: lowerImg,
-        upperSrc: upperImg,
-        gameObjects: {
-            player: new Person({
-                isPlayerControlled: true,
-                x: withGrid(4),
-                y: withGrid(4)
-            }),
-            npcMom: new Person({
-                x: withGrid(6),
-                y: withGrid(3),
-                src: momImg,
-                behaviorLoop: [
-                    { type: "stand", direction: "down", time: 1},
-                    { type: "walk", direction: "up", },
-                    { type: "walk", direction: "right", },
-                    { type: "walk", direction: "down", },
-                    { type: "walk", direction: "left", },
-                ],
-                talking : [
-                    {
-                        events: [
-                            { type: "textMessage", text: "Hello world", facePlayer: "npcA" },
-                            { type: "addStoryFlag", flag:"TALKD_TO_MOM"},
-                        ]
-                    }
-                ]
-            }),
-            npcA: new Person({
-                x: withGrid(10),
-                y: withGrid(5),
-                src: npcAImg,
-                behaviorLoop: [
-                    { type: "stand", direction: "right", time: 2000 },
-                    { type: "stand", direction: "down", time: 3000},
-                ],
-                talking : [
-                    {
-                        required: ["TALKD_TO_MOM"],
-                        events: [
-                            { type: "textMessage", text: "Well well well", facePlayer: "npcA"},
-                        ]
-                    },
-                    {
-                        events: [
-                            { type: "textMessage", text: "My pokemons are the best !", facePlayer: "npcA"},
-                            { type: "battle", enemyId: "beth" },
-                            { type: "addStoryFlag", flag: "DEFEATED_BETH"},
-                            { type: "textMessage", text: "You're the king bro", facePlayer: "npcA"},
-                        ]
-                    }
-                ]
-            }),
-            interactiveObject: new InteractiveObject({
-                x: withGrid(2),
-                y: withGrid(8),
-                storyFlag: "USED_INTERACTIVE_OBJECT",
-                pokemons: ["pikachu"]
-            })
-        },
-        walls: loadWall(collisions),
-        cutsceneSpaces: {
-			[asGridCoords(1,1)]: [
-				{
-                    events: [
-                        { who: "player", type: "walk", direction: "right"},
-                        { type: "textMessage", text:"Sionop rg r ger eg erzger ezrgz ethezth zeth zth eth zerh ze"},
-                    ]
-                }
-            ],
-            [asGridCoords(7, 7)]: [
-				{
-                    events: [
-                        { 
-                            type: "changeMap", 
-                            map: "DemoMo",
-                            x: withGrid(2),
-                            y: withGrid(0),
-                            direction: 'up',
-                        },
-                    ]
-                }
-            ]
-        }
-    },
-    DemoMo: {
-        id: "DemoMo",
-        lowerSrc: demoRimg,
-        upperSrc: demoRimup,
-        gameObjects: {
-            player: new Person({
-                isPlayerControlled: true,
-                x: withGrid(-1),
-                y: withGrid(-1),
-            }),
-            npcMom: new Person({
-                x: withGrid(3),
-                y: withGrid(3),
-                src: momImg,
-                talking : [
-                    {
-                        events: [
-                            { type: "textMessage", text: "Love u", facePlayer: "npcMom"},
-                        ]
-                    }
-                ]
-            }),
-        }
-    },
+    MomHouseSecondFloor,
+    MomHouseFirstFloor,
+    PalletTown,
 };

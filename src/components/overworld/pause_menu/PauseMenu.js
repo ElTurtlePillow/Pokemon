@@ -65,6 +65,13 @@ export default class PauseMenu extends React.Component {
 					},
 				},
 				{
+					label: "Options",
+					description: "Change game configuration",
+					handler: () => {
+						//
+					},
+				},
+				{
 					label: "Close",
 					description: "Close the menu.",
 					handler: () => {

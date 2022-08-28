@@ -1,5 +1,5 @@
 import GameObject from './GameObject';
-import { emitEvent } from '../../Utils';
+import { emitEvent, nextPosition } from '../../Utils';
 
 export default class Person extends GameObject { 
     constructor(config) {
@@ -7,6 +7,8 @@ export default class Person extends GameObject {
 
         this.movingProgressRemaining = 0;
         this.isStanding = false;
+        this.intentPosition = null; 
+
         this.isPlayerControlled = config.isPlayerControlled || false;
 
         this.directionUpdate = {
@@ -34,6 +36,11 @@ export default class Person extends GameObject {
     };
 
     startBehavior(state, behavior) {
+
+        if (!this.isMaounted) {
+            return
+        }
+
         // set character direction
         this.direction = behavior.direction;
 
@@ -49,8 +56,16 @@ export default class Person extends GameObject {
             };
 
             // walk
-            state.map.moveWall(this.x, this.y, this.direction);
+            // state.map.moveWall(this.x, this.y, this.direction);
             this.movingProgressRemaining = 32;
+
+            // preview next position
+            const intentPosition = nextPosition(this.x, this.y, this.direction)
+            this.intentPosition = [
+                intentPosition.x,
+                intentPosition.y
+            ]
+
             this.updateSprite(state);
         };
 
@@ -72,6 +87,7 @@ export default class Person extends GameObject {
         this.movingProgressRemaining -= 1;
 
         if (this.movingProgressRemaining === 0) {
+            this.intentPosition = null;
             emitEvent("PersonWalkingComplete", {
                 whoId: this.id
             });
