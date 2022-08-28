@@ -13,7 +13,10 @@ import npcAImg from "../../../assets/graphics/characters/npcA.png";
 import { collisions } from './MapCollision';
 import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../Utils';
 import OverworldEvent from '../event/OverworldEvent';
+
 import PlayerState from '../../state/PlayerState';
+
+import InteractiveObject from '../../objects/InteractiveObject';
 
 export default class OverworldMap extends React.Component { 
     constructor(config) {
@@ -178,6 +181,12 @@ window.OverworldMaps = {
                         ]
                     }
                 ]
+            }),
+            interactiveObject: new InteractiveObject({
+                x: withGrid(2),
+                y: withGrid(8),
+                storyFlag: "USED_INTERACTIVE_OBJECT",
+                pokemons: ["pikachu"]
             })
         },
         walls: loadWall(collisions),

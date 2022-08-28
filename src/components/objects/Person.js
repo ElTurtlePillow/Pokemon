@@ -1,5 +1,5 @@
-import { emitEvent } from '../../Utils';
 import GameObject from './GameObject';
+import { emitEvent } from '../../Utils';
 
 export default class Person extends GameObject { 
     constructor(config) {

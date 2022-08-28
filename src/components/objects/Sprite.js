@@ -36,7 +36,7 @@ export default class Sprite extends React.Component {
             "walk-left": [[1,1], [0,1], [3,1], [0,1]],
             "walk-right": [[1,2], [0,2], [3,2], [0,2]],
         };
-        this.currentAnimation = "idle-left" // config.currentAnimation || "idle-down";
+        this.currentAnimation = config.currentAnimation || "idle-down";
         this.currentAnimationFrame = 0;
 
 

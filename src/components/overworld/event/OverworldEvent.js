@@ -8,6 +8,8 @@ import TextMessage from '../../text/TextMessage';
 import PauseMenu from '../pause_menu/PauseMenu';
 import SceneTransition from './SceneTransition';
 
+import GettingObject from "../getting_object/GettingObject"
+
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
         super(map);
@@ -103,6 +105,16 @@ export default class OverworldEvent extends React.Component {
     addStoryFlag(resolve) {
       window.playerState.storyFlags[this.event.flag] = true;
       resolve();
+    }
+
+    gettingObject(resolve) {
+      const menu = new GettingObject({
+        pokemons: this.event.pokemons,
+        onComplete: () => {
+          resolve()
+        }
+      })
+      menu.init(document.querySelector(".game-container"));
     }
 
     init() {
