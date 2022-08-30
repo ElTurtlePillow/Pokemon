@@ -79,9 +79,7 @@ export const MomHouseFirstFloor = {
                     },
                 ]
             }
-        ]
-    },
-    cutsceneSpaces: {
+        ],
         [asGridCoords(13, 20)]: [
             {
                 events: [
@@ -95,5 +93,5 @@ export const MomHouseFirstFloor = {
                 ]
             }
         ]
-    }
+    },
 }

@@ -6,8 +6,9 @@ import KeyboardMenu from '../battle/menu/KeyboardMenu';
 
 import titleScreen from "../../assets/graphics/pictures/v3.png"
 import bg from "../../assets/graphics/pictures/titlescreenbg.gif"
+import SceneTransition from '../overworld/event/SceneTransition';
 
-export default class Overworld extends React.Component { 
+export default class TitleScreen extends React.Component { 
     constructor({ progress }) {
         super(progress);
 
@@ -47,8 +48,12 @@ export default class Overworld extends React.Component {
     }
 
     close( ) {
-        this.keyboardMenu.end();
-        this.element.remove()
+        const sceneTransition = new SceneTransition();
+        sceneTransition.init(document.querySelector(".game-container"), () => {
+            sceneTransition.fadeOut();
+            this.keyboardMenu.end();
+            this.element.remove()
+      });
     }
 
     async init(container) {

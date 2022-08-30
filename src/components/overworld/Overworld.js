@@ -1,6 +1,8 @@
 import React from 'react';
 
 import TitleScreen from "../title_screen/TitleScreen"
+
+
 import Progress from "../progress/Progress"
 
 import OverworldMap from './map/OverworldMap';
@@ -124,7 +126,8 @@ export default class Overworld extends React.Component {
                 y: this.progress.startingPlayerY,
                 direction: this.progress.startingPlayerDirection,
             }
-        }
+	    }
+        
 
         // load the hud
         this.hud = new Hud();

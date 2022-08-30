@@ -6,6 +6,8 @@ import PlayerState from '../../state/PlayerState';
 
 import {  nextPosition, withGrid } from '../../../Utils';
 
+import { NewGame } from "./maps/new_game/NewGame"
+
 import { MomHouseSecondFloor } from './maps/pallet_town/houses/mom_house/second_floor/MomHouseSecondFloor'
 import { MomHouseFirstFloor } from './maps/pallet_town/houses/mom_house/first_floor/MomHouseFirstFloor'
 
@@ -146,6 +148,8 @@ export default class OverworldMap extends React.Component {
 };
 
 window.OverworldMaps = {
+    NewGame,
+
     MomHouseSecondFloor,
     MomHouseFirstFloor,
     PalletTown,
