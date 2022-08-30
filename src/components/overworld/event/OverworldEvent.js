@@ -10,6 +10,8 @@ import SceneTransition from './SceneTransition';
 
 import GettingObject from "../getting_object/GettingObject"
 
+import PalletTownBurning from "./client_events/PalletTownBurning"
+
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
         super(map);
@@ -115,6 +117,15 @@ export default class OverworldEvent extends React.Component {
 
     addStoryFlag(resolve) {
       window.playerState.storyFlags[this.event.flag] = true;
+      
+      if (this.event.flag === "PALLET_TOWN_BURNING") {
+        const palletTownBurning = new PalletTownBurning()
+        palletTownBurning.init(document.querySelector(".client-events"), () => {
+          resolve();
+          palletTownBurning.fadeOut();
+      });
+      }
+
       resolve();
     }
 

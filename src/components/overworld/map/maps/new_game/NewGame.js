@@ -46,6 +46,9 @@ export const NewGame = {
                     { who: "npcMom", type: "stand", direction: "down", time: 1100},
                     { type: "textMessage", text:"Take care of you and your Pokemons."},
                     { who: "npcMom", type: "stand", direction: "down", time: 1100},
+                    
+                    { type: "addStoryFlag", flag: "GAME_INITIALISED"},
+
                     { who: "npcMom", type: "walk", direction: "up"},
                     { who: "npcMom", type: "walk", direction: "up"},
                     { who: "npcMom", type: "walk", direction: "up"},
@@ -55,8 +58,16 @@ export const NewGame = {
                     { who: "npcMom", type: "walk", direction: "up"},
                     { who: "npcMom", type: "walk", direction: "up"},
                     { who: "npcMom", type: "walk", direction: "up"},
+
+                    { who: "player", type: "walk", direction: "up"},
                 ]
-            }
+            },
+            {
+                required: ["GAME_INITIALISED"],
+                events: [
+                    { who: "npcMom", type: "stand", direction: "up", time: 1},
+                ]
+            },
         ],
         [asGridCoords(13,10)]: [
             {
@@ -82,12 +93,13 @@ export const NewGame = {
                     { who: "player", type: "stand", direction: "down", time: 20},
                     { who: "player", type: "stand", direction: "left", time: 20},
                     { who: "player", type: "stand", direction: "up", time: 20},
+                    { who: "player", type: "stand", direction: "right", time: 20},
                     { 
                         type: "changeMap", 
                         map: "MomHouseSecondFloor",
-                        x: withGrid(14),
-                        y: withGrid(16),
-                        direction: 'up',
+                        x: withGrid(11),
+                        y: withGrid(15),
+                        direction: 'right',
                     },
                 ]
             }

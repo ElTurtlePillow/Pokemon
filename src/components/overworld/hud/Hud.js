@@ -27,14 +27,17 @@ export default class Hud extends React.Component {
         const {playerState} = window;
         playerState.lineup.forEach(key => {
             const pokemonsPlayer = playerState.pokemons[key];
+			if (pokemonsPlayer) {
             const scoreboard = new Combatant({
                 id: key,
                 ...pokemon[pokemonsPlayer.pokemonId],
                 ...pokemonsPlayer,
             }, null)
+			
             scoreboard.createElement();
             this.scoreboards.push(scoreboard);
             this.element.appendChild(scoreboard.hudElement)
+		}
         })
         this.update()
 	}

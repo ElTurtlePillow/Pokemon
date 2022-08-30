@@ -31,8 +31,8 @@ export const MomHouseFirstFloor = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "I know you would have preferred to stay in Celadon City.", facePlayer: "npcMom"},
-                        { type: "textMessage", text: "But I'm sure Pallet Town has a lot to offer.", facePlayer: "npcMom"},
+                        { type: "textMessage", text: "Mom: I know you would have preferred to stay in Celadon City.", facePlayer: "npcMom"},
+                        { type: "textMessage", text: "Mom: But I'm sure Pallet Town has a lot to offer.", facePlayer: "npcMom"},
                     ]
                 },
             ]

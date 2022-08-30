@@ -8,7 +8,6 @@ import { asGridCoords, loadWall, withGrid } from '../../../../../Utils';
 import blank from "../../../../../assets/graphics/characters/blank.png"
 
 import npcAImg from "../../../../../assets/graphics/characters/npcA.png";
-import npcBImg from "../../../../../assets/graphics/characters/npcB.png";
 import npcCImg from "../../../../../assets/graphics/characters/npcC.png";
 import npcDImg from "../../../../../assets/graphics/characters/npcD.png";
 
@@ -41,7 +40,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Smells weird, uh !", facePlayer: "npcA" },
+                        { type: "textMessage", text: "Smells weird, uh!", facePlayer: "npcA" },
                     ]
                 }
             ]
@@ -59,7 +58,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "I really like this town !", facePlayer: "npcC" },
+                        { type: "textMessage", text: "I really like this town!", facePlayer: "npcC" },
                     ]
                 }
             ]
@@ -88,7 +87,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Home of YOU." },
+                        { type: "textMessage", text: "Home of Martha and Red." },
                     ]
                 },
             ]
@@ -101,7 +100,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "RIVAL's house."},
+                        { type: "textMessage", text: "Cherry and Jude's house."},
                     ]
                 },
             ]
@@ -195,10 +194,11 @@ export const PalletTown = {
                     { who: "npcD", type: "walk", direction: "left"},
                     { who: "npcD", type: "stand", direction: "down"},
                     { who: "player", type: "stand", direction: "up"},
-                    { type: "textMessage", text:"You should not go there without a Pokemon !"},
+                    { type: "textMessage", text:"You should not go there without a Pokemon!"},
                     { who: "player", type: "walk", direction: "down"},
                     { who: "npcD", type: "walk", direction: "down"},
                     { who: "npcD", type: "walk", direction: "right"},
+                    { who: "npcD", type: "stand", direction: "down"},
                 ]
             }
         ]

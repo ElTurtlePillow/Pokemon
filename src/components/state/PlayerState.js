@@ -6,16 +6,16 @@ export default class PlayerState extends React.Component {
         super()
 
         this.pokemons = {
-            p1: {
-                pokemonId: "pikachu",
-                team: "player",
-                hp: 50,
-                maxHp: 50,
-                xp: 0,
-                maxXp: 100,
-                level: 5,
-                status: null,
-            },
+            // p1: {
+            //     pokemonId: "pikachu",
+            //     team: "player",
+            //     hp: 50,
+            //     maxHp: 50,
+            //     xp: 0,
+            //     maxXp: 100,
+            //     level: 5,
+            //     status: null,
+            // },
         }
 
         this.lineup = ["p1"];

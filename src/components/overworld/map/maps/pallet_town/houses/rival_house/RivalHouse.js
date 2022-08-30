@@ -31,7 +31,8 @@ export const RivalHouse = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "My brother is at prof Chen's lab.", facePlayer: "npcCherry"},
+                        { type: "textMessage", text: "Cherry: My brother is at prof Chen's lab.", facePlayer: "npcCherry"},
+                        { type: "textMessage", text: "Cherry: I think he will have his first Pokemon.", facePlayer: "npcCherry"},
                     ]
                 },
             ]
