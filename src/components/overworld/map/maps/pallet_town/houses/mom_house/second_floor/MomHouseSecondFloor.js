@@ -4,8 +4,8 @@ import { collisions } from './MapCollision';
 
 import { asGridCoords, loadWall, withGrid } from '../../../../../../../../Utils';
 
+import blank from "../../../../../../../../assets/graphics/characters/blank.png"
 
-import npcAImg from "../../../../../../../../assets/graphics/characters/npcA.png";
 
 export const MomHouseSecondFloor = {
     id: "MomHouseSecondFloor",
@@ -20,13 +20,85 @@ export const MomHouseSecondFloor = {
             y: withGrid(16),
             direction: "up",
         }),
-        // npcA: ({
-        //     type: "Person",
-        //     x: withGrid(17),
-        //     y: withGrid(12),
-        //     src: npcAImg,
-            
-        // }),
+        computer: ({
+            type: "Person",
+            x: withGrid(9),
+            y: withGrid(11),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Windows update..."},
+                    ]
+                },
+            ]
+        }),
+        notebook: ({
+            type: "Person",
+            x: withGrid(10),
+            y: withGrid(11),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: '"Is this the real life ?"'},
+                        { type: "textMessage", text: '"Is this just fantasy ?"'},
+                    ]
+                },
+            ]
+        }),
+        bookshelf1: ({
+            type: "Person",
+            x: withGrid(12),
+            y: withGrid(11),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "There is a lot of books here."},
+                    ]
+                },
+            ]
+        }),
+        bookshelf2: ({
+            type: "Person",
+            x: withGrid(13),
+            y: withGrid(11),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "There is a lot of books here."},
+                    ]
+                },
+            ]
+        }),
+        n64: ({
+            type: "Person",
+            x: withGrid(14),
+            y: withGrid(15),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Why is it not working ?"},
+                    ]
+                },
+            ]
+        }),
+        degree: ({
+            type: "Person",
+            x: withGrid(19),
+            y: withGrid(11),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Driver's license."},
+                    ]
+                },
+            ]
+        }),
     },
     walls: loadWall(collisions),
     cutsceneSpaces: {
@@ -43,5 +115,5 @@ export const MomHouseSecondFloor = {
                 ]
             }
         ]
-    }
+    },
 }

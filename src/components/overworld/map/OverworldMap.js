@@ -9,6 +9,9 @@ import {  nextPosition, withGrid } from '../../../Utils';
 import { MomHouseSecondFloor } from './maps/pallet_town/houses/mom_house/second_floor/MomHouseSecondFloor'
 import { MomHouseFirstFloor } from './maps/pallet_town/houses/mom_house/first_floor/MomHouseFirstFloor'
 
+import { RivalHouse } from './maps/pallet_town/houses/rival_house/RivalHouse'
+import { ChenLab } from './maps/pallet_town/houses/chen_lab/ChenLab'
+
 import { PalletTown } from './maps/pallet_town/PalletTown';
 
 // import { DemoRoom } from './maps/demo/DemoRoom';
@@ -146,4 +149,6 @@ window.OverworldMaps = {
     MomHouseSecondFloor,
     MomHouseFirstFloor,
     PalletTown,
+    RivalHouse,
+    ChenLab,
 };

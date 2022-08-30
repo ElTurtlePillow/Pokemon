@@ -4,7 +4,8 @@ import "./title-screen.scss"
 
 import KeyboardMenu from '../battle/menu/KeyboardMenu';
 
-import titleScreen from "../../assets/graphics/pictures/titlescreen.png"
+import titleScreen from "../../assets/graphics/pictures/v3.png"
+import bg from "../../assets/graphics/pictures/titlescreenbg.gif"
 
 export default class Overworld extends React.Component { 
     constructor({ progress }) {
@@ -40,7 +41,8 @@ export default class Overworld extends React.Component {
         this.element = document.createElement("div");
         this.element.classList.add("title-screen");
         this.element.innerHTML= (`
-            <img src=${titleScreen} class="title-screen_logo" alt="Pokemon" />
+            <img src=${bg} class="title-screen_bg" alt="background" />
+            <img src=${titleScreen} class="title-screen_logo" alt="title" />
         `)
     }
 
