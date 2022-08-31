@@ -153,6 +153,7 @@ export const PalletTown = {
                     { 
                         type: "changeMap", 
                         map: "MomHouseFirstFloor",
+                        soundEffect: "doors",
                         x: withGrid(13),
                         y: withGrid(19),
                         direction: 'up',
@@ -166,6 +167,7 @@ export const PalletTown = {
                     { 
                         type: "changeMap", 
                         map: "RivalHouse",
+                        soundEffect: "doors",
                         x: withGrid(10),
                         y: withGrid(15),
                         direction: 'up',
@@ -179,6 +181,7 @@ export const PalletTown = {
                     { 
                         type: "changeMap", 
                         map: "ChenLab",
+                        soundEffect: "doors",
                         x: withGrid(16),
                         y: withGrid(21),
                         direction: 'up',

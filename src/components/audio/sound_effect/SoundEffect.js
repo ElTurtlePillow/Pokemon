@@ -1,5 +1,7 @@
 import React from 'react';
 
+import stairs from "../../../assets/audio/sound_effect/stairs.ogg"
+import doors from "../../../assets/audio/sound_effect/doors.ogg"
 
 export default class SoundEffect extends React.Component { 
     constructor(song) {
@@ -10,18 +12,20 @@ export default class SoundEffect extends React.Component {
     }
 
     createElement() {
-        // remove old ones 
-        // const playing = document.querySelectorAll('.sound-effect');
-        // if (playing) {
-        //     for (let i = 0; i < playing.length; i ++) {
-        //         playing[i].remove();
-        //     }
-        // }
+        
+        let soundEffect = this.song.music;
+
+        if (soundEffect === "stairs") {
+            soundEffect = stairs
+        }
+        if (soundEffect === "doors") {
+            soundEffect = doors
+        }
 
         this.element = document.createElement("div");
         this.element.classList.add("sound-effect");
         this.element.innerHTML= (`
-        <audio src=${this.song.music} autoplay ></audio>
+        <audio src=${soundEffect} autoplay ></audio>
         `)
         setTimeout(() => {
             this.close()

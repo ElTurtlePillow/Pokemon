@@ -10,8 +10,8 @@ import SceneTransition from './SceneTransition';
 
 import GettingObject from "../getting_object/GettingObject"
 
-import PalletTownBurning from "./client_events/PalletTownBurning"
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
+import SoundEffect from '../../audio/sound_effect/SoundEffect';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -85,6 +85,16 @@ export default class OverworldEvent extends React.Component {
         backgroundMusic.init(document.querySelector(".game-container"));
       }
 
+      // check for sound effect
+      if (this.event.soundEffect) {
+
+        const music = this.event.soundEffect;
+        const soundEffect = new SoundEffect({
+          music, 
+        });
+        soundEffect.init(document.querySelector(".game-container"));
+      }
+
       // desactivate pld pbject
       Object.values(this.map.gameObjects).forEach(obj => {
         obj.isMaounted = false;
@@ -128,14 +138,6 @@ export default class OverworldEvent extends React.Component {
 
     addStoryFlag(resolve) {
       window.playerState.storyFlags[this.event.flag] = true;
-      
-      if (this.event.flag === "PALLET_TOWN_BURNING") {
-        const palletTownBurning = new PalletTownBurning()
-        palletTownBurning.init(document.querySelector(".client-events"), () => {
-          resolve();
-          palletTownBurning.fadeOut();
-      });
-      }
 
       resolve();
     }

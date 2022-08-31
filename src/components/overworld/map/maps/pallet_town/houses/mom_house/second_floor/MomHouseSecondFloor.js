@@ -107,6 +107,7 @@ export const MomHouseSecondFloor = {
                     { 
                         type: "changeMap", 
                         map: "MomHouseFirstFloor",
+                        soundEffect: "stairs",
                         x: withGrid(19),
                         y: withGrid(12),
                         direction: 'left',

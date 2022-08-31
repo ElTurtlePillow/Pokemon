@@ -37,15 +37,15 @@ export const NewGame = {
         [asGridCoords(13,16)]: [
             {
                 events: [
-                    // { who: "npcMom", type: "stand", direction: "up", time: 1100},
-                    // { type: "textMessage", text:"Hello Red,"},
-                    // { type: "textMessage", text:"Welcome to the Pokemon universe."},
-                    // { who: "npcMom", type: "stand", direction: "down", time: 1000},
-                    // { type: "textMessage", text:"I hope you'll find hapiness here."},
-                    // { who: "npcMom", type: "walk", direction: "down"},
-                    // { who: "npcMom", type: "stand", direction: "down", time: 1100},
-                    // { type: "textMessage", text:"Take care of you and your Pokemons."},
-                    // { who: "npcMom", type: "stand", direction: "down", time: 1100},
+                    { who: "npcMom", type: "stand", direction: "up", time: 1100},
+                    { type: "textMessage", text:"Hello Red,"},
+                    { type: "textMessage", text:"Welcome to the Pokemon universe."},
+                    { who: "npcMom", type: "stand", direction: "down", time: 1000},
+                    { type: "textMessage", text:"I hope you'll find hapiness here."},
+                    { who: "npcMom", type: "walk", direction: "down"},
+                    { who: "npcMom", type: "stand", direction: "down", time: 1100},
+                    { type: "textMessage", text:"Take care of you and your Pokemons."},
+                    { who: "npcMom", type: "stand", direction: "down", time: 1100},
                     
                     { type: "addStoryFlag", flag: "GAME_INITIALISED"},
 

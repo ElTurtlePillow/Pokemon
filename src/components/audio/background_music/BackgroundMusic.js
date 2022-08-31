@@ -14,15 +14,20 @@ export default class BackgroundMusic extends React.Component {
         const playing = document.querySelectorAll('.background-music');
         if (playing) {
             for (let i = 0; i < playing.length; i ++) {
-                playing[i].remove();
+                setInterval(() => {
+                    playing[i].volume -= 0.1
+                }, 100)
+                setTimeout(() => {
+                    playing[i].remove();
+                },500)
             }
         }
 
         this.element = document.createElement("div");
         this.element.classList.add("background-music");
         this.element.innerHTML= (`
-            <audio src=${this.song.music} autoplay loop ></audio>
-        `)
+            <audio src=${this.song.music} id="nowPlaying" autoplay loop ></audio>
+        `);
     }
 
     close( ) {
@@ -36,6 +41,15 @@ export default class BackgroundMusic extends React.Component {
     init(container) {
         this.createElement();
         container.appendChild(this.element);
-    }
 
+        
+        const nowPlaying = document.getElementById("nowPlaying");
+        nowPlaying.volume = 0
+        let interval = setInterval(() => {
+            nowPlaying.volume += 0.1;
+        }, 200)
+        setTimeout(() => {
+            clearInterval(interval) 
+        }, 2000)
+    }
 };

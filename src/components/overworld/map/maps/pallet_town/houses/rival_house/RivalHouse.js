@@ -99,6 +99,7 @@ export const RivalHouse = {
                     { 
                         type: "changeMap", 
                         map: "PalletTown",
+                        soundEffect: "doors",
                         x: withGrid(21),
                         y: withGrid(12),
                         direction: 'down',

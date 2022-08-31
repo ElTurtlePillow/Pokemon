@@ -73,6 +73,7 @@ export const MomHouseFirstFloor = {
                     { 
                         type: "changeMap", 
                         map: "MomHouseSecondFloor",
+                        soundEffect: "stairs",
                         x: withGrid(18),
                         y: withGrid(12),
                         direction: 'right',
@@ -86,6 +87,7 @@ export const MomHouseFirstFloor = {
                     { 
                         type: "changeMap", 
                         map: "PalletTown",
+                        soundEffect: "doors",
                         x: withGrid(12),
                         y: withGrid(12),
                         direction: 'down',
