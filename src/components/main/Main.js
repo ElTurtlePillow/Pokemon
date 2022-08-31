@@ -1,12 +1,24 @@
 import { useEffect } from 'react';
-
 import init from "./Init"
+
 
 const Main = () => {
 
+    
     useEffect(() => {
-        init()
-      });
+          init()
+
+          const gameContainer = document.querySelector(".game-container");
+          gameContainer.style.transform = `scale(${window.innerWidth/700})`
+          window.addEventListener("resize", () => {
+            let value = window.innerWidth
+            if (value > 1500) {
+              value = 1500;
+            }
+            gameContainer.style.transform = `scale(${value/700})`
+          })
+    })
+    
 
     return (
       <div className="App">
