@@ -1,6 +1,8 @@
 import React from 'react';
 import "./scene-transition.scss"
 
+// reimplement scenetransition duration
+
 export default class SceneTransition extends React.Component { 
     constructor(config) {
         super(config);

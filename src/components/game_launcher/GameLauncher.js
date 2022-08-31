@@ -6,7 +6,7 @@ import star from "./../../assets/graphics/pictures/star.png"
 import logo from "./../../assets/graphics/pictures/logo.png"
 import SoundEffect from '../audio/sound_effect/SoundEffect';
 
-import music from "../../assets/audio/sound_effect/ElTurtlePillow.mp3"
+import music from "../../assets/audio/sound_effect/turtlepillow.ogg"
 
 const GameLauncher = () => {
     const [gameLauncher, setGameLauncher] = useState(true);
@@ -21,7 +21,7 @@ const GameLauncher = () => {
         });
         setTimeout(() => {
             soundEffect.init(document.querySelector(".game-launcher"));
-        }, 345)
+        }, 445)
     }, [music])
 
     return (

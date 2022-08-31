@@ -1,0 +1,16 @@
+.PALLET_TOWN_BURNING {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    animation: fade-burning 5s forwards;
+}
+
+@keyframes fade-burning {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}

@@ -25,7 +25,6 @@ const Main = () => {
             <canvas className="game-canvas" width="512" height="288">
             </canvas>
         </div>
-        <div className='client-events'></div>
       </div>
     );
   }

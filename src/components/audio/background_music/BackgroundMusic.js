@@ -14,9 +14,6 @@ export default class BackgroundMusic extends React.Component {
         const playing = document.querySelectorAll('.background-music');
         if (playing) {
             for (let i = 0; i < playing.length; i ++) {
-                setInterval(() => {
-                    playing[i].volume -= 0.1
-                }, 100)
                 setTimeout(() => {
                     playing[i].remove();
                 },500)
@@ -41,7 +38,6 @@ export default class BackgroundMusic extends React.Component {
     init(container) {
         this.createElement();
         container.appendChild(this.element);
-
         
         const nowPlaying = document.getElementById("nowPlaying");
         nowPlaying.volume = 0

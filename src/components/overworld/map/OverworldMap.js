@@ -16,7 +16,10 @@ import { ChenLab } from './maps/pallet_town/houses/chen_lab/ChenLab'
 
 import { PalletTown } from './maps/pallet_town/PalletTown';
 
-// import { DemoRoom } from './maps/demo/DemoRoom';
+
+
+import { MomHouseBurned } from './maps/pallet_town_burned/houses/mom_house/MomHouseBurned';
+
 
 
 export default class OverworldMap extends React.Component { 
@@ -60,8 +63,11 @@ export default class OverworldMap extends React.Component {
     isSpaceTaken(currentX, currentY, direction) {
         const { x, y } = nextPosition(currentX, currentY, direction);
         if (this.walls[`${x}, ${y}`]) {
+
+            
             return true;
         }
+
         // check for game objects
         return Object.values(this.gameObjects).find(obj => {
             if (obj.x === x && obj.y === y) {return true};
@@ -156,4 +162,6 @@ window.OverworldMaps = {
     PalletTown,
     RivalHouse,
     ChenLab,
+
+    MomHouseBurned,
 };
