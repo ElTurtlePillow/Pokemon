@@ -1,13 +1,13 @@
 import { collisions } from './MapCollision';
 
+import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../../../Utils';
 
 import lowerImg from "../../../../../assets/graphics/maps/new_game/down.png";
 import upperImg from "../../../../../assets/graphics/maps/new_game/up.png";
 
 import momImg from "../../../../../assets/graphics/characters/mom.png";
+import musicBg from "../../../../../assets/audio/background_music/PalletTown.mp3"
 
-
-import { asGridCoords, loadWall, nextPosition, withGrid } from '../../../../../Utils';
 
 export const NewGame = {
     id: "NewGame",
@@ -37,15 +37,15 @@ export const NewGame = {
         [asGridCoords(13,16)]: [
             {
                 events: [
-                    { who: "npcMom", type: "stand", direction: "up", time: 1100},
-                    { type: "textMessage", text:"Hello Red,"},
-                    { type: "textMessage", text:"Welcome to the Pokemon universe."},
-                    { who: "npcMom", type: "stand", direction: "down", time: 1000},
-                    { type: "textMessage", text:"I hope you'll find hapiness here."},
-                    { who: "npcMom", type: "walk", direction: "down"},
-                    { who: "npcMom", type: "stand", direction: "down", time: 1100},
-                    { type: "textMessage", text:"Take care of you and your Pokemons."},
-                    { who: "npcMom", type: "stand", direction: "down", time: 1100},
+                    // { who: "npcMom", type: "stand", direction: "up", time: 1100},
+                    // { type: "textMessage", text:"Hello Red,"},
+                    // { type: "textMessage", text:"Welcome to the Pokemon universe."},
+                    // { who: "npcMom", type: "stand", direction: "down", time: 1000},
+                    // { type: "textMessage", text:"I hope you'll find hapiness here."},
+                    // { who: "npcMom", type: "walk", direction: "down"},
+                    // { who: "npcMom", type: "stand", direction: "down", time: 1100},
+                    // { type: "textMessage", text:"Take care of you and your Pokemons."},
+                    // { who: "npcMom", type: "stand", direction: "down", time: 1100},
                     
                     { type: "addStoryFlag", flag: "GAME_INITIALISED"},
 
@@ -97,6 +97,7 @@ export const NewGame = {
                     { 
                         type: "changeMap", 
                         map: "MomHouseSecondFloor",
+                        changeMusic: musicBg,
                         x: withGrid(11),
                         y: withGrid(15),
                         direction: 'right',

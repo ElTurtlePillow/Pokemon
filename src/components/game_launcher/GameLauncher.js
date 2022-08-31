@@ -6,11 +6,11 @@ import star from "./../../assets/graphics/pictures/star.png"
 import logo from "./../../assets/graphics/pictures/logo.png"
 
 const Main = () => {
-
+    
     const [gameLauncher, setGameLauncher] = useState(true);
     setTimeout(() => {
       setGameLauncher(false);
-    }, 6000)
+    }, 5900)
     
 
     return (

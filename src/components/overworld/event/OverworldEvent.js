@@ -11,6 +11,7 @@ import SceneTransition from './SceneTransition';
 import GettingObject from "../getting_object/GettingObject"
 
 import PalletTownBurning from "./client_events/PalletTownBurning"
+import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -73,6 +74,16 @@ export default class OverworldEvent extends React.Component {
     }
 
     changeMap(resolve) {
+
+      // change music
+      if (this.event.changeMusic) {
+
+        const music = this.event.changeMusic;
+        const backgroundMusic = new BackgroundMusic({
+          music, 
+        });
+        backgroundMusic.init(document.querySelector(".game-container"));
+      }
 
       // desactivate pld pbject
       Object.values(this.map.gameObjects).forEach(obj => {

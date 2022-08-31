@@ -6,7 +6,6 @@ import { asGridCoords, loadWall, withGrid } from '../../../../../../../../Utils'
 
 import blank from "../../../../../../../../assets/graphics/characters/blank.png"
 
-
 export const MomHouseSecondFloor = {
     id: "MomHouseSecondFloor",
     lowerSrc: mapDown,

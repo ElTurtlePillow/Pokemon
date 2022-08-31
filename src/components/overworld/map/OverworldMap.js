@@ -28,6 +28,7 @@ export default class OverworldMap extends React.Component {
         this.gameObjects = {}; // live objects
         this.configObjects = config.configObjects; // config content
 
+        this.music = config.music;
         this.cutsceneSpaces = config.cutsceneSpaces || {};
         this.walls = config.walls || {};
 

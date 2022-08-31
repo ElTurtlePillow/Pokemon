@@ -4,7 +4,6 @@ import init from "./Init"
 
 const Main = () => {
 
-    
     useEffect(() => {
           init()
 

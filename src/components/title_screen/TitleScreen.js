@@ -8,6 +8,9 @@ import titleScreen from "../../assets/graphics/pictures/v3.png"
 import bg from "../../assets/graphics/pictures/titlescreenbg.gif"
 import SceneTransition from '../overworld/event/SceneTransition';
 
+import music from "../../assets/audio/background_music/Title.mp3";
+import BackgroundMusic from '../../components/audio/background_music/BackgroundMusic'
+
 export default class TitleScreen extends React.Component { 
     constructor({ progress }) {
         super(progress);
@@ -39,6 +42,8 @@ export default class TitleScreen extends React.Component {
     }
 
     createElement() {
+
+        
         this.element = document.createElement("div");
         this.element.classList.add("title-screen");
         this.element.innerHTML= (`
@@ -60,9 +65,19 @@ export default class TitleScreen extends React.Component {
         return new Promise(resolve => {
             this.createElement();
             container.appendChild(this.element);
+
+            
+
+            const backgroundMusic = new BackgroundMusic({
+                music, 
+            });
+            backgroundMusic.init(document.querySelector(".game-container"));
+
+
             this.keyboardMenu = new KeyboardMenu();
             this.keyboardMenu.init(this.element);
             this.keyboardMenu.setOptions(this.getOptions(resolve))
+
         })
     }
 };
