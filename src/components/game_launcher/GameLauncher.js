@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import './game-launcher.scss'
 
 
 import star from "./../../assets/graphics/pictures/star.png"
 import logo from "./../../assets/graphics/pictures/logo.png"
+import SoundEffect from '../audio/sound_effect/SoundEffect';
 
-const Main = () => {
-    
+import music from "../../assets/audio/sound_effect/ElTurtlePillow.mp3"
+
+const GameLauncher = () => {
     const [gameLauncher, setGameLauncher] = useState(true);
     setTimeout(() => {
       setGameLauncher(false);
     }, 5900)
-    
+
+
+    useEffect(() => {
+        const soundEffect = new SoundEffect({
+            music, 
+        });
+        setTimeout(() => {
+            soundEffect.init(document.querySelector(".game-launcher"));
+        }, 345)
+    }, [music])
 
     return (
         <>
@@ -31,5 +42,5 @@ const Main = () => {
     );
   }
   
-  export default Main;
+  export default GameLauncher;
   

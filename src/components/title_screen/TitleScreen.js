@@ -66,13 +66,11 @@ export default class TitleScreen extends React.Component {
             this.createElement();
             container.appendChild(this.element);
 
-            
-
+            // initial music
             const backgroundMusic = new BackgroundMusic({
                 music, 
             });
             backgroundMusic.init(document.querySelector(".game-container"));
-
 
             this.keyboardMenu = new KeyboardMenu();
             this.keyboardMenu.init(this.element);
