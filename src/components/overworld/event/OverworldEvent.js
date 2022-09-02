@@ -12,6 +12,7 @@ import GettingObject from "../getting_object/GettingObject"
 
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import ClientsEvents from './client_events/ClientEvents';
+import SoundEffect from '../../audio/sound_effect/SoundEffect';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -85,7 +86,19 @@ export default class OverworldEvent extends React.Component {
         backgroundMusic.init(document.querySelector(".game-container"));
       }
 
-      // desactivate pld pbject
+      // check for sound effect
+      if (this.event.soundEffect) {
+
+        const music = this.event.soundEffect;
+        const soundEffect = new SoundEffect({
+          music, 
+        });
+        soundEffect.init(document.querySelector(".game-container"));
+      }
+
+  
+
+      // desactivate old object
       Object.values(this.map.gameObjects).forEach(obj => {
         obj.isMaounted = false;
       })
@@ -95,7 +108,7 @@ export default class OverworldEvent extends React.Component {
           this.map.overworld.startMap(window.OverworldMaps[this.event.map], {
               x: this.event.x,
               y: this.event.y,
-              direction: this.event.direction
+              direction: this.event.direction,
           });
           resolve();
 
@@ -129,11 +142,11 @@ export default class OverworldEvent extends React.Component {
     addStoryFlag(resolve) {
       window.playerState.storyFlags[this.event.flag] = true;
       
-      if (this.event.flag === "PALLET_TOWN_BURNING") {
-        const event = this.event.flag;
-        const clientEvent = new ClientsEvents({event})
-        clientEvent.init(document.querySelector(".game-container"));
-      }
+      // if (this.event.flag === "PALLET_TOWN_BURNING") {
+      //   const event = this.event.flag;
+      //   const clientEvent = new ClientsEvents({event})
+      //   clientEvent.init(document.querySelector(".game-container"));
+      // }
 
       resolve();
     }

@@ -18,7 +18,7 @@ export default class PlayerState extends React.Component {
             // },
         }
 
-        this.lineup = ["p1"];
+        this.lineup = [];
         this.items = [
             { itemId: "FULLHEAL", instanceId: "item1", },
             { itemId: "POTION", instanceId: "item2", },

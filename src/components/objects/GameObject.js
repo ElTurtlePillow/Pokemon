@@ -25,11 +25,24 @@ export default class GameObject extends React.Component {
 
         this.talking = config.talking || [];
         this.retryTimeout = null;
+
+        this.isNotHere = config.isNotHere;
     };
 
     mount(map) {
+
         this.isMaounted = true;
         // map.addWall(this.x, this.y);
+
+        // remove object on flags
+        if (this.isNotHere) {
+            Object.keys(window.playerState.storyFlags).forEach(key => {
+                if (key === this.isNotHere) {
+                    this.x = -1;
+                    this.y = -1;
+                }
+            })
+        }
 
         // start behavior after n sec
         setTimeout(() => {

@@ -6,7 +6,7 @@ import lowerImg from "../../../../../assets/graphics/maps/new_game/down.png";
 import upperImg from "../../../../../assets/graphics/maps/new_game/up.png";
 
 import momImg from "../../../../../assets/graphics/characters/mom.png";
-import musicBg from "../../../../../assets/audio/background_music/PalletTown.mp3"
+import musicBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
 
 
 export const NewGame = {

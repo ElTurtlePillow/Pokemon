@@ -23,8 +23,8 @@ export const PalletTown = {
         }),
         npcA: ({
             type: "Person",
-            x: withGrid(20),
-            y: withGrid(23),
+            x: withGrid(42),
+            y: withGrid(67),
             src: npcAImg,
             behaviorLoop: [
                 { type: "stand", direction: "left", time: 1200},
@@ -47,8 +47,8 @@ export const PalletTown = {
         }),
         npcC: ({
             type: "Person",
-            x: withGrid(12),
-            y: withGrid(20),
+            x: withGrid(36),
+            y: withGrid(64),
             src: npcCImg,
             behaviorLoop: [
                 { type: "stand", direction: "down", time: 3200},
@@ -65,8 +65,8 @@ export const PalletTown = {
         }),
         npcD: ({
             type: "Person",
-            x: withGrid(19),
-            y: withGrid(4),
+            x: withGrid(41),
+            y: withGrid(48),
             src: npcDImg,
             behaviorLoop: [
                 { type: "stand", direction: "down", time: 1000},
@@ -81,8 +81,8 @@ export const PalletTown = {
         }),
         mailBoxA: ({
             type: "Person",
-            x: withGrid(10),
-            y: withGrid(11),
+            x: withGrid(32),
+            y: withGrid(55),
             src: blank,
             talking : [
                 {
@@ -94,8 +94,8 @@ export const PalletTown = {
         }),
         mailBoxB: ({
             type: "Person",
-            x: withGrid(19),
-            y: withGrid(11),
+            x: withGrid(41),
+            y: withGrid(55),
             src: blank,
             talking : [
                 {
@@ -107,8 +107,8 @@ export const PalletTown = {
         }),
         signA: ({
             type: "Person",
-            x: withGrid(14),
-            y: withGrid(16),
+            x: withGrid(36),
+            y: withGrid(60),
             src: blank,
             talking : [
                 {
@@ -120,8 +120,8 @@ export const PalletTown = {
         }),
         signB: ({
             type: "Person",
-            x: withGrid(10),
-            y: withGrid(19),
+            x: withGrid(32),
+            y: withGrid(63),
             src: blank,
             talking : [
                 {
@@ -133,8 +133,8 @@ export const PalletTown = {
         }),
         signC: ({
             type: "Person",
-            x: withGrid(22),
-            y: withGrid(22),
+            x: withGrid(44),
+            y: withGrid(66),
             src: blank,
             talking : [
                 {
@@ -147,7 +147,7 @@ export const PalletTown = {
     },
     walls: loadWall(collisions),
     cutsceneSpaces: {
-        [asGridCoords(12, 11)]: [
+        [asGridCoords(34, 55)]: [
             {
                 events: [
                     { 
@@ -161,7 +161,7 @@ export const PalletTown = {
                 ]
             }
         ],
-        [asGridCoords(21, 11)]: [
+        [asGridCoords(43, 55)]: [
             {
                 events: [
                     { 
@@ -175,7 +175,7 @@ export const PalletTown = {
                 ]
             }
         ],
-        [asGridCoords(21, 18)]: [
+        [asGridCoords(43, 62)]: [
             {
                 events: [
                     { 
@@ -189,7 +189,7 @@ export const PalletTown = {
                 ]
             }
         ],
-        [asGridCoords(18, 4)]: [
+        [asGridCoords(40, 48)]: [
             {
                 events: [
                     { who: "player", type: "stand", direction: "right"},

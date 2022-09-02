@@ -18,7 +18,7 @@ import { PalletTown } from './maps/pallet_town/PalletTown';
 
 
 
-import { MomHouseBurned } from './maps/pallet_town_burned/houses/mom_house/MomHouseBurned';
+// import { MomHouseBurned } from './maps/pallet_town_burned/houses/mom_house/MomHouseBurned';
 
 
 
@@ -81,7 +81,6 @@ export default class OverworldMap extends React.Component {
 
             let obj = this.configObjects[key];
             obj.id = key;
-
 
             let instance;
             if (obj.type === "Person") {
@@ -163,5 +162,5 @@ window.OverworldMaps = {
     RivalHouse,
     ChenLab,
 
-    MomHouseBurned,
+    // MomHouseBurned,
 };

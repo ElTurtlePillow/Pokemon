@@ -21,8 +21,8 @@ const GameLauncher = () => {
         });
         setTimeout(() => {
             soundEffect.init(document.querySelector(".game-launcher"));
-        }, 445)
-    }, [music])
+        }, 777)
+    }, [])
 
     return (
         <>

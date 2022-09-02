@@ -30,6 +30,13 @@ export const RivalHouse = {
             ],
             talking : [
                 {
+                    required: ["TALKED_TO_CHEN_FIRST_TIME"],
+                    events: [
+                        { type: "textMessage", text: "Cherry: My brother just went to Viridian City.", facePlayer: "npcCherry" },
+                        { type: "textMessage", text: "Cherry: He will defeat the Gym Leader.", facePlayer: "npcCherry" },
+                    ]
+                },
+                {
                     events: [
                         { type: "textMessage", text: "Cherry: My brother is at prof Chen's lab.", facePlayer: "npcCherry"},
                         { type: "textMessage", text: "Cherry: I think he will have his first Pokemon.", facePlayer: "npcCherry"},
@@ -45,8 +52,8 @@ export const RivalHouse = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "The weather is getting worse."},
-                        { type: "textMessage", text: "We have no more news from our journalist."},
+                        { type: "textMessage", text: "Team Rocket has struck again!"},
+                        { type: "textMessage", text: "They stole all the pokeballs from the south of the continent."},
                     ]
                 },
             ]
@@ -100,8 +107,8 @@ export const RivalHouse = {
                         type: "changeMap", 
                         map: "PalletTown",
                         soundEffect: "doors",
-                        x: withGrid(21),
-                        y: withGrid(12),
+                        x: withGrid(43),
+                        y: withGrid(56),
                         direction: 'down',
                     },
                 ]

@@ -30,6 +30,13 @@ export const MomHouseFirstFloor = {
             ],
             talking : [
                 {
+                    required: ["TALKED_TO_CHEN_FIRST_TIME"],
+                    events: [
+                        { type: "textMessage", text: "Mom: Well it's ok, you'll get yours in no time.", facePlayer: "npcMom" },
+                        { type: "textMessage", text: "Mom: I know it's not a good news but you'll find your Pokemon.", facePlayer: "npcMom" },
+                    ]
+                },
+                {
                     events: [
                         { type: "textMessage", text: "Mom: I know you would have preferred to stay in Celadon City.", facePlayer: "npcMom"},
                         { type: "textMessage", text: "Mom: But I'm sure Pallet Town has a lot to offer.", facePlayer: "npcMom"},
@@ -88,8 +95,8 @@ export const MomHouseFirstFloor = {
                         type: "changeMap", 
                         map: "PalletTown",
                         soundEffect: "doors",
-                        x: withGrid(12),
-                        y: withGrid(12),
+                        x: withGrid(34),
+                        y: withGrid(56),
                         direction: 'down',
                     },
                 ]
