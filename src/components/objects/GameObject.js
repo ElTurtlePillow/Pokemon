@@ -28,6 +28,9 @@ export default class GameObject extends React.Component {
 
         this.isNotHere = config.isNotHere;
         this.isNowHere = config.isNowHere;
+
+        this.initialX = config.initialX || 0;
+        this.initialY = config.initialY || 0;
     };
 
     mount(map) {
@@ -49,8 +52,8 @@ export default class GameObject extends React.Component {
         if (this.isNowHere) {
             Object.keys(window.playerState.storyFlags).forEach(key => {
                 if (key === this.isNowHere) {
-                    this.x = this.x ;
-                    this.y = this.y ;
+                    this.x = this.initialX ;
+                    this.y = this.initialY ;
                 } else {
                     this.x = -1;
                     this.y = -1;

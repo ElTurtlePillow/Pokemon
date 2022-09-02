@@ -74,6 +74,13 @@ export default class OverworldEvent extends React.Component {
         message.init(document.querySelector(".game-container"));
     }
 
+    //////////////////////
+    getPokemon(resolve) {
+      window.playerState.addPokemon("mimikyu");
+      resolve();
+    }
+      //////////////////////////////
+
     changeMap(resolve) {
 
       // change music

@@ -12,17 +12,17 @@ const GameLauncher = () => {
     const [gameLauncher, setGameLauncher] = useState(true);
     setTimeout(() => {
       setGameLauncher(false);
-    }, 5900)
+    }, 500) // 5900
 
 
-    useEffect(() => {
-        const soundEffect = new SoundEffect({
-            music, 
-        });
-        setTimeout(() => {
-            soundEffect.init(document.querySelector(".game-launcher"));
-        }, 777)
-    }, [])
+    // useEffect(() => {
+    //     const soundEffect = new SoundEffect({
+    //         music, 
+    //     });
+    //     setTimeout(() => {
+    //         soundEffect.init(document.querySelector(".game-launcher"));
+    //     }, 777)
+    // }, [])
 
     return (
         <>

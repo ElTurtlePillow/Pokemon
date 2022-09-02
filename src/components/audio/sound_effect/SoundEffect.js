@@ -2,7 +2,7 @@ import React from 'react';
 
 import stairs from "../../../assets/audio/sound_effect/stairs.ogg"
 import doors from "../../../assets/audio/sound_effect/doors.ogg"
-import bump from "../../../assets/audio/sound_effect/playerbump.ogg"
+import mimikyuScream from "../../../assets/audio/sound_effect/mimikyuscream.ogg"
 
 export default class SoundEffect extends React.Component { 
     constructor(song) {
@@ -20,6 +20,9 @@ export default class SoundEffect extends React.Component {
         }
         if (soundEffect === "doors") {
             soundEffect = doors
+        }
+        if (soundEffect === "mimikyuScream") {
+            soundEffect = mimikyuScream
         }
  
 

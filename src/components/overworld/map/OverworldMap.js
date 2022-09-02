@@ -98,14 +98,30 @@ export default class OverworldMap extends React.Component {
     async startCutScene(events) {
         this.isCutscenePlaying = true;
 
-		for (let i = 0; i < events.length; i++) {
-			const eventHandler = new OverworldEvent({
-				event: events[i],
-				map: this,
-			});
-            const result = await eventHandler.init();
-            if (result === "LOST_BATTLE") {
-                break;
+        // do nothing if nothing
+        const player = this.gameObjects["player"];
+        const match = this.cutsceneSpaces[ `${player.x},${player.y}` ];
+        let ignore = false;
+
+        if (match && match[2] !== undefined) {
+
+        
+        Object.keys(window.playerState.storyFlags).forEach(key => {
+            if (match[2].nothing && (key === match[2].nothing)) {
+                ignore = true;
+            }
+        })}
+        // else create
+        if (!ignore) {
+            for (let i = 0; i < events.length; i++) {
+                const eventHandler = new OverworldEvent({
+                    event: events[i],
+                    map: this,
+                });
+                const result = await eventHandler.init();
+                if (result === "LOST_BATTLE") {
+                    break;
+                }
             }
         }
 
@@ -121,7 +137,6 @@ export default class OverworldMap extends React.Component {
 			return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
 		});
 		if (!this.isCutscenePlaying && match && match.talking.length) {
-
             const relevantScenario = match.talking.find((scenario) => {
                 return (scenario.required || []).every((sf) => {
                     return window.playerState.storyFlags[sf]
@@ -135,8 +150,7 @@ export default class OverworldMap extends React.Component {
     checkForFootstepCutscene() {
         const player = this.gameObjects["player"];
         const match = this.cutsceneSpaces[ `${player.x},${player.y}` ];
-        
-        // here 
+
         if (match && match[1] && match[1].required) {
             Object.keys(window.playerState.storyFlags).forEach(key => {
                 if (key === match[1].required[0]) {

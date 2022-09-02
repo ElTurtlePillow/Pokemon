@@ -15,7 +15,7 @@ const App = () => {
       setTitle(false)
       setTimeout(() => {
         setMain(true)
-      }, 6000)
+      }, 600) // 6000
     }
   
   return (
