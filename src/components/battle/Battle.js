@@ -37,8 +37,7 @@ export default class Battle extends React.Component {
 
         if (this.enemy === "wild") {
             // random combats if grass
-
-        this.addCombatant("e_" + "key", "enemy", 
+            this.addCombatant("e_" + "wild", "enemy", 
             {
                 pokemonId: "eevee",
                 maxHp: 34,
@@ -101,9 +100,15 @@ export default class Battle extends React.Component {
                 <img src=${playerImg} alt="player" />
             </div>
             <div class="enemy-animation"></div>
-            <div class="battle-enemy">
-                <img src=${enemiesImg[`${this.enemy.name}.png`]} alt=${this.enemy.name} />
-            </div>
+            
+            ${this.enemy.name ? 
+            (`
+                <div class="battle-enemy">
+                    <img src=${enemiesImg[`${this.enemy.name}.png`]} alt=${this.enemy.name} />
+                </div>
+            `) : ( `` )
+            }
+            
             <div class="text-container">
             </div>
         `;

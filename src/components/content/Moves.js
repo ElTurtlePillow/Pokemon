@@ -15,7 +15,7 @@ export const moves = {
 			},
 			{
 				type: "stateChange",
-				damage: 35,
+				damage: 15,
 			},
 		]
 	},

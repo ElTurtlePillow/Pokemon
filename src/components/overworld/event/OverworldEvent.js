@@ -130,13 +130,16 @@ export default class OverworldEvent extends React.Component {
 	  }
 
     battle(resolve) {
-        const battle = new Battle({
-            enemy: enemies[this.event.enemyId],
-            onComplete: (didWin) => {
-            resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
-            }
-        })
-      battle.init(document.querySelector(".game-container"))
+      console.log("battle animation");
+      setTimeout(() => {
+          const battle = new Battle({
+              enemy: enemies[this.event.enemyId],
+              onComplete: (didWin) => {
+              resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+              }
+          })
+          battle.init(document.querySelector(".game-container"))
+      }, 2222)
     }
 
     pause(resolve) {

@@ -62,6 +62,7 @@ export const PalletTown = {
                 {
                     events: [
                         { type: "textMessage", text: "I really like this town!", facePlayer: "npcC" },
+                        { type: "battle", enemyId: "beth" },
                     ]
                 }
             ]
@@ -187,8 +188,8 @@ export const PalletTown = {
             isNotHere: "MIMIKYU_JOIN_TEAM"
         }),
     },
-    grass: loadGrass(grass),
     walls: loadWall(collisions),
+    grass: loadGrass(grass),
     cutsceneSpaces: {
         [asGridCoords(34, 55)]: [
             {

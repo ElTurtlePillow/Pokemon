@@ -155,10 +155,18 @@ export default class TurnCycle extends React.Component {
 	}
 
     async init() {
-        await this.onNewEvent({
-            type: "textMessage",
-            text: `${this.battle.enemy.name} wants to fight !`
-        })
+        // start the battle
+        if (this.battle.enemy === "wild") {
+            await this.onNewEvent({
+                type: "textMessage",
+                text: `A wild ${this.battle.combatants.e_wild.Name} appears !`
+            })
+        } else {
+            await this.onNewEvent({
+                type: "textMessage",
+                text: `${this.battle.enemy.name} wants to fight !`
+            })
+        }
 
         // start first turn
         this.turn();
