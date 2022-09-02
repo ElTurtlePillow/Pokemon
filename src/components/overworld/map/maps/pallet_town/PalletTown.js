@@ -12,6 +12,9 @@ import npcCImg from "../../../../../assets/graphics/characters/npcC.png";
 import npcDImg from "../../../../../assets/graphics/characters/npcD.png";
 import npcGImg from "../../../../../assets/graphics/characters/npcG.png";
 
+import npcHImg from "../../../../../assets/graphics/characters/npcH.png";
+import npcIImg from "../../../../../assets/graphics/characters/npcI.png";
+
 import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
 
 export const PalletTown = {
@@ -43,7 +46,8 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Smells weird, uh!", facePlayer: "npcA" },
+                        { type: "textMessage", text: "I really don't like Team Rocket.", facePlayer: "npcA" },
+                        { type: "textMessage", text: "Just let me do what I want with my Pokemon.", facePlayer: "npcA" },
                     ]
                 }
             ]
@@ -186,6 +190,59 @@ export const PalletTown = {
             ],
             isNowHere: "MIMIKYU_FIRST_KILL",
             isNotHere: "MIMIKYU_JOIN_TEAM"
+        }),
+
+        // route one 
+        npcH: ({
+            type: "Person",
+            x: withGrid(34),
+            y: withGrid(34),
+            src: npcHImg,
+            behaviorLoop: [
+                { type: "stand", direction: "up", time: 4000},
+                { type: "walk", direction: "down"},
+                { type: "stand", direction: "down", time: 3200},
+                { type: "walk", direction: "up"},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "LOREMIPSUM"},
+                    ]
+                },
+            ]
+        }),
+        npcI: ({
+            type: "Person",
+            x: withGrid(46),
+            y: withGrid(23),
+            src: npcIImg,
+            behaviorLoop: [
+                { type: "stand", direction: "left", time: 3600},
+                { type: "walk", direction: "right"},
+                { type: "stand", direction: "right", time: 3300},
+                { type: "walk", direction: "left"},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "LOREMIPSUM"},
+                    ]
+                },
+            ]
+        }),
+        signD: ({
+            type: "Person",
+            x: withGrid(37),
+            y: withGrid(38),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Route 1"},
+                    ]
+                },
+            ]
         }),
     },
     walls: loadWall(collisions),
@@ -371,6 +428,21 @@ export const PalletTown = {
             {
                 nothing: "MIMIKYU_JOIN_TEAM",
             },
+        ],
+        // route 1 to 
+        [asGridCoords(40, 6)]: [
+            {
+                events: [
+                    { 
+                        type: "changeMap", 
+                        map: "ViridianCity",
+                        soundEffect: "stairs",
+                        x: withGrid(43),
+                        y: withGrid(74),
+                        direction: 'up',
+                    },
+                ]
+            }
         ]
     }
 }

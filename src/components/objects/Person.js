@@ -63,7 +63,7 @@ export default class Person extends GameObject {
             if (state.map.isWalkingInGrass(this.x, this.y, this.direction)) {
                 const combatStartProbability = Math.floor(Math.random() * 100) + 1;
                 // chance to have a random fight in grass
-                if (combatStartProbability <= 23) {
+                if (combatStartProbability <= 0) {
                     const battleIntroduction = new BattleIntroduction({
                       // stuff
                     })

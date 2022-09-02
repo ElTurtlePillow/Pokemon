@@ -63,10 +63,10 @@ export const NewGame = {
                 ]
             },
             {
-                required: ["GAME_INITIALISED"],
-                events: [
-                    { who: "npcMom", type: "stand", direction: "up", time: 1},
-                ]
+                required: ["//"],
+            },
+            {
+                nothing: "MIMIKYU_JOIN_TEAM",
             },
         ],
         [asGridCoords(13,10)]: [

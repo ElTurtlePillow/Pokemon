@@ -130,7 +130,6 @@ export default class OverworldEvent extends React.Component {
 	  }
 
     battle(resolve) {
-      console.log("battle animation");
       setTimeout(() => {
           const battle = new Battle({
               enemy: enemies[this.event.enemyId],

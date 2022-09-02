@@ -17,8 +17,8 @@ import { ChenLab } from './maps/pallet_town/houses/chen_lab/ChenLab'
 import { PalletTown } from './maps/pallet_town/PalletTown';
 
 
+import { ViridianCity } from './maps/viridian_city/ViridianCity';
 
-// import { MomHouseBurned } from './maps/pallet_town_burned/houses/mom_house/MomHouseBurned';
 
 
 
@@ -198,5 +198,5 @@ window.OverworldMaps = {
     RivalHouse,
     ChenLab,
 
-    // MomHouseBurned,
+    ViridianCity,
 };
