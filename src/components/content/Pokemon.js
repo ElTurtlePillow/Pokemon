@@ -126,12 +126,13 @@ export const pokemonTypes = {
 };
 
 // pokemon
+// PV ATCK DEF SPEED SPECIAL
 export const pokemon = {
 	mimikyu: {
 		Name: "Mimikyu",
 		InternalName: "MIMIKYU",
 		Type1: "FAIRY",
-		BaseStats: [35, 55, 40, 90, 50, 50],
+		BaseStats: [37, 56, 42, 90, 50, 50],
 		GenderRate: "Female50Percent",
 		GrowthRate: "Medium",
 		BaseEXP: 112,

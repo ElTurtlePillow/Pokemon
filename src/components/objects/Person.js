@@ -1,5 +1,6 @@
 import GameObject from './GameObject';
 import { emitEvent, nextPosition } from '../../Utils';
+import Battle from '../battle/Battle';
 
 export default class Person extends GameObject { 
     constructor(config) {
@@ -54,6 +55,17 @@ export default class Person extends GameObject {
                 }, 10)
                 return;
             };
+
+            // walking in grass
+            if (state.map.isWalkingInGrass(this.x, this.y, this.direction)) {
+                const battle = new Battle({
+                    enemy: "wild",
+                    onComplete: (didWin) => {
+                        console.log(didWin);
+                    }
+                })
+              battle.init(document.querySelector(".game-container"))
+            }
 
             // walk
             // state.map.moveWall(this.x, this.y, this.direction);

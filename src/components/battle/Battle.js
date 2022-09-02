@@ -34,10 +34,27 @@ export default class Battle extends React.Component {
         window.playerState.lineup.forEach(id => {
             this.addCombatant(id, "player", window.playerState.pokemons[id])
         })
-        // then enemy
-        Object.keys(this.enemy.pokemons).forEach((key) => {
+
+        if (this.enemy === "wild") {
+            // random combats if grass
+
+        this.addCombatant("e_" + "key", "enemy", 
+            {
+                pokemonId: "eevee",
+                maxHp: 34,
+                level: 4,
+            },
+        );
+
+        } else {
+            // load scripted enemy
+            // then enemy
+            Object.keys(this.enemy.pokemons).forEach((key) => {
 			this.addCombatant("e_" + key, "enemy", this.enemy.pokemons[key]);
 		});
+        }
+
+        
 
 		// add player items
         this.items = [];

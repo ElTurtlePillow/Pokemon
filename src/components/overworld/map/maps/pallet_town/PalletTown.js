@@ -1,8 +1,8 @@
 import mapDown from "../../../../../assets/graphics/maps/pallet_town/down.png";
 import mapUp from "../../../../../assets/graphics/maps/pallet_town/up.png";
-import { collisions } from './MapCollision';
+import { collisions, grass } from './MapCollision';
 
-import { asGridCoords, loadWall, withGrid } from '../../../../../Utils';
+import { asGridCoords, loadWall, withGrid, loadGrass } from '../../../../../Utils';
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png"
@@ -187,6 +187,7 @@ export const PalletTown = {
             isNotHere: "MIMIKYU_JOIN_TEAM"
         }),
     },
+    grass: loadGrass(grass),
     walls: loadWall(collisions),
     cutsceneSpaces: {
         [asGridCoords(34, 55)]: [
@@ -278,6 +279,8 @@ export const PalletTown = {
                         y: withGrid(47),
                         direction: 'up',
                     },
+                    
+                    { type: "textMessage", text: "Mimikyu..." },
                 ]
             },
             {
@@ -352,12 +355,17 @@ export const PalletTown = {
                     { 
                         type: "changeMap", 
                         map: "PalletTown",
-                        soundEffect: "mimikyuScream",
+                        soundEffect: "getpkmn",
                         x: withGrid(40),
                         y: withGrid(46),
                         direction: 'right',
                     },
+                    
+                    { type: "textMessage", text: "Mimikyu just join your team!" },
                 ]
+            },
+            {
+                required: ["//"],
             },
             {
                 nothing: "MIMIKYU_JOIN_TEAM",

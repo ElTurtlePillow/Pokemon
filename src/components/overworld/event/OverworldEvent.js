@@ -11,8 +11,8 @@ import SceneTransition from './SceneTransition';
 import GettingObject from "../getting_object/GettingObject"
 
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
-import ClientsEvents from './client_events/ClientEvents';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
+import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -74,12 +74,18 @@ export default class OverworldEvent extends React.Component {
         message.init(document.querySelector(".game-container"));
     }
 
-    //////////////////////
+    // get mimikyu
     getPokemon(resolve) {
-      window.playerState.addPokemon("mimikyu");
+      window.playerState.addPokemon("mimikyu", {
+            hp: 35,
+            maxHp: 35,
+            xp: 0,
+            maxXp: 112,
+            level: 5,
+            status: null,
+      });
       resolve();
     }
-      //////////////////////////////
 
     changeMap(resolve) {
 

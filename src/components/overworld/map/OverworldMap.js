@@ -34,6 +34,7 @@ export default class OverworldMap extends React.Component {
         this.music = config.music;
         this.cutsceneSpaces = config.cutsceneSpaces || {};
         this.walls = config.walls || {};
+        this.grass = config.grass || {};
 
         this.lowerImage = new Image();
         this.lowerImage.src = config.lowerSrc;
@@ -63,11 +64,21 @@ export default class OverworldMap extends React.Component {
     isSpaceTaken(currentX, currentY, direction) {
         const { x, y } = nextPosition(currentX, currentY, direction);
         if (this.walls[`${x}, ${y}`]) {
-
-            
             return true;
         }
+        // check for game objects
+        return Object.values(this.gameObjects).find(obj => {
+            if (obj.x === x && obj.y === y) {return true};
+            if (obj.intentPosition && obj.intentPosition[0] === x && obj.intentPosition[1] === y) {return true}
+            return false
+        })
+    };
 
+    isWalkingInGrass(currentX, currentY, direction) {
+        const { x, y } = nextPosition(currentX, currentY, direction);
+        if (this.grass[`${x}, ${y}`]) {
+            return true;
+        }
         // check for game objects
         return Object.values(this.gameObjects).find(obj => {
             if (obj.x === x && obj.y === y) {return true};
@@ -104,7 +115,6 @@ export default class OverworldMap extends React.Component {
         let ignore = false;
 
         if (match && match[2] !== undefined) {
-
         
         Object.keys(window.playerState.storyFlags).forEach(key => {
             if (match[2].nothing && (key === match[2].nothing)) {

@@ -27,17 +27,17 @@ export default class PlayerState extends React.Component {
         }
     };
 
-    addPokemon(pokemonId) {
+    addPokemon(pokemonId, stats) {
         const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
-        this.pokemons[newId] = {
+        this.pokemons[newId] = {   
             pokemonId,
             team: "player",
-            hp: 50,
-            maxHp: 50,
-            xp: 0,
-            maxXp: 100,
-            level: 1,
-            status: null,
+            hp: stats.hp,
+            maxHp: stats.maxHp,
+            xp: stats.xp,
+            maxXp: stats.maxHp,
+            level: stats.level,
+            status: stats.status,
         }
         if (this.lineup.length < 6) {
             this.lineup.push(newId)

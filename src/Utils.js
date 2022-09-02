@@ -56,6 +56,23 @@ export const loadWall = (mapCollision) =>  {
 	return boundariesObj;
 };
 
+export const loadGrass = (mapGrass) =>  {
+    const grassStats = [];
+		for (let i = 0; i < mapGrass.length; i += Math.sqrt(mapGrass.length)) {
+			const grassArray = [];
+			grassArray.push(mapGrass.slice(i, Math.sqrt(mapGrass.length) + i));
+
+			let k = (i / Math.sqrt(mapGrass.length));
+			grassArray.forEach((row, i) => {
+				row.forEach((symbol, j) => {
+					if (symbol !== 0) grassStats.push([setGridCoords(j, k), true]);
+				});
+			});
+		}
+	const grassStatsObj = Object.fromEntries(grassStats);
+	return grassStatsObj;
+};
+
 export const wait = (ms) => {
     return new Promise((resolve) => {
         setTimeout(() => {
