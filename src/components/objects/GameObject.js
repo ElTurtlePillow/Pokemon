@@ -27,6 +27,7 @@ export default class GameObject extends React.Component {
         this.retryTimeout = null;
 
         this.isNotHere = config.isNotHere;
+        this.isNowHere = config.isNowHere;
     };
 
     mount(map) {
@@ -38,6 +39,19 @@ export default class GameObject extends React.Component {
         if (this.isNotHere) {
             Object.keys(window.playerState.storyFlags).forEach(key => {
                 if (key === this.isNotHere) {
+                    this.x = -1;
+                    this.y = -1;
+                }
+            })
+        }
+
+        // add object on flags
+        if (this.isNowHere) {
+            Object.keys(window.playerState.storyFlags).forEach(key => {
+                if (key === this.isNowHere) {
+                    this.x = this.x ;
+                    this.y = this.y ;
+                } else {
                     this.x = -1;
                     this.y = -1;
                 }

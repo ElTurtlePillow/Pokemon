@@ -135,9 +135,21 @@ export default class OverworldMap extends React.Component {
     checkForFootstepCutscene() {
         const player = this.gameObjects["player"];
         const match = this.cutsceneSpaces[ `${player.x},${player.y}` ];
-        if (!this.isCutscenePlaying && match) {
-          this.startCutScene(match[0].events);
-        };
+        
+        // here 
+        if (match && match[1] && match[1].required) {
+            Object.keys(window.playerState.storyFlags).forEach(key => {
+                if (key === match[1].required[0]) {
+                    this.startCutScene(match[1].events);
+                    return
+                }
+            })
+        } 
+            if (!this.isCutscenePlaying && match) {
+                this.startCutScene(match[0].events);
+                return
+            };
+        
     };
 
     // addWall(x, y) {

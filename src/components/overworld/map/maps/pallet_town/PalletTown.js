@@ -10,6 +10,7 @@ import blank from "../../../../../assets/graphics/characters/blank.png"
 import npcAImg from "../../../../../assets/graphics/characters/npcA.png";
 import npcCImg from "../../../../../assets/graphics/characters/npcC.png";
 import npcDImg from "../../../../../assets/graphics/characters/npcD.png";
+import npcGImg from "../../../../../assets/graphics/characters/npcG.png";
 
 export const PalletTown = {
     id: "PalletTown",
@@ -77,7 +78,8 @@ export const PalletTown = {
                         { type: "textMessage", text: "Walking in tall grass is dangerous.", facePlayer: "npcD" },
                     ]
                 }
-            ]
+            ],
+            isNotHere: "TALKED_TO_CHEN_FIRST_TIME",
         }),
         mailBoxA: ({
             type: "Person",
@@ -144,6 +146,23 @@ export const PalletTown = {
                 },
             ]
         }),
+        bully: ({
+            type: "Person",
+            x: withGrid(40),
+            y: withGrid(46),
+            src: npcGImg,
+            behaviorLoop: [
+                { type: "stand", direction: "right", time: 1000},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "U little nightmare !"},
+                    ]
+                },
+            ],
+            isNowHere: "TALKED_TO_CHEN_FIRST_TIME",
+        }),
     },
     walls: loadWall(collisions),
     cutsceneSpaces: {
@@ -203,7 +222,13 @@ export const PalletTown = {
                     { who: "npcD", type: "walk", direction: "right"},
                     { who: "npcD", type: "stand", direction: "down"},
                 ]
-            }
+            },
+            {
+                required: ["TALKED_TO_CHEN_FIRST_TIME"],
+                events: [
+                    { type: "textMessage", text: "I will kill you!" },
+                ]
+            },
         ]
     }
 }
