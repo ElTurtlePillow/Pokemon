@@ -7,16 +7,41 @@
     background-color: #020304;
     z-index: 3;
     overflow: hidden;
-    animation: animation-fade-out 2s  forwards;
+    animation: animation-fade-out 2.5s  forwards;
+
+    .battle2 {
+        position: absolute;
+        top:-50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        object-fit: cover;
+        opacity: 0;
+        animation: battle-2 2.5s forwards;
     }
+}
+
+
 @keyframes animation-fade-out {
     0% {
         opacity: 0;
+        filter: brightness(1);
     };
     99% {
         opacity: 1;
     }
     100% {
         opacity: 0;
+        filter: brightness(0);
+    }
+}
+
+@keyframes battle-2 {
+    0% {
+        transform: rotate(0);
+        opacity: 1;
+    };
+    100% {
+        transform: rotate(360deg);
     }
 }

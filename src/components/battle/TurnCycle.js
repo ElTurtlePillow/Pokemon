@@ -155,11 +155,12 @@ export default class TurnCycle extends React.Component {
 	}
 
     async init() {
+        
         // start the battle
-        if (this.battle.enemy === "wild") {
+        if (this.battle.enemy.name === "Wild") {
             await this.onNewEvent({
                 type: "textMessage",
-                text: `A wild ${this.battle.combatants.e_wild.Name} appears !`
+                text: `A wild ${this.battle.combatants.e_wild.pokemonId} appears !`
             })
         } else {
             await this.onNewEvent({

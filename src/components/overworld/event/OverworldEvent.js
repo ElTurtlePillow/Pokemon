@@ -12,7 +12,9 @@ import GettingObject from "../getting_object/GettingObject"
 
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
-import ClientsEvents from './client_events/ClientEvents';
+
+import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
+// import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -89,6 +91,9 @@ export default class OverworldEvent extends React.Component {
 
     changeMap(resolve) {
 
+      // save current map
+      window.playerState.position = this.event.map;
+
       // change music
       if (this.event.changeMusic) {
 
@@ -130,6 +135,9 @@ export default class OverworldEvent extends React.Component {
 	  }
 
     battle(resolve) {
+      const battleIntroduction = new BattleIntroduction();
+      battleIntroduction.init(document.querySelector(".game-container"));
+
       setTimeout(() => {
           const battle = new Battle({
               enemy: enemies[this.event.enemyId],
@@ -138,7 +146,7 @@ export default class OverworldEvent extends React.Component {
               }
           })
           battle.init(document.querySelector(".game-container"))
-      }, 2222)
+      }, 2450)
     }
 
     pause(resolve) {

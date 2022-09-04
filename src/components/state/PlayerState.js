@@ -5,15 +5,16 @@ export default class PlayerState extends React.Component {
     constructor() {
         super()
 
-        this.pokemons = {}
+        this.pokemons = {};
 
         this.lineup = [];
         this.items = [
-            { itemId: "FULLHEAL", instanceId: "item1", },
             { itemId: "POTION", instanceId: "item2", },
-        ]
-        this.storyFlags = {
-        }
+            // { itemId: "FULLHEAL", instanceId: "item1", },
+        ];
+        this.storyFlags = {};
+        this.position = "";
+        this.currentBackgroundMusic = "";
     };
 
     addPokemon(pokemonId, stats) {

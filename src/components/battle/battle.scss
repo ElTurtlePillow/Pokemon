@@ -7,20 +7,56 @@
 	background-image: url(../../assets/graphics/battle/battlebacks/city_bg.png);
 	background-size: cover;
 	image-rendering: pixelated;
+	overflow: hidden;
 }
 .battle-player,
 .battle-enemy {
 	position: absolute;
-	width: 128px;
+	width: 160px;
 	height: 180px;
 	overflow: hidden;
-	opacity: 0.2;
     img {
         pointer-events: none;
     }
 }
-.battleplayer {
+.battle-player {
 	left: 0;
+	bottom: 60px;
+	transform: scale(1.2);
+	animation: battle-player 2.5s forwards;
+	animation-delay: 400ms;
+	.battle-player-sprite {
+		width: 220px;
+		height: 160px;
+		background-image: url(../../assets/graphics/trainers/playerBack.png);
+		background-repeat: no-repeat;
+		animation-name: battle-player-sprite;
+		animation-duration: 1.7s;
+		animation-timing-function: steps(5);
+		opacity: 1;
+	}
+}
+.battle-player-pokeball {
+	position: absolute;
+	top: 88px;
+	left: 64px;
+	animation-name: battle-player-pokeball;
+	animation-duration: 2.1s;
+	animation-delay: 200ms;
+	opacity: 0;
+	.battle-player-pokeball-sprite {
+		width: 32px;
+		height: 64px;
+		background-image: url(../../assets/graphics/battle/start/ball_POKEBALL.png);
+		background-repeat: no-repeat;
+		animation-name: battle-player-pokeball-sprite;
+		animation-duration: 0.1s;
+		animation-delay: 400ms;
+		animation-iteration-count: 15;
+		animation-timing-function: steps(8);
+		transform: scale(0.5);
+		opacity: 1;
+	}
 }
 .battle-enemy {
 	right: 0;
@@ -37,3 +73,55 @@
 	z-index: 1;
 }
 
+@keyframes battle-player {
+	0% {
+	  	transform: translateX(0) scale(1.2);
+	}
+	99% {
+		transform: translateX(-200px) scale(1.2);
+
+	}
+	100% {
+	  	transform: translateX(-200px) scale(1.2);
+	}
+}
+@keyframes battle-player-sprite {
+	0% {
+		background-position-x: 0px;
+		opacity: 1;
+	}
+	99% {
+		background-position-x: -799px;
+		opacity: 1;
+
+	}
+	100% {
+	  	background-position-x: -800px;
+	  	opacity: 1;
+	}
+}
+@keyframes battle-player-pokeball {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform:translateX(40px);
+		opacity: 1;
+	}
+}
+@keyframes battle-player-pokeball-sprite {
+	0% {
+		background-position-x: 0px;
+		opacity: 1;
+	}
+	99% {
+		background-position-x: -255px;
+		opacity: 1;
+
+	}
+	100% {
+	  	background-position-x: -256px;
+	  	opacity: 1;
+	}
+}

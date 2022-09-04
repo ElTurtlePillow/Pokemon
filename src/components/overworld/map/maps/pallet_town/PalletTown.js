@@ -66,7 +66,7 @@ export const PalletTown = {
                 {
                     events: [
                         { type: "textMessage", text: "I really like this town!", facePlayer: "npcC" },
-                        { type: "battle", enemyId: "beth" },
+                        // { type: "battle", enemyId: "beth" },
                     ]
                 }
             ]
@@ -420,6 +420,7 @@ export const PalletTown = {
                     },
                     
                     { type: "textMessage", text: "Mimikyu just join your team!" },
+                    { type: "textMessage", text: "Be nice with Mimikyu." },
                 ]
             },
             {

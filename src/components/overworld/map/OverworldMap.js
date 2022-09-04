@@ -2,9 +2,10 @@ import React from 'react';
 import Person from '../../objects/Person';
 import OverworldEvent from '../event/OverworldEvent';
 import InteractiveObject from '../../objects/InteractiveObject';
-import PlayerState from '../../state/PlayerState';
+// import PlayerState from '../../state/PlayerState';
 
 import {  nextPosition, withGrid } from '../../../Utils';
+import PlayerAnimation from "../../objects/player_animation/PlayerAnimation"
 
 import { NewGame } from "./maps/new_game/NewGame"
 
@@ -79,12 +80,6 @@ export default class OverworldMap extends React.Component {
         if (this.grass[`${x}, ${y}`]) {
             return true;
         }
-        // check for game objects
-        return Object.values(this.gameObjects).find(obj => {
-            if (obj.x === x && obj.y === y) {return true};
-            if (obj.intentPosition && obj.intentPosition[0] === x && obj.intentPosition[1] === y) {return true}
-            return false
-        })
     };
 
     mountObjects() {
@@ -109,7 +104,7 @@ export default class OverworldMap extends React.Component {
     async startCutScene(events) {
         this.isCutscenePlaying = true;
 
-        // do nothing if nothing
+        // ignore if nothing
         const player = this.gameObjects["player"];
         const match = this.cutsceneSpaces[ `${player.x},${player.y}` ];
         let ignore = false;
@@ -121,6 +116,7 @@ export default class OverworldMap extends React.Component {
                 ignore = true;
             }
         })}
+
         // else create
         if (!ignore) {
             for (let i = 0; i < events.length; i++) {
@@ -157,10 +153,27 @@ export default class OverworldMap extends React.Component {
         };
 	};
 
-    checkForFootstepCutscene() {
+    async checkForFootstepCutscene() {
         const player = this.gameObjects["player"];
         const match = this.cutsceneSpaces[ `${player.x},${player.y}` ];
 
+        // walking in grass
+        if (this.isWalkingInGrass(player.x, player.y, this.direction)) {
+
+            // const grassAnimation = new PlayerAnimation({
+            //     type: "grassSprite"
+            // })
+            // grassAnimation.init(document.querySelector(".game-container"))
+
+            // start random wild battle
+            const combatStartProbability = Math.floor(Math.random() * 100) + 1;
+            if (combatStartProbability <= 80) {
+                this.startCutScene([{ type: "battle", enemyId: "wild" }]);
+                return
+            }
+        };
+
+        // if required event 
         if (match && match[1] && match[1].required) {
             Object.keys(window.playerState.storyFlags).forEach(key => {
                 if (key === match[1].required[0]) {
@@ -169,11 +182,12 @@ export default class OverworldMap extends React.Component {
                 }
             })
         } 
-            if (!this.isCutscenePlaying && match) {
-                this.startCutScene(match[0].events);
-                return
-            };
-        
+
+        // normal event
+        if (!this.isCutscenePlaying && match) {
+            this.startCutScene(match[0].events);
+            return
+        };
     };
 
     // addWall(x, y) {

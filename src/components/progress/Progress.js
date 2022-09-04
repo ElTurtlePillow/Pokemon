@@ -1,6 +1,7 @@
 import React from 'react';
+import BackgroundMusic from '../audio/background_music/BackgroundMusic';
 
-export default class InteractiveObject extends React.Component  { 
+export default class Progress extends React.Component  { 
     constructor(config) {
         super(config);
 
@@ -10,7 +11,6 @@ export default class InteractiveObject extends React.Component  {
         this.startingPlayerY = 0;
         this.startingPlayerDirection = "down";
         this.saveFilekey = "Pokemon_SaveFile1";
-
     }
 
     save() {
@@ -24,6 +24,8 @@ export default class InteractiveObject extends React.Component  {
                 lineup: window.playerState.lineup,
                 items: window.playerState.items,
                 storyFlags: window.playerState.storyFlags,
+                position: window.playerState.position,
+                currentBackgroundMusic: window.playerState.currentBackgroundMusic,
             }
         }))
     }
@@ -43,6 +45,12 @@ export default class InteractiveObject extends React.Component  {
             Object.keys(file.playerState).forEach(key => {
                 window.playerState[key] = file.playerState[key]
             })
+
+            const music = file.playerState.currentBackgroundMusic.music;
+            const backgroundMusic = new BackgroundMusic({
+                music, 
+            });
+            backgroundMusic.init(document.querySelector(".game-container"));
         }
     }
 };

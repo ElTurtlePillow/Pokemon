@@ -1,0 +1,22 @@
+.grass-animation {
+    width: 32px;
+    height: 32px;
+	background-image: url(../../../assets/graphics/characters/grassSprite.png);
+    position: absolute;
+    top: 130px;
+    left: 225px;
+    background-repeat: no-repeat;
+	animation-name: grass-animation;
+	animation-duration: 0.2s;
+	z-index: 1;
+	opacity: 0;
+    image-rendering: pixelated;
+}
+@keyframes grass-animation {
+	0% {
+	  opacity: 0;
+	}
+    50% {
+	  opacity: 1;
+	}
+}

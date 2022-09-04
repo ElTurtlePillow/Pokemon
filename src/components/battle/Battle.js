@@ -5,15 +5,16 @@ import "./battle.scss"
 import Combatant from './combatant/Combatant';
 import BattleEvent from './events/BattleEvent';
 import TurnCycle from './TurnCycle';
+import Team from './team/Team';
+
+import { emitEvent } from '../../Utils';
 
 import {pokemon} from "../content/Pokemon"
-
+import { encounter } from '../content/Encounter';
 
 import playerImg from "./../../assets/graphics/battle/trainers/player.png";
-// import rivalImg from "./../../assets/graphics/battle/trainers/rival.png";
-import Team from './team/Team';
-import PlayerState from '../state/PlayerState';
-import { emitEvent } from '../../Utils';
+import BackgroundMusic from '../audio/background_music/BackgroundMusic';
+// import PlayerState from '../state/PlayerState';
 
 
 export default class Battle extends React.Component { 
@@ -35,25 +36,29 @@ export default class Battle extends React.Component {
             this.addCombatant(id, "player", window.playerState.pokemons[id])
         })
 
-        if (this.enemy === "wild") {
-            // random combats if grass
-            this.addCombatant("e_" + "wild", "enemy", 
-            {
-                pokemonId: "eevee",
-                maxHp: 34,
-                level: 4,
-            },
-        );
-
-        } else {
-            // load scripted enemy
-            // then enemy
-            Object.keys(this.enemy.pokemons).forEach((key) => {
-			this.addCombatant("e_" + key, "enemy", this.enemy.pokemons[key]);
-		});
-        }
-
+        // random combats if grass
+        if (this.enemy.name === "Wild") { 
+            // go search for pokemon in this area
+            const playerPosition = window.playerState.position;
+            Object.keys(encounter).forEach((key) => {
+			    if (key === playerPosition) {
+                    const wildSelected = Math.floor(Math.random() * encounter[key].pokemons.length);
+                        this.addCombatant("e_wild", "enemy", 
+                        {
+                        pokemonId: encounter[key].pokemons[wildSelected],
+                        maxHp: Math.floor(11 * encounter[key].level / 2),
+                        level: encounter[key].level,
+                        })
+                }
+		    });    
+        } 
         
+        // else load scripted enemy
+        else {
+            Object.keys(this.enemy.pokemons).forEach((key) => {
+			    this.addCombatant("e_" + key, "enemy", this.enemy.pokemons[key]);
+		    });
+        }
 
 		// add player items
         this.items = [];
@@ -64,6 +69,7 @@ export default class Battle extends React.Component {
 			});
 		});
         this.usedInstanceIds = {};
+
     };
 
     addCombatant(id, team, config) {
@@ -96,12 +102,15 @@ export default class Battle extends React.Component {
 
 		this.element.innerHTML = `
             <div class="player-animation"></div>
-            <div class="battle-player">
-                <img src=${playerImg} alt="player" />
+            <div class="battle-player-pokeball">
+                <div class="battle-player-pokeball-sprite"></div>
             </div>
+            <div class="battle-player">
+                <div class="battle-player-sprite"></div>
+            </div>
+
             <div class="enemy-animation"></div>
-            
-            ${this.enemy.name ? 
+            ${this.enemy.name !== "Wild" ? 
             (`
                 <div class="battle-enemy">
                     <img src=${enemiesImg[`${this.enemy.name}.png`]} alt=${this.enemy.name} />
@@ -173,6 +182,14 @@ export default class Battle extends React.Component {
                 // animate ending battle here
                 this.element.remove();
                 this.onComplete(winner === "player");
+
+                // reload actual music background
+                const music = window.playerState.currentBackgroundMusic.music;
+                const backgroundMusic = new BackgroundMusic({
+                music, 
+                });
+                backgroundMusic.init(document.querySelector(".game-container"));
+
             }
         })
         this.turnCycle.init();

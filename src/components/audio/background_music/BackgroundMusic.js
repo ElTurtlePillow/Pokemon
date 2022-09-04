@@ -10,7 +10,7 @@ export default class BackgroundMusic extends React.Component {
     }
 
     createElement() {
-        // remove old ones 
+        // remove old one 
         const playing = document.querySelectorAll('.background-music');
         if (playing) {
             for (let i = 0; i < playing.length; i ++) {
@@ -27,8 +27,8 @@ export default class BackgroundMusic extends React.Component {
         `);
     }
 
-    close( ) {
-            this.element.remove()
+    close() {
+        this.element.remove()
     }
 
     pause() {
@@ -38,14 +38,18 @@ export default class BackgroundMusic extends React.Component {
     init(container) {
         this.createElement();
         container.appendChild(this.element);
+
+        if (!this.song.isBattle) {
+            window.playerState.currentBackgroundMusic = this.song;
+        }
         
-        const nowPlaying = document.getElementById("nowPlaying");
-        nowPlaying.volume = 0
-        let interval = setInterval(() => {
-            nowPlaying.volume += 0.1;
-        }, 200)
-        setTimeout(() => {
-            clearInterval(interval) 
-        }, 2000)
+        // const nowPlaying = document.getElementById("nowPlaying");
+        // nowPlaying.volume = 0
+        // let interval = setInterval(() => {
+        //     nowPlaying.volume += 0.1;
+        // }, 200)
+        // setTimeout(() => {
+        //     clearInterval(interval) 
+        // }, 2000)
     }
 };

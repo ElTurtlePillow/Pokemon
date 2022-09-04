@@ -1,10 +1,6 @@
 import GameObject from './GameObject';
 import { emitEvent, nextPosition } from '../../Utils';
 
-
-import Battle from '../battle/Battle';
-import BattleIntroduction from "../battle/battle_introduction/BattleIntroduction"
-
 export default class Person extends GameObject { 
     constructor(config) {
         super(config);
@@ -52,33 +48,11 @@ export default class Person extends GameObject {
         if (behavior.type === "walk") {
             // stop if no space
             if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
-
                 behavior.retry && setTimeout(() => {
                     this.startBehavior(state, behavior)
                 }, 10)
                 return;
             };
-
-            // walking in grass
-            if (state.map.isWalkingInGrass(this.x, this.y, this.direction)) {
-                const combatStartProbability = Math.floor(Math.random() * 100) + 1;
-                // chance to have a random fight in grass
-                if (combatStartProbability <= 0) {
-                    const battleIntroduction = new BattleIntroduction({
-                      // stuff
-                    })
-                    battleIntroduction.init(document.querySelector(".game-container"))
-                    setTimeout(() => {
-                        const battle = new Battle({
-                            enemy: "wild",
-                            onComplete: (didWin) => {
-                                console.log(didWin);
-                            }
-                        })
-                        battle.init(document.querySelector(".game-container"))
-                    }, 2000)
-                };
-            }
 
             // walk
             // state.map.moveWall(this.x, this.y, this.direction);
