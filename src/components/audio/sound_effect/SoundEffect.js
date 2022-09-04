@@ -37,7 +37,7 @@ export default class SoundEffect extends React.Component {
         `)
         setTimeout(() => {
             this.close()
-        }, 300000) // to do fct duration
+        }, 3000) // to do fct duration
 
     }
 

@@ -79,10 +79,10 @@ export default class OverworldEvent extends React.Component {
     // get mimikyu
     getPokemon(resolve) {
       window.playerState.addPokemon("mimikyu", {
-            hp: 26,
-            maxHp: 26,
+            hp: 27,
+            maxHp: 27,
             xp: 0,
-            maxXp: 123,
+            maxXp: 35,
             level: 5,
             status: null,
       });

@@ -161,7 +161,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
-		Moves: ["THUNDERSHOCK", "SCRATCH"],
+		Moves: ["SCRATCH", "TAILWHIP"],
 	},
 	pidgey : {
 		Name : "Pidgey",
@@ -197,7 +197,7 @@ export const pokemon = {
 		BattlerShadowX : 0,
 		BattlerShadowSize : 1,
 		Evolutions : ["PIDGEOTTO","Level",18],
-		Moves: ["SCRATCH"],
+		Moves: ["SCRATCH", "GROWL"],
 	},
 	rattata : {
 		Name : "Rattata",
@@ -233,8 +233,14 @@ export const pokemon = {
 		BattlerShadowX : 0,
 		BattlerShadowSize : 2,
 		Evolutions : ["RATICATE","Level",20],
-		Moves: ["SCRATCH"],
+		Moves: ["TACKLE", "TAILWHIP"],
 	},
+
+
+
+
+
+	
     pikachu: {
 		Name: "Pikachu",
 		InternalName: "PIKACHU",

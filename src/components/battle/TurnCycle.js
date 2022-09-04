@@ -72,12 +72,12 @@ export default class TurnCycle extends React.Component {
 
             if (submission.target.team === "enemy") {
 				const playerActivePokemon = this.battle.activeCombatants.player;
-				const xp = Math.floor((submission.target.givesXp /15) + (submission.target.level * 3));
+				const xp = Math.floor((submission.target.givesXp /18) + (submission.target.level * 2) + 7);
 
                 const initialLevel = this.battle.combatants[playerActivePokemon].level;
 				await this.onNewEvent({
 					type: "textMessage",
-					text: `${caster.Name} gained ${xp} XP!`,
+					text: `${caster.Name} gained ${xp} XP!`, 
 				});
                 
 				await this.onNewEvent({

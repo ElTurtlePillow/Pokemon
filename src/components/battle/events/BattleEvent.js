@@ -11,7 +11,7 @@ import ReplacementMenu from '../menu/ReplacementMenu';
 
 import SoundEffect from "../../audio/sound_effect/SoundEffect"
 
-import normalDamageSound from "../../../assets/audio/sound_effect/battle/criticialdamage.ogg"
+import normalDamageSound from "../../../assets/audio/sound_effect/battle/normaldamage.ogg"
 import criticialSound from "../../../assets/audio/sound_effect/battle/criticialdamage.ogg"
 
 export default class BattleEvent extends React.Component { 
@@ -40,10 +40,10 @@ export default class BattleEvent extends React.Component {
 
         // damage
         if (damage) {
-
-            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10));
+            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10)) -2;
 
             let criticalStrike = Math.floor(Math.random() * 10);
+
             if ( criticalStrike === 1) {
                 const music = criticialSound;
                     const criticialSoundEffect = new SoundEffect({
@@ -59,14 +59,15 @@ export default class BattleEvent extends React.Component {
                     },
                 });
                 message.init(this.battle.element);
-            }  
-
+                await wait(800)
+                resolve();
+            }  else {
                 const music = normalDamageSound;
-                    const normalDamageSoundSoundEffect = new SoundEffect({
+                const normalDamageSoundSoundEffect = new SoundEffect({
                     music, 
                 });
                 normalDamageSoundSoundEffect.init(document.querySelector(".game-container"));
-            
+            }
 
             target.update({
                 hp: target.hp - initialDamage,
@@ -173,7 +174,8 @@ export default class BattleEvent extends React.Component {
 				if (combatant.xp === combatant.maxXp) {
 
 					combatant.xp = 0;
-					combatant.maxXp += 77;
+                    combatant.maxHp += 3;
+					combatant.maxXp += 16 + (combatant.level * 2);
 					combatant.level += 1;
 				}
 

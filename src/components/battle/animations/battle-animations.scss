@@ -16,9 +16,7 @@
 	pointer-events: none;
 }
 
-
-
-@keyframes battle-movement-right {
+@keyframes tackle-right {
 	0% {
 		transform: translateX(0) scale(0.6);
 	}
@@ -29,11 +27,10 @@
 		transform: translateX(0) scale(0.6);
 	}
 }
-.battle-movement-right {
+.battle-movement-tackle-right {
 	animation: battle-movement-right 0.6s;
 }
-
-@keyframes battle-movement-left {
+@keyframes tackle-left {
 	0% {
 		transform: translateX(0) scale(0.6);
 	}
@@ -44,39 +41,60 @@
 		transform: translateX(0) scale(0.6);
 	}
 }
-.battle-movement-left {
+.battle-movement-tackle-left {
 	animation: battle-movement-left 0.6s;
 }
 
 
-.thunder-shock {
-	width: 160px;
-	height: 160px;
-	background-image: url(../../../assets/graphics/battle/animations/electric2.png);
-	background-repeat:no-repeat;
-	animation-name: thunder-shock;
-	animation-duration: 0.8s;
-	animation-timing-function: steps(5);
-	z-index: 1;
-	opacity: 0;
-	transform: scale(0.7);
-  }
-  
-  @keyframes thunder-shock {
-	0% {
-	  background-position-x: 0px;
-	  opacity: 1;
-	  z-index: 999;
-	}
-	99% {
-		background-position-x: -1899px;
-		opacity: 1;
-		z-index: 999;
 
-	}
-	100% {
-	  background-position-x: -1900px;
-	  opacity: 0;
-	  z-index: 999;
-	}
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .thunder-shock {
+// 	width: 160px;
+// 	height: 160px;
+// 	background-image: url(../../../assets/graphics/battle/animations/electric2.png);
+// 	background-repeat:no-repeat;
+// 	animation-name: thunder-shock;
+// 	animation-duration: 0.8s;
+// 	animation-timing-function: steps(5);
+// 	z-index: 1;
+// 	opacity: 0;
+// 	transform: scale(0.7);
+//   }
+  
+//   @keyframes thunder-shock {
+// 	0% {
+// 	  background-position-x: 0px;
+// 	  opacity: 1;
+// 	  z-index: 999;
+// 	}
+// 	99% {
+// 		background-position-x: -1899px;
+// 		opacity: 1;
+// 		z-index: 999;
+
+// 	}
+// 	100% {
+// 	  background-position-x: -1900px;
+// 	  opacity: 0;
+// 	  z-index: 999;
+// 	}
+//   }

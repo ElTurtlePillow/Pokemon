@@ -65,11 +65,32 @@ export const moves = {
 			}
 		]
 	},
+	TACKLE : {
+		Name: "Tackle",
+		Description : "A physical attack in which the user charges and slams into the target with its whole body.",
+		MoveType : "NORMAL",
+		Accuracy: 100,
+		Success: [
+			{
+				type: "textMessage",
+				text: "{CASTER} uses {MOVE} !",
+			},
+			{
+				type: "animation",
+				animation: "TACKLE" , 
+				color: "#db32a5"
+			},
+			{
+				type: "stateChange",
+				damage: 40,
+			},
+		]
+	},
 	THUNDERSHOCK: {
 		Name: "Thunder Shock",
 		Description : "A jolt of electricity is hurled to inflict damage. May leave the target with paralysis.",
-		Accuracy: 90,
 		MoveType: "ELECTRIC",
+		Accuracy: 90,
 		// TargetType: "friendly",
 		Success: [
 			{

@@ -43,7 +43,7 @@ export default class Battle extends React.Component {
         if (this.enemy.name === "Wild") { 
             // go search for pokemon in this area
             const playerPosition = window.playerState.position;
-            const moreLess = Math.floor(Math.random() * 3);
+            const moreLess = Math.floor(Math.random() * 2);
             Object.keys(encounter).forEach((key) => {
 			    if (key === playerPosition) {
                     const wildSelected = Math.floor(Math.random() * encounter[key].pokemons.length);

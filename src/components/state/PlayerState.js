@@ -25,7 +25,7 @@ export default class PlayerState extends React.Component {
             hp: stats.hp,
             maxHp: stats.maxHp,
             xp: stats.xp,
-            maxXp: stats.maxHp,
+            maxXp: stats.maxXp,
             level: stats.level,
             status: stats.status,
         }
