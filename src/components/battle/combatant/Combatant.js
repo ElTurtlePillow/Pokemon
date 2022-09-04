@@ -1,7 +1,7 @@
 import React from 'react';
 import "./combatant.scss"
 
-import supportImg from "../../../assets/graphics/battle/city_base1.png"
+import supportImg from "../../../assets/graphics/battle/battlebacks/field_base.png"
 import { randomFromArray } from '../../../Utils';
 
 export default class Combatant extends React.Component { 

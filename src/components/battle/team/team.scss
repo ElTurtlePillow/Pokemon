@@ -1,18 +1,18 @@
 .team {
 	display: flex;
 	position: absolute;
-	top: 4px;
+	top: 6px;
 	gap: 4px;
 }
 .pokeball-battle {
-	width: 12px;
-	height: 12px;
+	width: 16px;
+	height: 16px;
 }
 .team[data-team="player"] {
-	left: 4px;
+	left: 6px;
 }
 .team[data-team="enemy"] {
-	right: 4px;
+	right: 6px;
 }
 
 // start stateful paths as display:none 
@@ -32,5 +32,6 @@
 .team [data-active="true"] .active-pokemon-indicator {
         position: absolute;
         display: block;
-        font-size: 8px;
+        font-size: 9px; 
+		margin-left: 3px;
 }

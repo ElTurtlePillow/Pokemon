@@ -12,8 +12,11 @@ import { emitEvent } from '../../Utils';
 import {pokemon} from "../content/Pokemon"
 import { encounter } from '../content/Encounter';
 
-import playerImg from "./../../assets/graphics/battle/trainers/player.png";
 import BackgroundMusic from '../audio/background_music/BackgroundMusic';
+
+import battleBackground from "../../assets/graphics/battle/battlebacks/field_bg.png"
+
+// import playerImg from "./../../assets/graphics/battle/trainers/player.png";
 // import PlayerState from '../state/PlayerState';
 
 
@@ -101,6 +104,9 @@ export default class Battle extends React.Component {
         // to do change here to pick up source and not name
 
 		this.element.innerHTML = `
+            <div class="battle-background">
+                <img src=${battleBackground} alt="battle background" />
+            </div>
             <div class="player-animation"></div>
             <div class="battle-player-pokeball">
                 <div class="battle-player-pokeball-sprite"></div>

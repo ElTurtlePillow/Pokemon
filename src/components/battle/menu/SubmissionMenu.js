@@ -46,28 +46,28 @@ export default class SubmissionMenu extends React.Component {
 		return {
 			root: [
 				{
-					label: "Attack",
-					description: "Choose an attack",
+					label: "FIGHT",
+					description: `What will ${this.caster.Name} do ?`,
 					handler: () => {
 						this.keyboardMenu.setOptions(this.getPages().attacks);
 					},
 				},
 				{
-					label: "Items",
+					label: "BAG",
 					description: "Choose an item",
 					handler: () => {
 						this.keyboardMenu.setOptions(this.getPages().items);
 					},
 				},
 				{
-					label: "Pkm",
+					label: "POKEMON",
 					description: "Change to another Pokemon",
 					handler: () => {
 						this.keyboardMenu.setOptions(this.getPages().replacements);
 					},
 				},
 				{
-					label: "Run",
+					label: "RUN",
 					description: "Leave the battle",
 					handler: () => {
 						this.keyboardMenu.setOptions(this.getPages().run);

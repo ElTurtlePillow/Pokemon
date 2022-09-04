@@ -1,7 +1,7 @@
 import React from 'react';
 import "./team.scss"
 
-import pkblImg from "../../../assets/graphics/battle/pokeball.png"
+import pkblImg from "../../../assets/graphics/battle/hud/pokeball.png"
 
 export default class Team extends React.Component { 
     constructor(team, name) {
