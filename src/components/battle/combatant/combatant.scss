@@ -13,7 +13,7 @@ $cfs: rgb(255, 160, 17);
 	border-radius: 3px;
 	text-shadow: 1px 1px 1px rgba(49, 49, 49, 0.3);
 	transition: opacity 0.4s;
-	transform: scale(1.3);
+	transform: scale(1.4);
 }
 .battle .combatant[data-active="false"] {
 	opacity: 0;
@@ -177,20 +177,34 @@ $cfs: rgb(255, 160, 17);
 	background: $psn;
 }
 
+.pokemon-container[data-team="enemy"] {
+	position: absolute;	
+	top: 30px;
+	right: 0;
+	width: 37%;
+	height: 100%;
+	animation: pokemon-enemy-appears 3.5s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+	z-index: 1;
+}
+.pokemon-container[data-team="player"] {
+	position: absolute;	
+	top: 26px;
+	left: 10px;
+	width: 37%;
+	height: 100%;
+	animation: pokemon-appears 0.4s forwards cubic-bezier(0.165, 0.84, 0.44, 1) 2.3s;
+	opacity: 0;
+	transform-origin: bottom;
+}
 .pokemon {
 	position: absolute;
 }
 .pokemon[data-team="player"] {
-	bottom: 40px;
-	left: 0;
-	animation: pokemon-appears 2.8s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
-	transform-origin: center;
+	image-rendering: pixelated;
+
 }
 .pokemon[data-team="enemy"] {
-	top: 30px;
-	right: 20px;
-	animation: pokemon-enemy-appears 3.5s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
-	z-index: 1;
+	image-rendering: pixelated;
 }
 
 // switching pokemon animation
@@ -215,18 +229,11 @@ $cfs: rgb(255, 160, 17);
 @keyframes pokemon-appears {
 	0%{
 		transform: scale(0);
-	}
-	80% {
-		transform: scale(0);
-	}
-	95% {
-		transform: scale(0.65);
-	}
-	98% {
-		transform: scale(0.55);
+		opacity: 0;
 	}
 	100%{
 		transform: scale(0.7);
+		opacity: 1;
 	}
 }
 @keyframes support-animation {

@@ -6,20 +6,34 @@
 	bottom: 0;
 	image-rendering: pixelated;
 	overflow: hidden;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		user-select: none;
+		background-color: #020304;
+		z-index: 9;
+		animation: scene-reveal-before 1s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+	}
 	&::after {
 		content: "";
 		position: absolute;
+		bottom: 0;
 		width: 100%;
-		height: 100%;
+		height: 50%;
 		user-select: none;
 		background-color: #020304;
-		animation: scene-reveal 2s forwards;
+		z-index: 9;
+		animation: scene-reveal-after 1s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
 	}
 	.battle-background {
 		image-rendering: pixelated;
 		animation: background-reveal 2s forwards;
 		img {
 			width: 150%;
+			height: 288px;
 		}
 	}
 	.battle-player,
@@ -38,6 +52,7 @@
 		transform: scale(1.2);
 		animation: battle-player 2.5s forwards;
 		animation-delay: 1000ms;
+		z-index: 5;
 		.battle-player-sprite {
 			width: 220px;
 			height: 160px;
@@ -56,7 +71,7 @@
 		left: 68px;
 		animation-name: battle-player-pokeball;
 		animation-duration: 2.1s;
-		animation-delay: 700ms;
+		animation-delay: 900ms;
 		opacity: 0;
 		.battle-player-pokeball-sprite {
 			width: 32px;
@@ -91,16 +106,20 @@
 }
 
 
-@keyframes scene-reveal {
+@keyframes scene-reveal-before {
+	0% {
+		opacity: 1;
+  }
+  100% {
+	  transform: translateY(-100%);
+  }
+}
+@keyframes scene-reveal-after {
 	0% {
 	  	opacity: 1;
 	}
-	99% {
-		opacity: 0;
-	}
 	100% {
-	  	opacity: 0;
-		z-index: -1;
+		transform: translateY(100%);
 	}
 }
 @keyframes background-reveal {
@@ -144,8 +163,12 @@
 		transform: translateX(0);
 		opacity: 1;
 	}
+	40% {
+		transform:translateX(35px) translateY(10px);
+		opacity: 1;
+	}
 	100% {
-		transform:translateX(40px);
+		transform:translateX(35px) translateY(140px);
 		opacity: 1;
 	}
 }

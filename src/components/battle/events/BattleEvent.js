@@ -8,6 +8,12 @@ import SubmissionMenu from '../menu/SubmissionMenu';
 import { battleAnimations } from '../animations/BattleAnimations';
 import ReplacementMenu from '../menu/ReplacementMenu';
 
+
+import SoundEffect from "../../audio/sound_effect/SoundEffect"
+
+import normalDamageSound from "../../../assets/audio/sound_effect/battle/criticialdamage.ogg"
+import criticialSound from "../../../assets/audio/sound_effect/battle/criticialdamage.ogg"
+
 export default class BattleEvent extends React.Component { 
     constructor(event, battle) {
         super(event)
@@ -30,13 +36,45 @@ export default class BattleEvent extends React.Component {
     async stateChange(resolve) {
         const {caster, target, damage, recover, statusHandler, move} = this.event;
         let who = this.event.onCaster ? caster : target;
+        let casterStat = this.event.onCaster ? target : caster;
 
         // damage
         if (damage) {
+
+            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10));
+
+            let criticalStrike = Math.floor(Math.random() * 10);
+            if ( criticalStrike === 1) {
+                const music = criticialSound;
+                    const criticialSoundEffect = new SoundEffect({
+                    music, 
+                });
+                criticialSoundEffect.init(document.querySelector(".game-container"));
+
+                initialDamage += Math.floor(initialDamage/4);
+                const message = new TextMessage({
+                    text: "A critical hit!",
+                    onComplete: () => {
+                        resolve();
+                    },
+                });
+                message.init(this.battle.element);
+            }  
+
+                const music = normalDamageSound;
+                    const normalDamageSoundSoundEffect = new SoundEffect({
+                    music, 
+                });
+                normalDamageSoundSoundEffect.init(document.querySelector(".game-container"));
+            
+
             target.update({
-                hp: target.hp - damage
+                hp: target.hp - initialDamage,
             });
             target.pokemonElement.classList.add('battle-damage-blink');
+            
+            await wait(600)
+            target.pokemonElement.classList.remove('battle-damage-blink');
         };
 
         // recover
@@ -70,6 +108,7 @@ export default class BattleEvent extends React.Component {
 
         await wait(600)
         target.pokemonElement.classList.remove('battle-damage-blink');
+
         resolve();
     }
 
@@ -132,13 +171,18 @@ export default class BattleEvent extends React.Component {
 
 				// check if we've hit level up point
 				if (combatant.xp === combatant.maxXp) {
+
 					combatant.xp = 0;
-					combatant.maxXp = 100;
+					combatant.maxXp += 77;
 					combatant.level += 1;
 				}
 
 				combatant.update();
-				requestAnimationFrame(step);
+
+                // speed of xp container
+                setTimeout(() => {
+				    requestAnimationFrame(step);
+                }, 40)
 				return;
 			}
 			resolve();

@@ -84,6 +84,11 @@ export default class Combatant extends React.Component {
         const frontImages = importAll(require.context('../../../assets/graphics/pokemon/front', false, /\.(png|jpe?g|svg)$/));
         const backImage = importAll(require.context('../../../assets/graphics/pokemon/back', false, /\.(png|jpe?g|svg)$/));
 
+		
+		this.pokemonContainer = document.createElement("div")
+		this.pokemonContainer.classList.add("pokemon-container")
+		this.pokemonContainer.setAttribute("data-team", this.team);
+
 		this.pokemonElement = document.createElement("img");
 		this.pokemonElement.classList.add("pokemon");
 		if (this.team === "enemy") {
@@ -93,8 +98,6 @@ export default class Combatant extends React.Component {
 		}
 		this.pokemonElement.setAttribute("alt", this.Name);
 		this.pokemonElement.setAttribute("data-team", this.team);
-
-
     }
 
     update(changes={}) {
@@ -176,7 +179,8 @@ export default class Combatant extends React.Component {
     init(container) {
         this.createElement();
         container.appendChild(this.hudElement);
-        container.appendChild(this.pokemonElement);
+		container.appendChild(this.pokemonContainer)
+        this.pokemonContainer.appendChild(this.pokemonElement);
         this.update()
     };
 };

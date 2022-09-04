@@ -1,5 +1,8 @@
 import React from 'react';
 
+import SoundEffect from "../audio/sound_effect/SoundEffect"
+import levelUpSound from "../../assets/audio/sound_effect/battle/pkmnlvlup.ogg"
+
 export default class TurnCycle extends React.Component { 
     constructor({battle, onNewEvent, onWinner}) {
         super(battle)
@@ -56,6 +59,7 @@ export default class TurnCycle extends React.Component {
                 caster,
                 target: submission.target
             }
+
             await this.onNewEvent(event);
         }
 
@@ -68,17 +72,33 @@ export default class TurnCycle extends React.Component {
 
             if (submission.target.team === "enemy") {
 				const playerActivePokemon = this.battle.activeCombatants.player;
-				const xp = submission.target.givesXp;
+				const xp = Math.floor((submission.target.givesXp /15) + (submission.target.level * 3));
 
+                const initialLevel = this.battle.combatants[playerActivePokemon].level;
 				await this.onNewEvent({
 					type: "textMessage",
 					text: `${caster.Name} gained ${xp} XP!`,
 				});
+                
 				await this.onNewEvent({
-					type: "giveXp",
+                    type: "giveXp",
 					xp,
 					combatant: this.battle.combatants[playerActivePokemon],
 				});
+                const actualisedLevel = this.battle.combatants[playerActivePokemon].level;
+                if (initialLevel !== actualisedLevel) {
+
+                    const music = levelUpSound;
+                    const levelUpSoundEffect = new SoundEffect({
+                            music, 
+                    });
+                    levelUpSoundEffect.init(document.querySelector(".game-container"));
+                    await this.onNewEvent({
+                        type: "textMessage",
+					    text: `${caster.Name} grew to level ${actualisedLevel}!`,
+                    });
+                }
+                
 			}
         }
 
@@ -87,7 +107,7 @@ export default class TurnCycle extends React.Component {
         if (winner) {
             await this.onNewEvent({
                 type: "textMessage",
-                text: "WINNER"
+                text: `WINNER : ${winner}`
             })
 
             this.onWinner(winner)
@@ -160,12 +180,12 @@ export default class TurnCycle extends React.Component {
         if (this.battle.enemy.name === "Wild") {
             await this.onNewEvent({
                 type: "textMessage",
-                text: `A wild ${this.battle.combatants.e_wild.pokemonId} appears !`
+                text: `A wild ${this.battle.combatants.e_wild.pokemonId} appeared !`
             })
         } else {
             await this.onNewEvent({
                 type: "textMessage",
-                text: `${this.battle.enemy.name} wants to fight !`
+                text: `${this.battle.enemy.name} would like to battle!`
             })
         }
 

@@ -43,14 +43,15 @@ export default class Battle extends React.Component {
         if (this.enemy.name === "Wild") { 
             // go search for pokemon in this area
             const playerPosition = window.playerState.position;
+            const moreLess = Math.floor(Math.random() * 3);
             Object.keys(encounter).forEach((key) => {
 			    if (key === playerPosition) {
                     const wildSelected = Math.floor(Math.random() * encounter[key].pokemons.length);
                         this.addCombatant("e_wild", "enemy", 
                         {
                         pokemonId: encounter[key].pokemons[wildSelected],
-                        maxHp: Math.floor(11 * encounter[key].level / 2),
-                        level: encounter[key].level,
+                        maxHp: Math.floor(3 * (encounter[key].level + moreLess)) + 16,
+                        level: encounter[key].level + moreLess,
                         })
                 }
 		    });    

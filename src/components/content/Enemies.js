@@ -1,12 +1,12 @@
 export const enemies = {
 	wild: {
 		name: "Wild",
-		// first line of dialog : "You're a rival, aren't you?"
 		pokemons: {},
 	},
     rival: {
 		name: "Rival",
-		// first line of dialog : "You're a rival, aren't you?"
+		// first line of dialog : "You're my rival, aren't you?"
+		// last line of dialog : "What? Unbelievable!"
 		pokemons: {
 			a: {
 				pokemonId: "eevee",

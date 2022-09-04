@@ -1,6 +1,6 @@
 export const encounter = {
     PalletTown: {
-        level : 3,
+        level : 2,
         pokemons : [
             "rattata",
             "pidgey",

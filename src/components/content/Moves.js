@@ -15,7 +15,7 @@ export const moves = {
 			},
 			{
 				type: "stateChange",
-				damage: 15,
+				damage: 40,
 			},
 		]
 	},
@@ -83,7 +83,7 @@ export const moves = {
 			},
 			{
 				type: "stateChange",
-				damage: 500,
+				damage: 50,
 			},
 			{
 				type: "stateChange",
