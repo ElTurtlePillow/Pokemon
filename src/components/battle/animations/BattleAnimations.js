@@ -8,6 +8,15 @@ export const battleAnimations = {
         const animationClassName = event.caster.team === "player" ? "battle-movement-right" : "battle-movement-left";
         element.classList.add(animationClassName);
 
+        const team = event.caster.team === "player" ? "enemy" : "player";
+        document.querySelector(`.${team}-animation`).classList.add("TACKLE");
+
+        // rmv on complete
+        element.addEventListener("animationend", () => {
+            element.classList.remove(animationClassName);
+            document.querySelector(`.${team}-animation`).classList.remove("TACKLE");
+        }, {once: true});
+
         // rmv on complete
         element.addEventListener("animationend", () => {
             element.classList.remove(animationClassName);
@@ -22,12 +31,55 @@ export const battleAnimations = {
         const animationClassName = event.caster.team === "player" ? "battle-movement-right" : "battle-movement-left";
         element.classList.add(animationClassName);
 
+        const team = event.caster.team === "player" ? "enemy" : "player";
+        document.querySelector(`.${team}-animation`).classList.add("SCRATCH");
+
         // rmv on complete
         element.addEventListener("animationend", () => {
             element.classList.remove(animationClassName);
+            document.querySelector(`.${team}-animation`).classList.remove("SCRATCH");
         }, {once: true});
 
         await wait(600);
+        onComplete();
+    },
+
+    async TAILWHIP(event, onComplete) {
+        const element = event.caster.pokemonElement;
+        const animationClassName = "battle-movement-rotate";
+        element.classList.add(animationClassName);
+
+        const team = event.caster.team === "player" ? "enemy" : "player";
+
+        document.querySelector(`.${team}-animation`).classList.add("LOW-DEF");
+
+        // rmv on complete
+        element.addEventListener("animationend", () => {
+            console.log(team);
+            element.classList.remove(animationClassName);
+            document.querySelector(`.${team}-animation`).classList.remove("LOW-DEF");
+        }, {once: true});
+
+        await wait(1400);
+        onComplete();
+    },
+
+    async GROWL(event, onComplete) {
+        const element = event.caster.pokemonElement;
+        const animationClassName = "GROWL";
+        element.classList.add(animationClassName);
+
+        const team = event.caster.team === "player" ? "enemy" : "player";
+        document.querySelector(`.${team}-animation`).classList.add("LOW-ATK");
+
+        // rmv on complete
+        element.addEventListener("animationend", () => {
+            console.log(team);
+            element.classList.remove(animationClassName);
+            document.querySelector(`.${team}-animation`).classList.remove("LOW-ATK");
+        }, {once: true});
+
+        await wait(1400);
         onComplete();
     },
 

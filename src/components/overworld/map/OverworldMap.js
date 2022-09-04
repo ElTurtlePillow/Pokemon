@@ -167,7 +167,7 @@ export default class OverworldMap extends React.Component {
 
             // start random wild battle
             const combatStartProbability = Math.floor(Math.random() * 100) + 1;
-            if (combatStartProbability <= 8) { // 8 is nice
+            if (combatStartProbability <= 80) { // 8 is nice
                 this.startCutScene([{ type: "battle", enemyId: "wild" }]);
                 return
             }

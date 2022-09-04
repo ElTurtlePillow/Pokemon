@@ -72,7 +72,7 @@ export default class TurnCycle extends React.Component {
 
             if (submission.target.team === "enemy") {
 				const playerActivePokemon = this.battle.activeCombatants.player;
-				const xp = Math.floor((submission.target.givesXp /18) + (submission.target.level * 2) + 7);
+				const xp = Math.floor((submission.target.givesXp /18) + (submission.target.level * 2) + 8);
 
                 const initialLevel = this.battle.combatants[playerActivePokemon].level;
 				await this.onNewEvent({
@@ -87,7 +87,6 @@ export default class TurnCycle extends React.Component {
 				});
                 const actualisedLevel = this.battle.combatants[playerActivePokemon].level;
                 if (initialLevel !== actualisedLevel) {
-
                     const music = levelUpSound;
                     const levelUpSoundEffect = new SoundEffect({
                             music, 

@@ -173,6 +173,7 @@ export default class Battle extends React.Component {
                             playerStatePokemon.hp = combatant.hp;
                             playerStatePokemon.xp = combatant.xp;
                             playerStatePokemon.maxXp = combatant.maxXp;
+                            playerStatePokemon.maxHp = combatant.maxHp;
                             playerStatePokemon.level = combatant.level;
                         };
                     });

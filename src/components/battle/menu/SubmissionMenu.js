@@ -140,9 +140,10 @@ export default class SubmissionMenu extends React.Component {
 		});
 	}
 
+	// enmy choice 
     decide() {
-        // to do select random for enemy
-        this.menuSubmit(moves[this.caster.Moves[0]]);
+		let enemyChoice = Math.floor((Math.random() * this.caster.Moves.length))
+        this.menuSubmit(moves[this.caster.Moves[enemyChoice]]);
     }
 
     showMenu(container) {
