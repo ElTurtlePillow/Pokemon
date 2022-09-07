@@ -15,6 +15,7 @@ export default class SoundEffect extends React.Component {
     }
 
     createElement() {
+
         let soundEffect = this.song.music;
 
         if (soundEffect === "stairs") {

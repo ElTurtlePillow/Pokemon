@@ -19,6 +19,7 @@ import { PalletTown } from './maps/pallet_town/PalletTown';
 
 
 import { ViridianCity } from './maps/viridian_city/ViridianCity';
+import { ViridianPokeCenterFirstFloor } from './maps/viridian_city/houses/poke_center/first_floor/ViridianPokeCenterFirstFloor';
 
 
 
@@ -185,7 +186,7 @@ export default class OverworldMap extends React.Component {
 
             // start random wild battle
             const combatStartProbability = Math.floor(Math.random() * 100) + 1;
-            if (combatStartProbability <= 80) { // 8 is nice, which is nice
+            if (combatStartProbability <= 8) { // 8 is nice, which is nice
                 this.startCutScene([{ type: "battle", enemyId: "wild" }]);
                 return
             }
@@ -231,4 +232,5 @@ window.OverworldMaps = {
     ChenLab,
 
     ViridianCity,
+    ViridianPokeCenterFirstFloor,
 };

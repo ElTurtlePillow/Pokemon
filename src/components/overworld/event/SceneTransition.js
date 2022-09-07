@@ -26,7 +26,6 @@ export default class SceneTransition extends React.Component {
 	}
 
 	init(container, callback) {
-		console.log(this);
 		this.createElement();
 		container.appendChild(this.element);
 

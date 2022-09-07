@@ -53,7 +53,7 @@ export const battleAnimations = {
 
         document.querySelector(`.${team}-animation`).classList.add("LOW-DEF");
 
-        await wait(4000);
+        await wait(400);
         element.classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-DEF");
         onComplete();
@@ -67,7 +67,7 @@ export const battleAnimations = {
         const team = event.caster.team === "player" ? "enemy" : "player";
         document.querySelector(`.${team}-animation`).classList.add("LOW-ATK");
 
-        await wait(4000);
+        await wait(400);
         element.classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-ATK");
         onComplete();
@@ -81,7 +81,7 @@ export const battleAnimations = {
         const team = event.caster.team === "player" ? "enemy" : "player";
         document.querySelector(`.${team}-animation`).classList.add("LOW-SPD");
 
-        await wait(40000);
+        await wait(1400);
         element.classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-SPD");
         onComplete();

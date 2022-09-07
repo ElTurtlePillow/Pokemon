@@ -105,7 +105,7 @@ export const pokemon = {
 		BattlerShadowX : 0,
 		BattlerShadowSize : 2,
 		Evolutions : ["RATICATE","Level",20],
-		Moves: ["TACKLE", ], // "TAILWHIP"
+		Moves: ["TACKLE",  "TAILWHIP"], //
 	},
 	caterpie: {
 		Name : "Caterpie",
@@ -132,7 +132,7 @@ export const pokemon = {
 		Pokedex : "Its voracious appetite compels it to devour leaves bigger than itself without hesitation. It releases a terribly strong odor from its antennae.",
 		Generation : 1,
 		Evolutions : ["METAPOD","Level",7],
-		Moves: ["STRINGSHOT",], //  "TACKLE"
+		Moves: ["STRINGSHOT","TACKLE"], //  
 	},
 	weedle: {
 		Name : "Weedle",

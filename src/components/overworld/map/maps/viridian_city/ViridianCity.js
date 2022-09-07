@@ -11,6 +11,7 @@ import npcAImg from "../../../../../assets/graphics/characters/npcA.png";
 
 
 import musicBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
+import pokeCenterMsc from "../../../../../assets/audio/background_music/PokeCenter.ogg"
 
 export const ViridianCity = {
     id: "ViridianCity",
@@ -54,6 +55,21 @@ export const ViridianCity = {
                         x: withGrid(40),
                         y: withGrid(7),
                         direction: 'down',
+                    },
+                ]
+            }
+        ],
+        [asGridCoords(54, 65)]: [
+            {
+                events: [
+                    { 
+                        type: "changeMap", 
+                        map: "ViridianPokeCenterFirstFloor",
+                        soundEffect: "doors",
+                        changeMusic: pokeCenterMsc,
+                        x: withGrid(18),
+                        y: withGrid(24),
+                        direction: 'up',
                     },
                 ]
             }
