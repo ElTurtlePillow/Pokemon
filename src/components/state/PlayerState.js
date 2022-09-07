@@ -15,6 +15,8 @@ export default class PlayerState extends React.Component {
         this.storyFlags = {};
         this.position = "";
         this.currentBackgroundMusic = "";
+
+        this.healing = "MomHouseFirstFloor";
     };
 
     addPokemon(pokemonId, stats) {

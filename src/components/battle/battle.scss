@@ -31,6 +31,7 @@
 	.battle-background {
 		image-rendering: pixelated;
 		animation: background-reveal 2.4s forwards;
+		opacity: 0;
 		img {
 			width: 150%;
 			height: 288px;

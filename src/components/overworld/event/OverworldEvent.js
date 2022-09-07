@@ -14,6 +14,8 @@ import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
 
 import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
+
+import Healing from './client_events/healing/Healing';
 // import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
@@ -162,8 +164,20 @@ export default class OverworldEvent extends React.Component {
       menu.init(document.querySelector('.game-container'))
     }
 
+    healing(resolve) {
+      const healingTransition = new Healing();
+      healingTransition.init(document.querySelector(".game-container"))
+
+        window.playerState.healing = this.event.position;
+
+        setTimeout(() => {
+          resolve();
+          healingTransition.fadeOut();
+        },4000)
+    }
+
     addStoryFlag(resolve) {
-      window.playerState.storyFlags[this.event.flag] = true;
+    window.playerState.storyFlags[this.event.flag] = true;
       
       // if (this.event.flag === "PALLET_TOWN_BURNING") {
       //   const event = this.event.flag;

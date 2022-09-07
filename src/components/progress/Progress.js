@@ -26,6 +26,8 @@ export default class Progress extends React.Component  {
                 storyFlags: window.playerState.storyFlags,
                 position: window.playerState.position,
                 currentBackgroundMusic: window.playerState.currentBackgroundMusic,
+
+                healing: window.playerState.healing,
             }
         }))
     }

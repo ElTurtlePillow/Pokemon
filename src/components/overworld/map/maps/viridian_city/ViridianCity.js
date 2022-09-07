@@ -9,6 +9,9 @@ import blank from "../../../../../assets/graphics/characters/blank.png";
 
 import npcAImg from "../../../../../assets/graphics/characters/npcA.png";
 
+
+import musicBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
+
 export const ViridianCity = {
     id: "ViridianCity",
     lowerSrc: mapDown,
@@ -40,16 +43,17 @@ export const ViridianCity = {
     walls: loadWall(collisions),
     grass: loadGrass(grass),
     cutsceneSpaces: {
-        [asGridCoords(0, 0)]: [
+        [asGridCoords(52, 75)]: [
             {
                 events: [
                     { 
                         type: "changeMap", 
-                        map: "map",
-                        soundEffect: "doors",
-                        x: withGrid(0),
-                        y: withGrid(0),
-                        direction: 'up',
+                        map: "PalletTown",
+                        soundEffect: "stairs",
+                        changeMusic: musicBg,
+                        x: withGrid(40),
+                        y: withGrid(7),
+                        direction: 'down',
                     },
                 ]
             }

@@ -79,42 +79,72 @@
 }
 
 
+.LOW-ATC {
+	&::after {
+		position: absolute;
+		content: "";
+		width: 192px;
+		height: 160px;
+		background-image: url(../../../assets/graphics//battle/animations/statEffect.png);
+		background-repeat: no-repeat;
+		animation-name: stat-handler;
+		animation-duration: 1.4s;
+		animation-timing-function: steps(13);
+		animation-iteration-count: 2;
+		animation-delay: 800ms;
+		transform:  scale(0.7) translateY(64px);
+		opacity: 0;
+	}
+}
 .LOW-DEF {
 	&::after {
 		position: absolute;
 		content: "";
-		width: 150px;
-		height: 150px;
-		object-fit: cover;
-		background-image: url(../../../assets/graphics//battle/animations/statEffect.gif);
-		background-size: 90%;
+		width: 192px;
+		height: 160px;
+		background-image: url(../../../assets/graphics//battle/animations/statEffect.png);
 		background-repeat: no-repeat;
-		animation-name: fade-in-out;
-		animation-duration: 800ms;
-		animation-delay: 600ms;
-		transform: translateY(30px) translateX(22px);
-		filter: invert(49%) sepia(22%) saturate(5632%) hue-rotate(142deg) brightness(89%) contrast(76%);
-		image-rendering: pixelated;
+		animation-name: stat-handler;
+		animation-duration: 1.4s;
+		animation-timing-function: steps(13);
+		animation-iteration-count: 2;
+		animation-delay: 800ms;
+		transform:  scale(0.7) translateY(64px);
 		opacity: 0;
 	}
 }
-.LOW-ATK {
+.LOW-SPD {
 	&::after {
 		position: absolute;
 		content: "";
-		width: 150px;
-		height: 150px;
-		object-fit: cover;
-		background-image: url(../../../assets/graphics//battle/animations/statEffect.gif);
-		background-size: 90%;
+		width: 192px;
+		height: 160px;
+		background-image: url(../../../assets/graphics//battle/animations/statEffect.png);
 		background-repeat: no-repeat;
-		animation-name: fade-in-out;
-		animation-duration: 800ms;
-		animation-delay: 600ms;
-		transform: translateY(30px) translateX(22px);
-		filter: invert(23%) sepia(48%) saturate(2070%) hue-rotate(330deg) brightness(98%) contrast(102%);
-		image-rendering: pixelated;
+		animation-name: stat-handler;
+		animation-duration: 1.4s;
+		animation-timing-function: steps(13);
+		animation-iteration-count: 2;
+		animation-delay: 800ms;
+		transform:  scale(0.7) translateY(64px);
 		opacity: 0;
+	}
+}
+
+@keyframes stat-handler {
+	0% {
+		background-position-x: 0px;
+		opacity: 1;
+	}
+	99% {
+		background-position-x: -2495px;
+		opacity: 1;
+
+	}
+	100% {
+		background-position-x: -2496px;
+		opacity: 0;
+		display: none;
 	}
 }
 
@@ -204,6 +234,22 @@
 	100% {
 		background-position-x: -768px;
 		opacity: 0;
+	}
+}
+
+.STRINGSHOT {
+	&::after {
+		display: flex;
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: "d";
+		width: 200px;
+		height: 200px;
+	}
+}
+@keyframes stringshot {
+	0% {
 	}
 }
 

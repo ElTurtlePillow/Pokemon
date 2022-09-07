@@ -6,14 +6,14 @@ export const encounter = {
             "pidgey",
         ]
     },
-    RouteOne: {
+    ViridianCity: {
         level : 3,
         pokemons : [
-            "rattata",
-            "pidgey",
+            // "rattata",
+            // "pidgey",
             "caterpie",
-            "weedle",
-            "spearow"
+            // "weedle",
+            // "spearow"
         ]
     },
 }

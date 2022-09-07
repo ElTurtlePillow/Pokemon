@@ -132,7 +132,6 @@ export default class SubmissionMenu extends React.Component {
 
     menuSubmit(move, instanceId = null) {
 		this.keyboardMenu?.end();
-
 		this.onComplete({
 			move,
 			target: move.TargetType === "friendly" ? this.caster : this.enemy,

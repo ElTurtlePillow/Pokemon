@@ -44,7 +44,7 @@ export const moves = {
 	},
 	TAILWHIP: {
 		Name: "Tail Whip",
-		Description: "The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.",
+		Description: "The user wags its tail, making enemy lowering their defense stat.",
 		Accuracy: 90,
 		MoveType: "NORMAL",
 		Success: [
@@ -67,7 +67,7 @@ export const moves = {
 	},
 	TACKLE : {
 		Name: "Tackle",
-		Description : "A physical attack in which the user charges and slams into the target with its whole body.",
+		Description : "A physical attack in which the user charges into the target.",
 		MoveType : "NORMAL",
 		Accuracy: 100,
 		Success: [
@@ -86,6 +86,55 @@ export const moves = {
 			},
 		]
 	},
+	PECK : {
+		Name: "Peck",
+		Description : "The target is jabbed with a sharply pointed beak or horn.",
+		MoveType : "FLYING",
+		Accuracy: 100,
+		Success: [
+			{
+				type: "textMessage",
+				text: "{CASTER} uses {MOVE} !",
+			},
+			{
+				type: "animation",
+				animation: "PECK" , 
+				color: "#db32a5"
+			},
+			{
+				type: "stateChange",
+				damage: 35,
+			},
+		]
+	},
+	STRINGSHOT : {
+		Name: "String Shot",
+		Description : "The foe is bound with silk. This silk reduces the target's Speed.",
+		MoveType : "BUG",
+		Accuracy: 95,
+		Success: [
+			{
+				type: "textMessage",
+				text: "{CASTER} uses {MOVE} !",
+			},
+			{
+				type: "animation",
+				animation: "STRINGSHOT",
+			},
+			{
+				type: "stateChange",
+				statsHandler: {
+					type: "low-spd",
+					expiresIn: 99,
+				},
+			}
+		]
+	},
+	
+
+
+
+
 	THUNDERSHOCK: {
 		Name: "Thunder Shock",
 		Description : "A jolt of electricity is hurled to inflict damage. May leave the target with paralysis.",

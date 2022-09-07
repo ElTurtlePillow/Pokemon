@@ -30,6 +30,15 @@ export const MomHouseFirstFloor = {
             ],
             talking : [
                 {
+                    required: ["MIMIKYU_JOIN_TEAM"],
+                    events: [
+                        { type: "textMessage", text: "Mom: I hope you are doing well with your Pokemon.", facePlayer: "npcMom" },
+                        { type: "textMessage", text: "Mom: You should rest a little bit.", facePlayer: "npcMom" },
+                        { type: "healing", position: "MomHouseFirstFloor"},
+                        { type: "textMessage", text: "Mom: There you go!", facePlayer: "npcMom" },
+                    ]
+                },
+                {
                     required: ["TALKED_TO_CHEN_FIRST_TIME"],
                     events: [
                         { type: "textMessage", text: "Mom: Well it's ok, you'll get yours in no time.", facePlayer: "npcMom" },
