@@ -4,6 +4,7 @@ import stairs from "../../../assets/audio/sound_effect/stairs.ogg"
 import doors from "../../../assets/audio/sound_effect/doors.ogg"
 import mimikyuScream from "../../../assets/audio/sound_effect/mimikyuscream.ogg"
 import getpkmn from "../../../assets/audio/sound_effect/getpkmn.ogg"
+import run from "../../../assets/audio/sound_effect/run.ogg"
 
 export default class SoundEffect extends React.Component { 
     constructor(song) {
@@ -27,6 +28,9 @@ export default class SoundEffect extends React.Component {
         }
         if (soundEffect === "getpkmn") {
             soundEffect = getpkmn
+        }
+        if (soundEffect === "run") {
+            soundEffect = run
         }
  
 

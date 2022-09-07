@@ -4,7 +4,7 @@ import OverworldEvent from '../event/OverworldEvent';
 import InteractiveObject from '../../objects/InteractiveObject';
 // import PlayerState from '../../state/PlayerState';
 
-import {  nextPosition, withGrid } from '../../../Utils';
+import {  nextPosition, wait, withGrid } from '../../../Utils';
 import PlayerAnimation from "../../objects/player_animation/PlayerAnimation"
 
 import { NewGame } from "./maps/new_game/NewGame"
@@ -126,11 +126,29 @@ export default class OverworldMap extends React.Component {
                 });
                 const result = await eventHandler.init();
                 if (result === "LOST_BATTLE") {
-                    break;
+
+                    // return to nearest healing
+                    const healingSpot = window.playerState.healing;
+                    let x, y;
+                    if (healingSpot === "MomHouseFirstFloor") {
+                        x = 13;
+                        y = 19;
+                    }
+                    this.startCutScene([
+                        { 
+                            type: "changeMap", 
+                            map: healingSpot,
+                            soundEffect: "run",
+                            x: withGrid(x),
+                            y: withGrid(y),
+                            direction: 'down', 
+                        },
+                        { type: "healing", position: window.playerState.healing},
+                    ])
                 }
             }
         }
-
+        
         this.isCutscenePlaying = false;
         // reset npcs to their behavior
         // Object.values(this.gameObjects).forEach(obj => obj.doBehaviorEvent(this));
@@ -167,7 +185,7 @@ export default class OverworldMap extends React.Component {
 
             // start random wild battle
             const combatStartProbability = Math.floor(Math.random() * 100) + 1;
-            if (combatStartProbability <= 8) { // 8 is nice, which is nice
+            if (combatStartProbability <= 80) { // 8 is nice, which is nice
                 this.startCutScene([{ type: "battle", enemyId: "wild" }]);
                 return
             }

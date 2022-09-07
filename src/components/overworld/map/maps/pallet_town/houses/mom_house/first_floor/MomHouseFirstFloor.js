@@ -32,7 +32,6 @@ export const MomHouseFirstFloor = {
                 {
                     required: ["MIMIKYU_JOIN_TEAM"],
                     events: [
-                        { type: "textMessage", text: "Mom: I hope you are doing well with your Pokemon.", facePlayer: "npcMom" },
                         { type: "textMessage", text: "Mom: You should rest a little bit.", facePlayer: "npcMom" },
                         { type: "healing", position: "MomHouseFirstFloor"},
                         { type: "textMessage", text: "Mom: There you go!", facePlayer: "npcMom" },

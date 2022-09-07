@@ -16,6 +16,7 @@ import SoundEffect from '../../audio/sound_effect/SoundEffect';
 import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
 
 import Healing from './client_events/healing/Healing';
+import healingSound from "../../../assets/audio/sound_effect/overworld/pkmnhealing.ogg"
 // import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
@@ -170,10 +171,16 @@ export default class OverworldEvent extends React.Component {
 
         window.playerState.healing = this.event.position;
 
+        const music = healingSound;
+        const healingSoundEffect = new SoundEffect({
+          music, 
+        });
+        healingSoundEffect.init(document.querySelector(".game-container"));
+
         setTimeout(() => {
           resolve();
           healingTransition.fadeOut();
-        },4000)
+        },3300)
     }
 
     addStoryFlag(resolve) {

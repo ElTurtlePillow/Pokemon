@@ -18,18 +18,16 @@ export default class Healing extends React.Component {
 	fadeOut() {
 		this.element.classList.add("fade-out");
 
-			wait(4000)
+			wait(3300)
 			this.element.remove();
 	}
 
 	init(container) {
 		this.createElement();
 		container.appendChild(this.element);
-		(console.log(window.playerState.pokemons))
 		Object.values(window.playerState.pokemons).forEach((c) => {
 			c.hp = c.maxHp;
 		});
-		console.log(this.element);
 		window.playerState.healing = "";
 		emitEvent("PlayerStateUpdated");
 	}

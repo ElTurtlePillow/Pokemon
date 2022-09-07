@@ -38,7 +38,6 @@ export const battleAnimations = {
         element.addEventListener("animationend", () => {
             element.classList.remove(animationClassName);
             document.querySelector(`.${team}-animation`).classList.remove("SCRATCH");
-            console.log(document.querySelector(`.${team}-animation`));
         }, {once: true});
 
         await wait(600);

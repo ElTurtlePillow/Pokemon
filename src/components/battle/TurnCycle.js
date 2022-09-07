@@ -9,6 +9,7 @@ import BackgroundMusic from '../audio/background_music/BackgroundMusic';
 
 import wildVictory from "../../assets/audio/background_music/BattleWildVictory.ogg"
 import trainerVictory from "../../assets/audio/background_music/BattleTrainerVictory.ogg"
+import { withGrid } from '../../Utils';
 
 export default class TurnCycle extends React.Component { 
     constructor({battle, onNewEvent, onWinner}) {
@@ -160,6 +161,7 @@ export default class TurnCycle extends React.Component {
         // winning team ?
         const winner = this.getWinningTeam();
         if (winner) {
+            if (winner === "player") {
             // set music 
                 if (this.battle.enemy.name === "Wild") {
                     const music = wildVictory;
@@ -193,9 +195,23 @@ export default class TurnCycle extends React.Component {
                     })
                 }
 
-            this.onWinner(winner)
-            return;
-        }
+                this.onWinner(winner)
+                return;
+            }
+
+            else {
+                await this.onNewEvent({
+                    type: "textMessage",
+                    text: `All your Pokemomns are K.O.`
+                })
+                await this.onNewEvent({
+                    type: "textMessage",
+                    text: `You lose [AMOUNT OF MONEY] while escaping.`
+                })
+                this.onWinner(winner);
+                return;
+            }
+        } 
 
         // dead pokemon but no winner -> replacement
         if (targetDead) {

@@ -6,7 +6,7 @@
 	bottom: 0;
 	background: #000;
 	opacity: 0;
-	animation: healing-transition-fade-in 4s forwards;
+	animation: healing-transition-fade-in 3.3s forwards;
 	z-index: 9;
 }
 
@@ -17,7 +17,7 @@
 	20% {
 		opacity: 1;
 	}
-    80% {
+    99% {
 		opacity: 1;
 	}
     100% {

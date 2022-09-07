@@ -69,7 +69,7 @@ export const pokemon = {
 		BattlerShadowX : 0,
 		BattlerShadowSize : 1,
 		Evolutions : ["PIDGEOTTO","Level",18],
-		Moves: ["TACKLE", "GROWL"],
+		Moves: ["TACKLE", ], //"GROWL"
 	},
 	rattata : {
 		Name : "Rattata",
@@ -105,7 +105,7 @@ export const pokemon = {
 		BattlerShadowX : 0,
 		BattlerShadowSize : 2,
 		Evolutions : ["RATICATE","Level",20],
-		Moves: ["TACKLE", "TAILWHIP"],
+		Moves: ["TACKLE", ], // "TAILWHIP"
 	},
 	caterpie: {
 		Name : "Caterpie",
