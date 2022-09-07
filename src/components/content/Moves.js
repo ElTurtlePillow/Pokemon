@@ -35,9 +35,9 @@ export const moves = {
 			},
 			{
 				type: "stateChange",
-				statusHandler: {
+				statsHandler: {
 					type: "low-atk",
-					expiresIn: 3,
+					expiresIn: 99,
 				},
 			},
 		]
@@ -58,9 +58,9 @@ export const moves = {
 			},
 			{
 				type: "stateChange",
-				statusHandler: {
+				statsHandler: {
 					type: "low-def",
-					expiresIn: 3,
+					expiresIn: 99,
 				},
 			}
 		]

@@ -3,6 +3,13 @@ import React from 'react';
 import SoundEffect from "../audio/sound_effect/SoundEffect"
 import levelUpSound from "../../assets/audio/sound_effect/battle/pkmnlvlup.ogg"
 
+
+
+import BackgroundMusic from '../audio/background_music/BackgroundMusic';
+
+import wildVictory from "../../assets/audio/background_music/BattleWildVictory.ogg"
+import trainerVictory from "../../assets/audio/background_music/BattleTrainerVictory.ogg"
+
 export default class TurnCycle extends React.Component { 
     constructor({battle, onNewEvent, onWinner}) {
         super(battle)
@@ -49,7 +56,12 @@ export default class TurnCycle extends React.Component {
             this.battle.items = this.battle.items.filter(i => i.instanceId !== submission.instanceId)
         }
 
-        
+        // variables during battle
+        let criticalStrike;
+        let statsHandler;
+        let superEffective;
+        let notEffective;
+
         const resultingEvents = caster.getReplacedEvents(submission.move.Success)
         for (let i = 0; i < resultingEvents.length; i++) {
             const event = {
@@ -61,9 +73,53 @@ export default class TurnCycle extends React.Component {
             }
 
             await this.onNewEvent(event);
+            criticalStrike = event.criticalStrike;
+            statsHandler = event.statsHandler;
+            superEffective = event.superEffective;
+            notEffective = event.notEffective;
         }
 
-        // did a pokemon die?
+        // is damage critical ? 
+        if (criticalStrike) {
+            await this.onNewEvent({
+                type: "textMessage", text: `A critical hit!`
+            })
+        }
+
+        // is super effective ? 
+        if (superEffective) {
+            await this.onNewEvent({
+                type: "textMessage", text: `It's super effective!`
+            })
+        }
+
+        // is not effective ? 
+        if (notEffective) {
+            await this.onNewEvent({
+                type: "textMessage", text: `Not very effective...`
+            })
+        }
+
+        // is stats modification ?
+        if (statsHandler && statsHandler.expiresIn === 99) {
+            switch (statsHandler.type) {
+                case "low-def":
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `${enemy.Name}'s defense fell!`
+                    })
+                    enemy.BaseStats[2] -= 2;
+                    break;
+                case "low-atk":
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `${enemy.Name}'s attack fell!`
+                    })
+                    enemy.BaseStats[1] -= 2;
+            }
+        }
+
+        // did a pokemon die ?
         const targetDead = submission.target.hp <= 0;
         if (targetDead) {
             await this.onNewEvent({
@@ -104,10 +160,36 @@ export default class TurnCycle extends React.Component {
         // winning team ?
         const winner = this.getWinningTeam();
         if (winner) {
-            await this.onNewEvent({
-                type: "textMessage",
-                text: `WINNER : ${winner}`
-            })
+            // set music 
+                if (this.battle.enemy.name === "Wild") {
+                    const music = wildVictory;
+                    const backgroundMusic = new BackgroundMusic({
+                    music, 
+                    });
+                    backgroundMusic.init(document.querySelector(".game-container"));
+                } else {
+                    const music = trainerVictory;
+                    const backgroundMusic = new BackgroundMusic({
+                    music, 
+                    });
+                    backgroundMusic.init(document.querySelector(".game-container"));
+                }
+
+                await this.onNewEvent({
+                    type: "textMessage",
+                    text: ``
+                })
+            
+                if (!this.battle.enemy.name === "Wild") {
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `WINNER : ${winner},`
+                    })
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `You get a lot of monney`
+                    })
+                }
 
             this.onWinner(winner)
             return;

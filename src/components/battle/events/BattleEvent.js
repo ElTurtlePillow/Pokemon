@@ -8,11 +8,13 @@ import SubmissionMenu from '../menu/SubmissionMenu';
 import { battleAnimations } from '../animations/BattleAnimations';
 import ReplacementMenu from '../menu/ReplacementMenu';
 
+import {pokemonTypes} from "../../content/Types"
 
 import SoundEffect from "../../audio/sound_effect/SoundEffect"
 
 import normalDamageSound from "../../../assets/audio/sound_effect/battle/normaldamage.ogg"
 import criticialSound from "../../../assets/audio/sound_effect/battle/criticialdamage.ogg"
+import weakSound from "../../../assets/audio/sound_effect/battle/weakdamage.ogg"
 
 export default class BattleEvent extends React.Component { 
     constructor(event, battle) {
@@ -34,39 +36,74 @@ export default class BattleEvent extends React.Component {
     }
 
     async stateChange(resolve) {
-        const {caster, target, damage, recover, statusHandler, move} = this.event;
+        const {caster, target, damage, recover, statusHandler, statsHandler, move} = this.event;
         let who = this.event.onCaster ? caster : target;
         let casterStat = this.event.onCaster ? target : caster;
 
         // damage
         if (damage) {
-            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10)) -2;
+            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10)) -1;
 
             let criticalStrike = Math.floor(Math.random() * 10);
 
-            if ( criticalStrike === 1) {
+            this.event.criticalStrike = false;
+            // critical hit
+            if ( criticalStrike === 1) { 
+                this.event.criticalStrike = true;
                 const music = criticialSound;
                     const criticialSoundEffect = new SoundEffect({
                     music, 
                 });
                 criticialSoundEffect.init(document.querySelector(".game-container"));
-
                 initialDamage += Math.floor(initialDamage/4);
-                const message = new TextMessage({
-                    text: "A critical hit!",
-                    onComplete: () => {
-                        resolve();
-                    },
-                });
-                message.init(this.battle.element);
-                resolve();
-            }  else {
+            }
+
+            
+            this.event.superEffective = false;
+            this.event.notEffective = false;
+            // super effective or non effective hit
+            for (const [key, value] of Object.entries(pokemonTypes)) {
+                for (let i = 0; i < value.Weaknesses.length; i ++) {
+                    if ((target.Type1 === key.toLocaleUpperCase() || target.Type2 === key.toLocaleUpperCase()) && move.MoveType === value.Weaknesses[i]) {
+                        console.log("It's super effective!");
+                        this.event.superEffective = true;
+
+                        initialDamage += Math.floor(initialDamage/4);
+
+                        const music = criticialSound;
+                        const criticialSoundEffect = new SoundEffect({
+                            music, 
+                        });
+                        criticialSoundEffect.init(document.querySelector(".game-container"));
+                    } 
+                }
+
+                for (let i = 0; i < value.Resistances.length; i ++) {
+                    if ((target.Type1 === key.toLocaleUpperCase() || target.Type2 === key.toLocaleUpperCase()) && move.MoveType === value.Resistances[i]) {
+                        console.log("Not very effective...");
+                        this.event.notEffective = true;
+                        
+                        initialDamage -= Math.floor(initialDamage/4);
+
+                        const music = weakSound;
+                        const weakSoundEffect = new SoundEffect({
+                            music, 
+                        });
+                        weakSoundEffect.init(document.querySelector(".game-container"));
+                    }
+                }
+                // has no effect to do
+            }
+
+            // normal hit
+            if (!this.event.criticalStrike || !this.event.notEffective || !this.event.superEffective) {
                 const music = normalDamageSound;
                 const normalDamageSoundSoundEffect = new SoundEffect({
                     music, 
                 });
                 normalDamageSoundSoundEffect.init(document.querySelector(".game-container"));
             }
+
 
             target.update({
                 hp: target.hp - initialDamage,
@@ -101,6 +138,13 @@ export default class BattleEvent extends React.Component {
 				status: null,
 			});
 		}
+
+        // stats changer
+        if (statsHandler) {
+            who.update({
+                stats:  {...statsHandler}
+            })
+        }
 
         // update team
         this.battle.playerTeam.update();

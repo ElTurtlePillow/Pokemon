@@ -49,18 +49,18 @@
 .battle-movement-rotate {
 	animation: battle-movement-rotate 1s;
 	animation-iteration-count: 2;
-	transition: 0.3s;
+	transform-origin:100%;
 }
 @keyframes battle-movement-rotate {
 	0%{
 		transform:rotate(0deg)
-				  translateX(-12px)
+				  translateX(-10px)
 				  translateY(0)
 				  rotate(0deg);
 				}
 				100%{
 					transform:rotate(360deg)
-					translateX(-12px)
+					translateX(-10px)
 					translateY(0)
 					rotate(-360deg);
 	  }

@@ -55,7 +55,6 @@ export const battleAnimations = {
 
         // rmv on complete
         element.addEventListener("animationend", () => {
-            console.log(team);
             element.classList.remove(animationClassName);
             document.querySelector(`.${team}-animation`).classList.remove("LOW-DEF");
         }, {once: true});
@@ -74,7 +73,6 @@ export const battleAnimations = {
 
         // rmv on complete
         element.addEventListener("animationend", () => {
-            console.log(team);
             element.classList.remove(animationClassName);
             document.querySelector(`.${team}-animation`).classList.remove("LOW-ATK");
         }, {once: true});

@@ -11,7 +11,6 @@ export default class PlayerAnimation extends React.Component {
     }
 
     createElement() {
-        console.log(this.type);
         this.element = document.createElement("div");
         this.element.classList.add("grass-animation");
         this.element.innerHTML= (`

@@ -12,9 +12,12 @@ import { emitEvent } from '../../Utils';
 import {pokemon} from "../content/Pokemon"
 import { encounter } from '../content/Encounter';
 
-import BackgroundMusic from '../audio/background_music/BackgroundMusic';
 
 import battleBackground from "../../assets/graphics/battle/battlebacks/field_bg.png"
+
+import BackgroundMusic from '../audio/background_music/BackgroundMusic';
+import wildVictory from "../../assets/audio/background_music/BattleWildVictory.ogg"
+import trainerVictory from "../../assets/audio/background_music/BattleTrainerVictory.ogg"
 
 // import playerImg from "./../../assets/graphics/battle/trainers/player.png";
 // import PlayerState from '../state/PlayerState';
@@ -165,6 +168,7 @@ export default class Battle extends React.Component {
             onWinner: winner => {
 
                 if (winner === "player") {
+
                     const playerState = window.playerState;
                     Object.keys(playerState.pokemons).forEach(id => {
                         const playerStatePokemon = playerState.pokemons[id];
