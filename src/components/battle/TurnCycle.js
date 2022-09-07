@@ -123,7 +123,7 @@ export default class TurnCycle extends React.Component {
         const targetDead = submission.target.hp <= 0;
         if (targetDead) {
             await this.onNewEvent({
-                type: "textMessage", text: `${submission.target.Name} is dead.`
+                type: "textMessage", text: `${submission.target.Name} fainted!`
             })
 
             if (submission.target.team === "enemy") {
@@ -164,12 +164,14 @@ export default class TurnCycle extends React.Component {
                 if (this.battle.enemy.name === "Wild") {
                     const music = wildVictory;
                     const backgroundMusic = new BackgroundMusic({
+                    isBattle: true,
                     music, 
                     });
                     backgroundMusic.init(document.querySelector(".game-container"));
                 } else {
                     const music = trainerVictory;
                     const backgroundMusic = new BackgroundMusic({
+                    isBattle: true,
                     music, 
                     });
                     backgroundMusic.init(document.querySelector(".game-container"));
@@ -177,7 +179,7 @@ export default class TurnCycle extends React.Component {
 
                 await this.onNewEvent({
                     type: "textMessage",
-                    text: ``
+                    text: ` `
                 })
             
                 if (!this.battle.enemy.name === "Wild") {
@@ -207,7 +209,7 @@ export default class TurnCycle extends React.Component {
             })
             await this.onNewEvent({
                 type: "textMessage",
-                text: `${replacement.Name}, GO !`
+                text: `${replacement.Name}, GO!`
             })
         }
 

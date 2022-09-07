@@ -8,7 +8,7 @@ import titleScreen from "../../assets/graphics/pictures/v3.png"
 import bg from "../../assets/graphics/pictures/titlescreenbg.gif"
 import SceneTransition from '../overworld/event/SceneTransition';
 
-import music from "../../assets/audio/background_music/Title.mp3";
+import music from "../../assets/audio/background_music/Title.ogg";
 import BackgroundMusic from '../../components/audio/background_music/BackgroundMusic'
 
 export default class TitleScreen extends React.Component { 

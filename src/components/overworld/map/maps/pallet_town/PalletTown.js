@@ -17,6 +17,9 @@ import npcIImg from "../../../../../assets/graphics/characters/npcI.png";
 
 import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
 
+
+import musicBg from "../../../../../assets/audio/background_music/ViridianCity.ogg"
+
 export const PalletTown = {
     id: "PalletTown",
     lowerSrc: mapDown,
@@ -438,7 +441,8 @@ export const PalletTown = {
                         type: "changeMap", 
                         map: "ViridianCity",
                         soundEffect: "stairs",
-                        x: withGrid(43),
+                        changeMusic: musicBg,
+                        x: withGrid(52),
                         y: withGrid(74),
                         direction: 'up',
                     },

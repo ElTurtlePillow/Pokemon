@@ -38,7 +38,7 @@ export const ViridianCity = {
         }),
     },
     walls: loadWall(collisions),
-    // grass: loadGrass(grass),
+    grass: loadGrass(grass),
     cutsceneSpaces: {
         [asGridCoords(0, 0)]: [
             {

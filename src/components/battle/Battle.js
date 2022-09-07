@@ -16,8 +16,6 @@ import { encounter } from '../content/Encounter';
 import battleBackground from "../../assets/graphics/battle/battlebacks/field_bg.png"
 
 import BackgroundMusic from '../audio/background_music/BackgroundMusic';
-import wildVictory from "../../assets/audio/background_music/BattleWildVictory.ogg"
-import trainerVictory from "../../assets/audio/background_music/BattleTrainerVictory.ogg"
 
 // import playerImg from "./../../assets/graphics/battle/trainers/player.png";
 // import PlayerState from '../state/PlayerState';
