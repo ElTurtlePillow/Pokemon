@@ -111,18 +111,23 @@ export default class TurnCycle extends React.Component {
                     })
                     enemy.BaseStats[2] -= 2;
                     break;
+
                 case "low-atk":
                     await this.onNewEvent({
                         type: "textMessage",
                         text: `${enemy.Name}'s attack fell!`
                     })
                     enemy.BaseStats[1] -= 2;
+                    break;
+
                 case "low-spd":
                     await this.onNewEvent({
                         type: "textMessage",
                         text: `${enemy.Name}'s speed fell!`
                     })
                     enemy.BaseStats[3] -= 2;
+                    break;
+
                 default: 
                     enemy.BaseStats[0] -= 0;
             }
@@ -195,7 +200,7 @@ export default class TurnCycle extends React.Component {
 
 
             
-                if (!this.battle.enemy.name === "Wild") {
+                if (this.battle.enemy.name !== "Wild") {
                     await this.onNewEvent({
                         type: "textMessage",
                         text: `WINNER : ${winner},`
@@ -293,6 +298,7 @@ export default class TurnCycle extends React.Component {
                 text: `A wild ${this.battle.combatants.e_wild.pokemonId} appeared !`
             })
         } else {
+            console.log(this);
             await this.onNewEvent({
                 type: "textMessage",
                 text: `${this.battle.enemy.name} would like to battle!`

@@ -259,7 +259,7 @@ export const pokemon = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
-		Moves: ["THUNDERSHOCK", "SCRATCH"],
+		Moves: ["THUNDERSHOCK", "TAILWHIP", "GROWL"],
 	},
     charmander: {
 		Name: "Charmander",

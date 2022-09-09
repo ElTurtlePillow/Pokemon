@@ -14,8 +14,9 @@ import npcGImg from "../../../../../assets/graphics/characters/npcG.png";
 
 import npcHImg from "../../../../../assets/graphics/characters/npcH.png";
 import npcIImg from "../../../../../assets/graphics/characters/npcI.png";
+import rival from "./../../../../../assets/graphics/characters/rival.png";
 
-import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
+import mimikyu from "../../../../../assets/graphics/characters/mimikyu-undesguised-elec.png";
 
 
 import musicBg from "../../../../../assets/audio/background_music/ViridianCity.ogg"
@@ -156,11 +157,24 @@ export const PalletTown = {
                 },
             ]
         }),
+        signE: ({
+            type: "Person",
+            x: withGrid(43),
+            y: withGrid(6),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Viridian City."},
+                    ]
+                },
+            ]
+        }),
         bully: ({
             type: "Person",
             initialX: withGrid(40),
             initialY: withGrid(46),
-            src: npcGImg,
+            src: rival,
             behaviorLoop: [
                 { type: "stand", direction: "right", time: 1000},
             ],
@@ -176,11 +190,11 @@ export const PalletTown = {
             ],
             isNowHere: "TALKED_TO_CHEN_FIRST_TIME",
         }),
-        mimikyuA: ({
+        bully1: ({
             type: "Person",
-            initialX: withGrid(41),
+            initialX: withGrid(40),
             initialY: withGrid(46),
-            src: mimikyu,
+            src: rival,
             talking : [
                 {
                     events: [
@@ -191,7 +205,7 @@ export const PalletTown = {
             behaviorLoop: [
                 { type: "stand", direction: "left", time: 1000},
             ],
-            isNowHere: "MIMIKYU_FIRST_KILL",
+            isNowHere: "MIMIKYU_FIRST_DISPARITIONs",
             isNotHere: "MIMIKYU_JOIN_TEAM"
         }),
 
@@ -210,7 +224,8 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "LOREMIPSUM"},
+                        { type: "textMessage", text: "People are way meaner to pokemon now.", facePlayer: "npcH"},
+                        { type: "textMessage", text: "I don't hunderstand why...", facePlayer: "npcH"},
                     ]
                 },
             ]
@@ -229,7 +244,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "LOREMIPSUM"},
+                        { type: "textMessage", text: "It seems that the Team Rocket is destroying the Viridian Forest.", facePlayer: "npcI"},
                     ]
                 },
             ]
@@ -311,41 +326,51 @@ export const PalletTown = {
             {
                 required: ["TALKED_TO_CHEN_FIRST_TIME"],
                 events: [
-                    { type: "textMessage", text: "Ho someone kick you?" },
-                    { type: "textMessage", text: "Haha of course, you are so ugly!" },
+                    { type: "textMessage", text: "Green: You really are an ugly Pokemon." },
+                    { type: "textMessage", text: "Green: Pikachu use thunder-shock!" },
+                    { who: "mimikyu", type: "stand", direction: "right", time: 1100},
+
                     
-                    { who: "mimikyu", type: "stand", direction: "down", time: 666},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 1200},
                     { who: "mimikyu", type: "stand", direction: "left"},
-                    { type: "textMessage", text: "Pokemon like you doesn't deserve to live." },
-                    { type: "textMessage", text: "*Hit*" },
-                    { who: "mimikyu", type: "stand", direction: "right"},
-                    { type: "textMessage", text: "Haha sad little shit." },
+                    { type: "textMessage", text: "Green: Pokemon like you doesn't deserve to live." },
+                    { type: "textMessage", text: "Green: Haha sad little shit." },
                     
                     { who: "player", type: "walk", direction: "up"},
                     { who: "bully", type: "stand", direction: "down", time: 400},
-                    { type: "textMessage", text: "What do you want?" },
+                    { type: "textMessage", text: "Green: What do you want?" },
                     { who: "bully", type: "stand", direction: "down", time: 600},
-                    { type: "textMessage", text: "Save this Pokemon?" },
+                    { type: "textMessage", text: "Green: Save this Pokemon?" },
                     { who: "bully", type: "stand", direction: "down", time: 800},
-                    { type: "textMessage", text: "You don't scare me!" },
-                    { who: "mimikyu", type: "stand", direction: "left", time: 800},
-                    { type: "textMessage", text: "MIMMIKYU!!!" },
+                    { type: "textMessage", text: "Green: You don't scare me!" },
+                     { type: "battle", enemyId: "rivalA" },
+
+
+
+                    { type: "textMessage", text: "Mimikyu..." },
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 600},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+
                     
-                    { type: "addStoryFlag", flag: "MIMIKYU_FIRST_KILL"},
+                    { type: "textMessage", text: "Green: Look at it! He get away like a coward!", },
+                    { type: "textMessage", text: "Green: You won't be so lucky next time.", },
+                    
+                    { type: "addStoryFlag", flag: "MIMIKYU_FIRST_DISPARITION"},
                     { 
                         type: "changeMap", 
                         map: "PalletTown",
-                        soundEffect: "mimikyuScream",
+                        sound: "run",
                         x: withGrid(40),
                         y: withGrid(47),
                         direction: 'up',
                     },
-                    
-                    { type: "textMessage", text: "Mimikyu..." },
                 ]
             },
             {
-                nothing: "MIMIKYU_FIRST_KILL",
+                nothing: "MIMIKYU_FIRST_DISPARITION",
             },
             
         ],
@@ -367,31 +392,43 @@ export const PalletTown = {
             {
                 required: ["TALKED_TO_CHEN_FIRST_TIME"],
                 events: [
-                    { type: "textMessage", text: "Ho someone kick you?" },
-                    { type: "textMessage", text: "Haha of course, you are so ugly!" },
+                    { type: "textMessage", text: "Green: You really are an ugly Pokemon." },
+                    { type: "textMessage", text: "Green: Pikachu use thunder-shock!" },
+                    { who: "mimikyu", type: "stand", direction: "right", time: 1100},
+
                     
-                    { who: "mimikyu", type: "stand", direction: "down", time: 666},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 1200},
                     { who: "mimikyu", type: "stand", direction: "left"},
-                    { type: "textMessage", text: "Pokemon like you doesn't deserve to live." },
-                    { type: "textMessage", text: "*Hit*" },
-                    { who: "mimikyu", type: "stand", direction: "right"},
-                    { type: "textMessage", text: "Haha sad little shit." },
+                    { type: "textMessage", text: "Green: Pokemon like you doesn't deserve to live." },
+                    { type: "textMessage", text: "Green: Haha sad little shit." },
                     
                     { who: "player", type: "walk", direction: "up"},
                     { who: "bully", type: "stand", direction: "down", time: 400},
-                    { type: "textMessage", text: "What do you want?" },
+                    { type: "textMessage", text: "Green: What do you want?" },
                     { who: "bully", type: "stand", direction: "down", time: 600},
-                    { type: "textMessage", text: "Save this Pokemon?" },
+                    { type: "textMessage", text: "Green: Save this Pokemon?" },
                     { who: "bully", type: "stand", direction: "down", time: 800},
-                    { type: "textMessage", text: "You don't scare me!" },
-                    { who: "mimikyu", type: "stand", direction: "left", time: 800},
-                    { type: "textMessage", text: "MIMMIKYU!!!" },
+                    { type: "textMessage", text: "Green: You don't scare me!" },
+                     { type: "battle", enemyId: "rivalA" },
+
+
+
+                    { type: "textMessage", text: "Mimikyu..." },
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 600},
+                    { who: "mimikyu", type: "walk", direction: "up"},
+
                     
-                    { type: "addStoryFlag", flag: "MIMIKYU_FIRST_KILL"},
+                    { type: "textMessage", text: "Green: Look at it! He get away like a coward!", },
+                    { type: "textMessage", text: "Green: You won't be so lucky next time.", },
+                    
+                    { type: "addStoryFlag", flag: "MIMIKYU_FIRST_DISPARITION"},
                     { 
                         type: "changeMap", 
                         map: "PalletTown",
-                        soundEffect: "mimikyuScream",
+                        sound: "run",
                         x: withGrid(40),
                         y: withGrid(47),
                         direction: 'up',
@@ -399,40 +436,40 @@ export const PalletTown = {
                 ]
             },
             {
-                nothing: "MIMIKYU_FIRST_KILL",
+                nothing: "MIMIKYU_FIRST_DISPARITION",
             },
         ],
-        [asGridCoords(40, 46)]: [
-            {
-                events: [
-                    { who: "player", type: "stand", direction: "right", time: 444 },
-                    { type: "textMessage", text: "Mimikyu..." },
-                    { who: "player", type: "stand", direction: "right", time: 555 },
+        // [asGridCoords(40, 46)]: [
+        //     {
+        //         events: [
+        //             { who: "player", type: "stand", direction: "right", time: 444 },
+        //             { type: "textMessage", text: "Mimikyu..." },
+        //             { who: "player", type: "stand", direction: "right", time: 555 },
 
-                    // get mimikyu
-                    { type: "getPokemon", id:"mimikyu"},
-                    { type: "addStoryFlag", flag: "MIMIKYU_JOIN_TEAM"},
+        //             // get mimikyu
+        //             { type: "getPokemon", id:"mimikyu"},
+        //             { type: "addStoryFlag", flag: "MIMIKYU_JOIN_TEAM"},
 
-                    { 
-                        type: "changeMap", 
-                        map: "PalletTown",
-                        soundEffect: "getpkmn",
-                        x: withGrid(40),
-                        y: withGrid(46),
-                        direction: 'right',
-                    },
+        //             { 
+        //                 type: "changeMap", 
+        //                 map: "PalletTown",
+        //                 soundEffect: "getpkmn",
+        //                 x: withGrid(40),
+        //                 y: withGrid(46),
+        //                 direction: 'right',
+        //             },
                     
-                    { type: "textMessage", text: "Mimikyu just join your team!" },
-                    { type: "textMessage", text: "Be nice with Mimikyu." },
-                ]
-            },
-            {
-                required: ["//"],
-            },
-            {
-                nothing: "MIMIKYU_JOIN_TEAM",
-            },
-        ],
+        //             { type: "textMessage", text: "Mimikyu just join your team!" },
+        //             { type: "textMessage", text: "Be nice with Mimikyu." },
+        //         ]
+        //     },
+        //     {
+        //         required: ["//"],
+        //     },
+        //     {
+        //         nothing: "MIMIKYU_JOIN_TEAM",
+        //     },
+        // ],
         // route 1 to 
         [asGridCoords(40, 6)]: [
             {

@@ -30,20 +30,20 @@ export const MomHouseFirstFloor = {
             ],
             talking : [
                 {
-                    required: ["MIMIKYU_JOIN_TEAM"],
+                    required: ["TALKED_TO_CHEN_FIRST_TIME"],
                     events: [
                         { type: "textMessage", text: "Mom: You should rest a little bit.", facePlayer: "npcMom" },
                         { type: "healing", position: "MomHouseFirstFloor"},
                         { type: "textMessage", text: "Mom: There you go!", facePlayer: "npcMom" },
                     ]
                 },
-                {
-                    required: ["TALKED_TO_CHEN_FIRST_TIME"],
-                    events: [
-                        { type: "textMessage", text: "Mom: Well it's ok, you'll get yours in no time.", facePlayer: "npcMom" },
-                        { type: "textMessage", text: "Mom: I know it's not a good news but you'll find your Pokemon.", facePlayer: "npcMom" },
-                    ]
-                },
+                // {
+                //     required: ["TALKED_TO_CHEN_FIRST_TIME"],
+                //     events: [
+                //         { type: "textMessage", text: "Mom: Well it's ok, you'll get yours in no time.", facePlayer: "npcMom" },
+                //         { type: "textMessage", text: "Mom: I know it's not a good news but you'll find your Pokemon.", facePlayer: "npcMom" },
+                //     ]
+                // },
                 {
                     events: [
                         { type: "textMessage", text: "Mom: I know you would have preferred to stay in Celadon City.", facePlayer: "npcMom"},
@@ -60,7 +60,7 @@ export const MomHouseFirstFloor = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "The weather is weird."},
+                        { type: "textMessage", text: "The weather is weird in Viridian Forest."},
                         { type: "textMessage", text: "We keep you informed."},
                     ]
                 },

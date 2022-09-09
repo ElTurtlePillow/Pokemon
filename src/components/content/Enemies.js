@@ -3,40 +3,35 @@ export const enemies = {
 		name: "Wild",
 		pokemons: {},
 	},
-    rival: {
-		name: "Rival",
-		// first line of dialog : "You're my rival, aren't you?"
+    rivalA: {
+		name: "Green",
+		src: "rivalA",
+		firstLineOfdialog : "Let me show you!",
 		// last line of dialog : "What? Unbelievable!"
 		pokemons: {
 			a: {
-				pokemonId: "eevee",
-				maxHp: 34,
-				level: 4,
-				// more...
-			},
-            b: {
-				pokemonId: "eevee",
-				maxHp: 44,
-				level: 4,
+				pokemonId: "pikachu",
+				maxHp: 27,
+				level: 5,
 				// more...
 			},
 		},
 	},
-	beth: {
-		name: "Beth",
-		pokemons: {
-			a: {
-				hp: 1,
-				pokemonId: "eevee",
-				maxHp: 90,
-				level: 1,
-			},
-            b: {
-				hp: 1,
-				pokemonId: "eevee",
-				maxHp: 90,
-				level: 1,
-			},
-		},
-	},
+	// beth: {
+	// 	name: "Beth",
+	// 	pokemons: {
+	// 		a: {
+	// 			hp: 1,
+	// 			pokemonId: "eevee",
+	// 			maxHp: 90,
+	// 			level: 1,
+	// 		},
+    //         b: {
+	// 			hp: 1,
+	// 			pokemonId: "eevee",
+	// 			maxHp: 90,
+	// 			level: 1,
+	// 		},
+	// 	},
+	// },
 }

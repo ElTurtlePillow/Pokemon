@@ -97,6 +97,8 @@ export default class OverworldEvent extends React.Component {
               music, 
               isBattle: true,
       });
+
+      
       getPkmnSoundEffect.init(document.querySelector(".game-container"));
       setTimeout(() => {
                 const music = window.playerState.currentBackgroundMusic.music;

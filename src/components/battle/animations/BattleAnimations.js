@@ -110,26 +110,20 @@ export const battleAnimations = {
     },
 
 
+    async THUNDERSHOCK(event, onComplete) {
+        // const element = event.caster.pokemonElement;
+        const team = event.caster.team === "player" ? "enemy" : "player";
+        document.querySelector(`.${team}-animation`).classList.add("thunder-shock");
+
+        // rmv on complete
+            setTimeout(() => {
+                document.querySelector(`.${team}-animation`).classList.remove("thunder-shock");
+            }, 600)
 
 
-
-
-
-
-    // async THUNDERSHOCK(event, onComplete) {
-    //     // const element = event.caster.pokemonElement;
-    //     const team = event.caster.team === "player" ? "enemy" : "player";
-    //     document.querySelector(`.${team}-animation`).classList.add("thunder-shock");
-
-    //     // rmv on complete
-    //         setTimeout(() => {
-    //             document.querySelector(`.${team}-animation`).classList.remove("thunder-shock");
-    //         }, 600)
-
-
-    //     await wait(600);
-    //     onComplete();
-    // },
+        await wait(1600);
+        onComplete();
+    },
 
 
 
