@@ -11,9 +11,9 @@ export const encounter = {
         pokemons : [
             // "rattata",
             // "pidgey",
-            "caterpie",
+            // "caterpie",
             // "weedle",
-            // "spearow"
+            "spearow"
         ]
     },
 }

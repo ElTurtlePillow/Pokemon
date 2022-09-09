@@ -10,7 +10,7 @@ import blank from "../../../../../assets/graphics/characters/blank.png";
 import npcAImg from "../../../../../assets/graphics/characters/npcA.png";
 
 
-import musicBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
+import palletTownBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
 import pokeCenterMsc from "../../../../../assets/audio/background_music/PokeCenter.ogg"
 
 export const ViridianCity = {
@@ -23,23 +23,23 @@ export const ViridianCity = {
             type: "Person",
             isPlayerControlled: true,
         }),
-        npcA: ({
-            type: "Person",
-            x: withGrid(42),
-            y: withGrid(42),
-            src: npcAImg,
-            behaviorLoop: [
-                { type: "stand", direction: "left", time: 1200},
-                { type: "stand", direction: "right", time: 1200},
-            ],
-            talking : [
-                {
-                    events: [
-                        { type: "textMessage", text: "LOREMIPSUM", facePlayer: "npcA" },
-                    ]
-                }
-            ]
-        }),
+        // npcA: ({
+        //     type: "Person",
+        //     x: withGrid(42),
+        //     y: withGrid(42),
+        //     src: npcAImg,
+        //     behaviorLoop: [
+        //         { type: "stand", direction: "left", time: 1200},
+        //         { type: "stand", direction: "right", time: 1200},
+        //     ],
+        //     talking : [
+        //         {
+        //             events: [
+        //                 { type: "textMessage", text: "LOREMIPSUM", facePlayer: "npcA" },
+        //             ]
+        //         }
+        //     ]
+        // }),
     },
     walls: loadWall(collisions),
     grass: loadGrass(grass),
@@ -51,7 +51,7 @@ export const ViridianCity = {
                         type: "changeMap", 
                         map: "PalletTown",
                         soundEffect: "stairs",
-                        changeMusic: musicBg,
+                        changeMusic: palletTownBg,
                         x: withGrid(40),
                         y: withGrid(7),
                         direction: 'down',

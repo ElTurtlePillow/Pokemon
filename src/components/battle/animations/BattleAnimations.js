@@ -53,22 +53,21 @@ export const battleAnimations = {
 
         document.querySelector(`.${team}-animation`).classList.add("LOW-DEF");
 
-        await wait(400);
+        await wait(2600);
         element.classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-DEF");
         onComplete();
     },
 
     async GROWL(event, onComplete) {
-        const element = event.caster.pokemonElement;
         const animationClassName = "GROWL";
-        element.classList.add(animationClassName);
+        document.querySelector(".enemy-animation").classList.add(animationClassName);
 
         const team = event.caster.team === "player" ? "enemy" : "player";
         document.querySelector(`.${team}-animation`).classList.add("LOW-ATK");
 
-        await wait(400);
-        element.classList.remove(animationClassName);
+        await wait(2600);
+        document.querySelector(".enemy-animation").classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-ATK");
         onComplete();
     },
@@ -76,32 +75,37 @@ export const battleAnimations = {
     async STRINGSHOT(event, onComplete) {
         const element = event.target.pokemonElement;
         const animationClassName =  "STRINGSHOT" ;
-        element.classList.add(animationClassName);
+        document.querySelector(".enemy-animation").classList.add(animationClassName);
 
         const team = event.caster.team === "player" ? "enemy" : "player";
         document.querySelector(`.${team}-animation`).classList.add("LOW-SPD");
 
-        await wait(1400);
-        element.classList.remove(animationClassName);
+        await wait(2600);
+        document.querySelector(".enemy-animation").classList.remove(animationClassName);
         document.querySelector(`.${team}-animation`).classList.remove("LOW-SPD");
         onComplete();
     },
     
     async PECK(event, onComplete) {
         const element = event.caster.pokemonElement;
-        const animationClassName = "PECK";
+        const animationClassName = event.caster.team === "player" ? "battle-movement-right" : "battle-movement-left";
         element.classList.add(animationClassName);
 
         const team = event.caster.team === "player" ? "enemy" : "player";
-        document.querySelector(`.${team}-animation`).classList.add("LOW-ACC");
+        document.querySelector(`.${team}-animation`).classList.add("PECK");
 
         // rmv on complete
         element.addEventListener("animationend", () => {
             element.classList.remove(animationClassName);
-            document.querySelector(`.${team}-animation`).classList.remove("LOW-ACC");
+            document.querySelector(`.${team}-animation`).classList.remove("PECK");
         }, {once: true});
 
-        await wait(1400);
+        // rmv on complete
+        element.addEventListener("animationend", () => {
+            element.classList.remove(animationClassName);
+        }, {once: true});
+
+        await wait(600);
         onComplete();
     },
 

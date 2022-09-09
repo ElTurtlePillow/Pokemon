@@ -79,7 +79,7 @@
 }
 
 
-.LOW-ATC {
+.LOW-ATK {
 	&::after {
 		position: absolute;
 		content: "";
@@ -91,8 +91,9 @@
 		animation-duration: 1.4s;
 		animation-timing-function: steps(13);
 		animation-iteration-count: 2;
-		animation-delay: 800ms;
-		transform:  scale(0.7) translateY(64px);
+		animation-delay: 1200ms;
+		transform:  scale(0.7) translateY(64px) rotate(180deg);
+		filter: invert(8%) sepia(87%) saturate(6159%) hue-rotate(5deg) brightness(76%) contrast(110%);
 		opacity: 0;
 	}
 }
@@ -108,8 +109,9 @@
 		animation-duration: 1.4s;
 		animation-timing-function: steps(13);
 		animation-iteration-count: 2;
-		animation-delay: 800ms;
-		transform:  scale(0.7) translateY(64px);
+		animation-delay: 1200ms;
+		transform:  scale(0.7) translateY(64px) rotate(180deg);
+		filter: invert(23%) sepia(99%) saturate(3452%) hue-rotate(103deg) brightness(93%) contrast(105%);
 		opacity: 0;
 	}
 }
@@ -125,8 +127,9 @@
 		animation-duration: 1.4s;
 		animation-timing-function: steps(13);
 		animation-iteration-count: 2;
-		animation-delay: 800ms;
-		transform:  scale(0.7) translateY(64px);
+		animation-delay: 1200ms;
+		transform:  scale(0.7) translateY(64px) rotate(180deg);
+		filter: invert(42%) sepia(81%) saturate(789%) hue-rotate(28deg) brightness(86%) contrast(101%);
 		opacity: 0;
 	}
 }
@@ -158,7 +161,7 @@
 		background-repeat: no-repeat;
 		animation-name: tackle;
 		animation-duration: 0.2s;
-		transform: translateY(20px);
+		transform: translateY(30px);
 		opacity: 0;
 	}
 }
@@ -214,10 +217,10 @@
 		background-image: url(../../../assets/graphics//battle/animations/Growl.png);
 		background-repeat: no-repeat;
 		animation-name: growl;
-		animation-duration: 0.5;
-		animation-timing-function: steps(3);
-		animation-iteration-count: 4;
-		transform: translateY(20px);
+		animation-duration: 200ms;
+		animation-timing-function: steps(2);
+		animation-iteration-count: 6;
+		transform: translateY(20px) translateX(-70px) scale(1);   
 		opacity: 0;
 	}
 }
@@ -239,20 +242,55 @@
 
 .STRINGSHOT {
 	&::after {
-		display: flex;
+		content: "";
 		position: absolute;
+		background-image: url(../../../assets/graphics//battle/animations/stringshot.png);
+		background-repeat: no-repeat;
+		animation-name: stringshot;
+		animation-duration: 700ms;
 		top: 0;
-		left: 0;
-		content: "d";
-		width: 200px;
-		height: 200px;
+		left: 0; 
+		width:300px;
+		height: 300px;
+		opacity: 0;
 	}
 }
 @keyframes stringshot {
 	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(-100px);
+		opacity: 0;
 	}
 }
 
+.PECK {
+	&::after {
+		position: absolute;
+		content: "";
+		width: 150px;
+		height: 150px;
+		background-image: url(../../../assets/graphics//battle/animations/peck.png);
+		background-repeat: no-repeat;
+		animation-name: peck;
+		animation-duration: 0.2s;
+		transform: translateY(80px);
+		opacity: 0;
+	}
+}
+@keyframes peck {
+	0% {
+	  	opacity: 0.8;
+	}
+	99% {
+		opacity: 0.9;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 
 
 

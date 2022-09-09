@@ -117,6 +117,8 @@ export default class TurnCycle extends React.Component {
                         text: `${enemy.Name}'s attack fell!`
                     })
                     enemy.BaseStats[1] -= 2;
+                default: 
+                    enemy.BaseStats[0] -= 0;
             }
         }
 
@@ -181,7 +183,7 @@ export default class TurnCycle extends React.Component {
 
                 await this.onNewEvent({
                     type: "textMessage",
-                    text: ` `
+                    text: `You defeated the opponent.`
                 })
             
                 if (!this.battle.enemy.name === "Wild") {
