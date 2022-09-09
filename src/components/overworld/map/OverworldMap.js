@@ -134,6 +134,9 @@ export default class OverworldMap extends React.Component {
                     if (healingSpot === "MomHouseFirstFloor") {
                         x = 13;
                         y = 19;
+                    } else {
+                        x = 18;
+                        y = 19;
                     }
                     this.startCutScene([
                         { 
@@ -142,7 +145,7 @@ export default class OverworldMap extends React.Component {
                             soundEffect: "run",
                             x: withGrid(x),
                             y: withGrid(y),
-                            direction: 'down', 
+                            direction: 'up', 
                         },
                         { type: "healing", position: window.playerState.healing},
                     ])

@@ -12,6 +12,7 @@ import GettingObject from "../getting_object/GettingObject"
 
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
+import getPkmnSound from "../../../assets/audio/sound_effect/getpkmn.ogg"
 
 import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
 
@@ -79,9 +80,10 @@ export default class OverworldEvent extends React.Component {
         message.init(document.querySelector(".game-container"));
     }
 
-    // get mimikyu
+    // get pokemon
     getPokemon(resolve) {
-      window.playerState.addPokemon("mimikyu", {
+      console.log(this);
+      window.playerState.addPokemon(this.event.id, {
             hp: 23,
             maxHp: 23,
             xp: 0,
@@ -89,6 +91,21 @@ export default class OverworldEvent extends React.Component {
             level: 5,
             status: null,
       });
+
+      const music = getPkmnSound;
+      const getPkmnSoundEffect = new BackgroundMusic({
+              music, 
+              isBattle: true,
+      });
+      getPkmnSoundEffect.init(document.querySelector(".game-container"));
+      setTimeout(() => {
+                const music = window.playerState.currentBackgroundMusic.music;
+                const backgroundMusic = new BackgroundMusic({
+                music, 
+                });
+                backgroundMusic.init(document.querySelector(".game-container"));
+      }, 3600)
+
       resolve();
     }
 

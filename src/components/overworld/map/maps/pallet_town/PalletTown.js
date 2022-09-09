@@ -50,7 +50,7 @@ export const PalletTown = {
                 {
                     events: [
                         { type: "textMessage", text: "I really don't like Team Rocket.", facePlayer: "npcA" },
-                        { type: "textMessage", text: "Just let me do what I want with my Pokemon.", facePlayer: "npcA" },
+                        { type: "textMessage", text: "I do what I want with my Pokemon.", facePlayer: "npcA" },
                     ]
                 }
             ]
@@ -69,7 +69,7 @@ export const PalletTown = {
                 {
                     events: [
                         { type: "textMessage", text: "I really like this town!", facePlayer: "npcC" },
-                        { type: "battle", enemyId: "beth" },
+                        // { type: "battle", enemyId: "beth" },
                     ]
                 }
             ]
@@ -112,7 +112,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Cherry and Jude's house."},
+                        { type: "textMessage", text: "Cherry and Green's house."},
                     ]
                 },
             ]

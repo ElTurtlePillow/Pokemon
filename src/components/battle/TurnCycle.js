@@ -117,6 +117,12 @@ export default class TurnCycle extends React.Component {
                         text: `${enemy.Name}'s attack fell!`
                     })
                     enemy.BaseStats[1] -= 2;
+                case "low-spd":
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `${enemy.Name}'s speed fell!`
+                    })
+                    enemy.BaseStats[3] -= 2;
                 default: 
                     enemy.BaseStats[0] -= 0;
             }
@@ -172,6 +178,12 @@ export default class TurnCycle extends React.Component {
                     music, 
                     });
                     backgroundMusic.init(document.querySelector(".game-container"));
+
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `You defeated the wild ${enemy.Name}.`
+                    })
+
                 } else {
                     const music = trainerVictory;
                     const backgroundMusic = new BackgroundMusic({
@@ -181,10 +193,7 @@ export default class TurnCycle extends React.Component {
                     backgroundMusic.init(document.querySelector(".game-container"));
                 }
 
-                await this.onNewEvent({
-                    type: "textMessage",
-                    text: `You defeated the opponent.`
-                })
+
             
                 if (!this.battle.enemy.name === "Wild") {
                     await this.onNewEvent({

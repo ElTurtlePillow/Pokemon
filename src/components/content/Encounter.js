@@ -9,10 +9,10 @@ export const encounter = {
     ViridianCity: {
         level : 3,
         pokemons : [
-            // "rattata",
-            // "pidgey",
-            // "caterpie",
-            // "weedle",
+            "rattata",
+            "pidgey",
+            "caterpie",
+            "weedle",
             "spearow"
         ]
     },

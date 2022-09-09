@@ -52,14 +52,14 @@ export default class PauseMenu extends React.Component {
 				},
 				{
 					label: "Pokemon",
-					description: "Change your team.",
+					description: "Change your team order.",
 					handler: () => {
 						//
 					},
 				},
 				{
-					label: "Stuff",
-					description: "Do stuff.",
+					label: "Map",
+					description: "Display the map.",
 					handler: () => {
 						//
 					},

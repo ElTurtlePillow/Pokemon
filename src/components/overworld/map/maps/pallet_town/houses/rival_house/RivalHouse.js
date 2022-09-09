@@ -54,6 +54,7 @@ export const RivalHouse = {
                     events: [
                         { type: "textMessage", text: "Team Rocket has struck again!"},
                         { type: "textMessage", text: "They stole all the pokeballs from the south of the continent."},
+                        { type: "textMessage", text: "We keep you informed."},
                     ]
                 },
             ]

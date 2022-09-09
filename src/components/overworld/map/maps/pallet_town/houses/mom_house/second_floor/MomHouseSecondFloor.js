@@ -40,8 +40,8 @@ export const MomHouseSecondFloor = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: '"Is this the real life ?"'},
-                        { type: "textMessage", text: '"Is this just fantasy ?"'},
+                        { type: "textMessage", text: '"I\'m tired of being what you want me to be"'},
+                        { type: "textMessage", text: '"Feeling so faithless, lost under the surface"'},
                     ]
                 },
             ]

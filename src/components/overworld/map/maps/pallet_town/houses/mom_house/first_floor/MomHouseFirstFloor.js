@@ -60,7 +60,7 @@ export const MomHouseFirstFloor = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Today's weather is special."},
+                        { type: "textMessage", text: "The weather is weird."},
                         { type: "textMessage", text: "We keep you informed."},
                     ]
                 },
