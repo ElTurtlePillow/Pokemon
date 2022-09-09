@@ -82,7 +82,6 @@ export default class OverworldEvent extends React.Component {
 
     // get pokemon
     getPokemon(resolve) {
-      console.log(this);
       window.playerState.addPokemon(this.event.id, {
             hp: 23,
             maxHp: 23,

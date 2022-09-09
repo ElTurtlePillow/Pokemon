@@ -71,7 +71,6 @@ export default class Person extends GameObject {
                     let counter = 0;
                     const bumpUp = setInterval(() => {
                         counter++
-                        console.log(this.y);
                         this.y -= 1;
                         if (counter > 20) {
                             clearInterval(bumpUp)
@@ -81,7 +80,6 @@ export default class Person extends GameObject {
                     setTimeout(() => {
                         const bumpDown = setInterval(() => {
                             counter--
-                            console.log(counter);
                             this.y += 1;
                             if (counter  <= 0) {
                                 clearInterval(bumpDown)

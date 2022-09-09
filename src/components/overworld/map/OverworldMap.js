@@ -5,21 +5,21 @@ import InteractiveObject from '../../objects/InteractiveObject';
 // import PlayerState from '../../state/PlayerState';
 
 import {  nextPosition, wait, withGrid } from '../../../Utils';
-import PlayerAnimation from "../../objects/player_animation/PlayerAnimation"
+// import PlayerAnimation from "../../objects/player_animation/PlayerAnimation"
 
 import { NewGame } from "./maps/new_game/NewGame"
 
+import { PalletTown } from './maps/pallet_town/PalletTown';
 import { MomHouseSecondFloor } from './maps/pallet_town/houses/mom_house/second_floor/MomHouseSecondFloor'
 import { MomHouseFirstFloor } from './maps/pallet_town/houses/mom_house/first_floor/MomHouseFirstFloor'
-
 import { RivalHouse } from './maps/pallet_town/houses/rival_house/RivalHouse'
 import { ChenLab } from './maps/pallet_town/houses/chen_lab/ChenLab'
-
-import { PalletTown } from './maps/pallet_town/PalletTown';
 
 
 import { ViridianCity } from './maps/viridian_city/ViridianCity';
 import { ViridianPokeCenterFirstFloor } from './maps/viridian_city/houses/poke_center/first_floor/ViridianPokeCenterFirstFloor';
+import { ViridianPokeCenterSecondFloor } from './maps/viridian_city/houses/poke_center/second_floor/ViridianPokeCenterSecondFloor';
+import { ViridianPokeMarket } from './maps/viridian_city/houses/poke_market/ViridianPokeMarket';
 
 
 
@@ -245,4 +245,6 @@ window.OverworldMaps = {
 
     ViridianCity,
     ViridianPokeCenterFirstFloor,
+    ViridianPokeCenterSecondFloor,
+    ViridianPokeMarket,
 };

@@ -1,8 +1,8 @@
 import mapDown from "../../../../../assets/graphics/maps/pallet_town/down.png";
 import mapUp from "../../../../../assets/graphics/maps/pallet_town/up.png";
-import { collisions, grass } from './MapCollision';
+import { collisions, grass, bump } from './MapCollision';
 
-import { asGridCoords, loadWall, withGrid, loadGrass } from '../../../../../Utils';
+import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../../../Utils';
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png"
@@ -50,7 +50,7 @@ export const PalletTown = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "I really don't like Team Rocket.", facePlayer: "npcA" },
+                        { type: "textMessage", text: "Team Rocket are the worst.", facePlayer: "npcA" },
                         { type: "textMessage", text: "I do what I want with my Pokemon.", facePlayer: "npcA" },
                     ]
                 }
@@ -265,6 +265,7 @@ export const PalletTown = {
     },
     walls: loadWall(collisions),
     grass: loadGrass(grass),
+    bump: loadBump(bump),
     cutsceneSpaces: {
         [asGridCoords(34, 55)]: [
             {

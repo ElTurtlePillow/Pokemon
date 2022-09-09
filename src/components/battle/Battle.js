@@ -105,7 +105,6 @@ export default class Battle extends React.Component {
         const enemiesImg = importAll(require.context('./../../assets/graphics/battle/trainers', false, /\.(png|jpe?g|svg)$/));
         // to do change here to pick up source and not name
 
-        console.log(this.enemy);
 		this.element.innerHTML = `
             <div class="battle-background">
                 <img src=${battleBackground} alt="battle background" />

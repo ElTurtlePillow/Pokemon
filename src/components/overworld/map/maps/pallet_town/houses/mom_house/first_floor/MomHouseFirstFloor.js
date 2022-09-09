@@ -4,7 +4,6 @@ import { collisions } from './MapCollision';
 
 import { asGridCoords, loadWall, withGrid } from '../../../../../../../../Utils';
 
-
 import blank from "../../../../../../../../assets/graphics/characters/blank.png"
 
 import npcMom from "../../../../../../../../assets/graphics/characters/mom.png";
@@ -37,13 +36,6 @@ export const MomHouseFirstFloor = {
                         { type: "textMessage", text: "Mom: There you go!", facePlayer: "npcMom" },
                     ]
                 },
-                // {
-                //     required: ["TALKED_TO_CHEN_FIRST_TIME"],
-                //     events: [
-                //         { type: "textMessage", text: "Mom: Well it's ok, you'll get yours in no time.", facePlayer: "npcMom" },
-                //         { type: "textMessage", text: "Mom: I know it's not a good news but you'll find your Pokemon.", facePlayer: "npcMom" },
-                //     ]
-                // },
                 {
                     events: [
                         { type: "textMessage", text: "Mom: I know you would have preferred to stay in Celadon City.", facePlayer: "npcMom"},

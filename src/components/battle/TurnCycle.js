@@ -298,7 +298,6 @@ export default class TurnCycle extends React.Component {
                 text: `A wild ${this.battle.combatants.e_wild.pokemonId} appeared !`
             })
         } else {
-            console.log(this);
             await this.onNewEvent({
                 type: "textMessage",
                 text: `${this.battle.enemy.name} would like to battle!`
