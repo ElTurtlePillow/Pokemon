@@ -37,6 +37,7 @@ export default class OverworldMap extends React.Component {
         this.cutsceneSpaces = config.cutsceneSpaces || {};
         this.walls = config.walls || {};
         this.grass = config.grass || {};
+        this.bump = config.bump || {};
 
         this.lowerImage = new Image();
         this.lowerImage.src = config.lowerSrc;
@@ -79,6 +80,13 @@ export default class OverworldMap extends React.Component {
     isWalkingInGrass(currentX, currentY, direction) {
         const { x, y } = nextPosition(currentX, currentY, direction);
         if (this.grass[`${x}, ${y}`]) {
+            return true;
+        }
+    };
+
+    isWalkingOnBump(currentX, currentY, direction) {
+        const { x, y } = nextPosition(currentX, currentY, direction);
+        if (this.bump[`${x}, ${y}`]) {
             return true;
         }
     };
@@ -194,6 +202,7 @@ export default class OverworldMap extends React.Component {
                 return
             }
         };
+
 
         // if required event 
         if (match && match[1] && match[1].required) {

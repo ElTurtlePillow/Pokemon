@@ -1,8 +1,8 @@
 import mapDown from "../../../../../assets/graphics/maps/viridian_city/down.png";
 import mapUp from "../../../../../assets/graphics/maps/viridian_city/up.png";
-import { collisions, grass } from './MapCollision';
+import { collisions, grass, bump } from './MapCollision';
 
-import { asGridCoords, loadWall, withGrid, loadGrass } from '../../../../../Utils';
+import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../../../Utils';
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png";
@@ -43,6 +43,7 @@ export const ViridianCity = {
     },
     walls: loadWall(collisions),
     grass: loadGrass(grass),
+    bump: loadBump(bump),
     cutsceneSpaces: {
         [asGridCoords(52, 75)]: [
             {

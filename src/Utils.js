@@ -73,6 +73,23 @@ export const loadGrass = (mapGrass) =>  {
 	return grassStatsObj;
 };
 
+export const loadBump = (mapBump) =>  {
+    const boundaries = [];
+		for (let i = 0; i < mapBump.length; i += Math.sqrt(mapBump.length)) {
+			const mapBumpArray = [];
+			mapBumpArray.push(mapBump.slice(i, Math.sqrt(mapBump.length) + i));
+
+			let k = (i / Math.sqrt(mapBump.length));
+			mapBumpArray.forEach((row, i) => {
+				row.forEach((symbol, j) => {
+					if (symbol !== 0) boundaries.push([setGridCoords(j, k), true]);
+				});
+			});
+		}
+	const boundariesObj = Object.fromEntries(boundaries);
+	return boundariesObj;
+};
+
 export const wait = (ms) => {
     return new Promise((resolve) => {
         setTimeout(() => {

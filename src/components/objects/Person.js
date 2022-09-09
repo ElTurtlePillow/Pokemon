@@ -1,6 +1,9 @@
 import GameObject from './GameObject';
 import { emitEvent, nextPosition } from '../../Utils';
 
+import SoundEffect from '../audio/sound_effect/SoundEffect';
+import jumpSound from "../../assets/audio/sound_effect/overworld/playerjump.ogg"
+
 export default class Person extends GameObject { 
     constructor(config) {
         super(config);
@@ -52,11 +55,53 @@ export default class Person extends GameObject {
                     this.startBehavior(state, behavior)
                 }, 10)
                 return;
-            };
+            }
 
+            // bump
+            else if (state.map.isWalkingOnBump(this.x, this.y, this.direction)) {
+                if (this.direction === "down") {
+
+                    const music = jumpSound;
+                    const jumpSounddEffect = new SoundEffect({
+                            music, 
+                    });
+                    jumpSounddEffect.init(document.querySelector(".game-container"));
+
+                    
+                    let counter = 0;
+                    const bumpUp = setInterval(() => {
+                        counter++
+                        console.log(this.y);
+                        this.y -= 1;
+                        if (counter > 20) {
+                            clearInterval(bumpUp)
+                        }
+                    }, 10) 
+                    
+                    setTimeout(() => {
+                        const bumpDown = setInterval(() => {
+                            counter--
+                            console.log(counter);
+                            this.y += 1;
+                            if (counter  <= 0) {
+                                clearInterval(bumpDown)
+                            }
+                        }, 10) 
+                    }, 200)
+                    
+
+                    this.movingProgressRemaining = 64;
+                } else {
+                    // stop you right here
+                    return;
+                }
+            } else {
+            
+            this.movingProgressRemaining = 32;
+
+            }
             // walk
             // state.map.moveWall(this.x, this.y, this.direction);
-            this.movingProgressRemaining = 32;
 
             // preview next position
             const intentPosition = nextPosition(this.x, this.y, this.direction)
