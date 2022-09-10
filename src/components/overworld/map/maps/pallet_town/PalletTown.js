@@ -334,6 +334,7 @@ export const PalletTown = {
                     
                     { who: "mimikyu", type: "stand", direction: "down", time: 1200},
                     { who: "mimikyu", type: "stand", direction: "left"},
+                    { type: "textMessage", text: "Mimikyu..." },
                     { type: "textMessage", text: "Green: Pokemon like you doesn't deserve to live." },
                     { type: "textMessage", text: "Green: Haha sad little shit." },
                     

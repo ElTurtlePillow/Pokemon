@@ -208,5 +208,33 @@ export const ViridianCity = {
                 ]
             }
         ],
+        [asGridCoords(53, 57)]: [
+            {
+                events: [
+                    { 
+                        type: "changeMap", 
+                        map: "ViridianHouseOne",
+                        soundEffect: "doors",
+                        x: withGrid(15),
+                        y: withGrid(19),
+                        direction: 'up',
+                    },
+                ]
+            }
+        ],
+        [asGridCoords(54, 50)]: [
+            {
+                events: [
+                    { 
+                        type: "changeMap", 
+                        map: "ViridianHouseTwo",
+                        soundEffect: "doors",
+                        x: withGrid(15),
+                        y: withGrid(19),
+                        direction: 'up',
+                    },
+                ]
+            }
+        ],
     }
 }

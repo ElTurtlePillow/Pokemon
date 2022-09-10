@@ -16,6 +16,8 @@ export default class PlayerState extends React.Component {
         this.position = "";
         this.currentBackgroundMusic = "";
 
+        this.essentialItem = [];
+
         this.healing = "MomHouseFirstFloor";
     };
 
@@ -47,6 +49,10 @@ export default class PlayerState extends React.Component {
         this.lineup = this.lineup.filter(id => id !== futureFrontId);
         this.lineup.unshift(futureFrontId)
         emitEvent("LineupChanged")
+    }
+
+    addEssentialItem(id) {
+        this.essentialItem.push(id)
     }
 
 };

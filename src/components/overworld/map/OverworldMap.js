@@ -20,6 +20,8 @@ import { ViridianCity } from './maps/viridian_city/ViridianCity';
 import { ViridianPokeCenterFirstFloor } from './maps/viridian_city/houses/poke_center/first_floor/ViridianPokeCenterFirstFloor';
 import { ViridianPokeCenterSecondFloor } from './maps/viridian_city/houses/poke_center/second_floor/ViridianPokeCenterSecondFloor';
 import { ViridianPokeMarket } from './maps/viridian_city/houses/poke_market/ViridianPokeMarket';
+import { ViridianHouseOne } from './maps/viridian_city/houses/house_one/ViridianHouseOne';
+import { ViridianHouseTwo} from './maps/viridian_city/houses/house_two/ViridianHouseTwo';
 
 
 
@@ -247,4 +249,6 @@ window.OverworldMaps = {
     ViridianPokeCenterFirstFloor,
     ViridianPokeCenterSecondFloor,
     ViridianPokeMarket,
+    ViridianHouseOne,
+    ViridianHouseTwo,
 };

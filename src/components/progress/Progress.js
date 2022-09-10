@@ -27,6 +27,8 @@ export default class Progress extends React.Component  {
                 position: window.playerState.position,
                 currentBackgroundMusic: window.playerState.currentBackgroundMusic,
 
+                essentialItem: window.playerState.essentialItem,
+
                 healing: window.playerState.healing,
             }
         }))

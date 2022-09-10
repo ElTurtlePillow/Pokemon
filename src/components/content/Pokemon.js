@@ -219,13 +219,7 @@ export const pokemon = {
 		WildItemUncommon : "SHARPBEAK",
 		Evolutions : ["FEAROW","Level",20],
 		Moves: ["PECK", "GROWL"], // 
-},
-
-
-
-
-
-
+	},
     pikachu: {
 		Name: "Pikachu",
 		InternalName: "PIKACHU",
@@ -261,6 +255,19 @@ export const pokemon = {
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
 		Moves: ["THUNDERSHOCK", "TAILWHIP", "GROWL"],
 	},
+
+
+
+
+
+
+
+
+
+
+
+
+	
     charmander: {
 		Name: "Charmander",
 		InternalName: "CHARMANDER",

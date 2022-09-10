@@ -96,8 +96,6 @@ export default class OverworldEvent extends React.Component {
               music, 
               isBattle: true,
       });
-
-      
       getPkmnSoundEffect.init(document.querySelector(".game-container"));
       setTimeout(() => {
                 const music = window.playerState.currentBackgroundMusic.music;
@@ -109,6 +107,14 @@ export default class OverworldEvent extends React.Component {
 
       resolve();
     }
+
+    
+      // get essential item 
+      getEssentialItem(resolve) {
+        window.playerState.addEssentialItem(this.event.id);
+        resolve();
+      }
+
 
     changeMap(resolve) {
 
