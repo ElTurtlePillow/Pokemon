@@ -270,7 +270,7 @@ export default class OverworldEvent extends React.Component {
           const objectBump = setInterval(() => {
               counter++
               who.y -= 1;
-              if (counter > 20) {
+              if (counter > 10) {
                   clearInterval(objectBump)
               }
           }, 5) 
@@ -283,7 +283,7 @@ export default class OverworldEvent extends React.Component {
                       clearInterval(objectbumpDown)
                   }
               }, 5) 
-          }, 100)
+          }, 50)
 
       setTimeout(() => {
         resolve()

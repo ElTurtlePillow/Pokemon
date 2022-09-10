@@ -17,7 +17,9 @@ import npc2Img from "../../../../../assets/graphics/characters/npc2.png";
 import npcOImg from "../../../../../assets/graphics/characters/npcO.png";
 import npcVImg from "../../../../../assets/graphics/characters/npcV.png";
 import npc3Img from "../../../../../assets/graphics/characters/npc3.png";
+import npc4Img from "../../../../../assets/graphics/characters/npc4.png";
 import npcTeamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
+import npcTeamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
 
 
 import palletTownBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
@@ -207,6 +209,41 @@ export const ViridianCity = {
                     events: [
                         { type: "textMessage", text: "It is really impressive.", facePlayer: "npcI" },
                         { type: "textMessage", text: "All this fire...", facePlayer: "npcI" },
+                    ]
+                }
+            ]
+        }),
+        npcJ: ({
+            type: "Person",
+            x: withGrid(34),
+            y: withGrid(9),
+            src: npc4Img,
+            behaviorLoop: [
+                { type: "stand", direction: "right", time: 4444},
+                { type: "stand", direction: "down", time: 4444},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "What are they doing...", facePlayer: "npcJ" },
+                    ]
+                }
+            ]
+        }),
+        npcTeamRocketB: ({
+            type: "Person",
+            x: withGrid(55),
+            y: withGrid(12),
+            src: npcTeamRocketB,
+            behaviorLoop: [
+                { type: "stand", direction: "left", time: 4444},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Haha it's too late!", facePlayer: "npcJ" },
                     ]
                 }
             ]
@@ -455,6 +492,20 @@ export const ViridianCity = {
                 ]
             }
         ],
+        [asGridCoords(53, 10)]: [
+            {
+                events: [
+                    { 
+                        type: "changeMap", 
+                        map: "ViridianForest",
+                        soundEffect: "stairs",
+                        x: withGrid(0),
+                        y: withGrid(0),
+                        direction: 'up',
+                    },
+                ]
+            }
+        ],
 
         // trainers 
         [asGridCoords(16, 52)]: [
@@ -478,6 +529,7 @@ export const ViridianCity = {
         [asGridCoords(15, 52)]: [
             {
                 events: [
+                    { type: "battleTeasing", who: "crazyLouis" },
                     { who: "player",type: "stand", direction: "right"},
                     { who: "crazyLouis",type: "walk", direction: "left"},
                     { type: "textMessage", text: "You have way too much hope.", },
@@ -500,6 +552,47 @@ export const ViridianCity = {
                 events: [
                     { type: "battleTeasing", who: "teamRocketA" },
                     { who: "player",type: "stand", direction: "left"},
+                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "battle", enemyId: "teamRocketA" },
+
+                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
+                ]
+            },
+            {
+                required: "//",
+            },
+            {
+                nothing: "DEFEAT_TEAM_ROCKET_A",
+            },
+        ],
+        [asGridCoords(32, 19)]: [
+            {
+                events: [
+                    { type: "battleTeasing", who: "teamRocketA" },
+                    { who: "player",type: "stand", direction: "left"},
+                    { who: "teamRocketA",type: "walk", direction: "right"},
+                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "battle", enemyId: "teamRocketA" },
+
+                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
+                ]
+            },
+            {
+                required: "//",
+            },
+            {
+                nothing: "DEFEAT_TEAM_ROCKET_A",
+            },
+        ],
+        [asGridCoords(33, 19)]: [
+            {
+                events: [
+                    { type: "battleTeasing", who: "teamRocketA" },
+                    { who: "player",type: "stand", direction: "left"},
+                    { who: "teamRocketA",type: "walk", direction: "right"},
+                    { who: "teamRocketA",type: "walk", direction: "right"},
                     { type: "textMessage", text: "No one is waiting for you there.", },
                     { type: "battle", enemyId: "teamRocketA" },
 

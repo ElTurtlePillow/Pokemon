@@ -23,6 +23,8 @@ import { ViridianPokeMarket } from './maps/viridian_city/houses/poke_market/Viri
 import { ViridianHouseOne } from './maps/viridian_city/houses/house_one/ViridianHouseOne';
 import { ViridianHouseTwo} from './maps/viridian_city/houses/house_two/ViridianHouseTwo';
 
+import { ViridianForest} from './maps/viridian_forest/ViridianForest';
+
 
 
 
@@ -251,4 +253,5 @@ window.OverworldMaps = {
     ViridianPokeMarket,
     ViridianHouseOne,
     ViridianHouseTwo,
+    ViridianForest,
 };
