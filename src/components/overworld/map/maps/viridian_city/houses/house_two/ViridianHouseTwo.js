@@ -20,6 +20,7 @@ export const ViridianHouseTwo = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcA: ({
             type: "Person",
@@ -35,6 +36,13 @@ export const ViridianHouseTwo = {
                         { type: "textMessage", text: "I can't walk anymore.", facePlayer: "npcA" },
                         { type: "textMessage", text: "You should take my running shoes.", facePlayer: "npcA" },
                         { type: "getEssentialItem", id:"runningShoes"},
+
+                        { who: "npcA", type: "stand", direction: "down", time: 1900},
+                        { type: "textMessage", text: "You can now run outside.", facePlayer: "npcA" },
+
+                        
+                    { type: "addStoryFlag", flag: "GET_RUNNING_SHOES"},
+
                     ]
                 }
             ]
@@ -101,7 +109,6 @@ export const ViridianHouseTwo = {
                         type: "changeMap", 
                         map: "ViridianCity",
                         soundEffect: "doors",
-                        changeMusic: musicBg,
                         x: withGrid(54),
                         y: withGrid(51),
                         direction: 'down',

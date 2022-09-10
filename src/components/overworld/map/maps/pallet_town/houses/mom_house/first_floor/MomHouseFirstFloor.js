@@ -18,6 +18,7 @@ export const MomHouseFirstFloor = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcMom: ({
             type: "Person",

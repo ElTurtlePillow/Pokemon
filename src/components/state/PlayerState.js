@@ -16,7 +16,9 @@ export default class PlayerState extends React.Component {
         this.position = "";
         this.currentBackgroundMusic = "";
 
-        this.essentialItem = [];
+        this.essentialItem = {
+            runningShoes: false,
+        };
 
         this.healing = "MomHouseFirstFloor";
     };
@@ -52,7 +54,7 @@ export default class PlayerState extends React.Component {
     }
 
     addEssentialItem(id) {
-        this.essentialItem.push(id)
+        this.essentialItem[id] = true;
     }
 
 };

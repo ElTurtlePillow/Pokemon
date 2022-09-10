@@ -22,6 +22,7 @@ export const ViridianPokeMarket = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcA: ({
             type: "Person",

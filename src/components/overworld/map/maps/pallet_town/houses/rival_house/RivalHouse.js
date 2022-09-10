@@ -19,6 +19,7 @@ export const RivalHouse = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcCherry: ({
             type: "Person",

@@ -23,6 +23,7 @@ export const ViridianCity = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: true,
         }),
         npcA: ({
             type: "Person",

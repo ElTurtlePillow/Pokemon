@@ -30,6 +30,7 @@ export const PalletTown = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: true,
         }),
         npcA: ({
             type: "Person",

@@ -20,6 +20,7 @@ export const ViridianHouseOne = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcA: ({
             type: "Person",

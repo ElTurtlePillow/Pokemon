@@ -18,6 +18,7 @@ export const MomHouseSecondFloor = {
             x: withGrid(14),
             y: withGrid(16),
             direction: "up",
+            canRun: false,
         }),
         computer: ({
             type: "Person",

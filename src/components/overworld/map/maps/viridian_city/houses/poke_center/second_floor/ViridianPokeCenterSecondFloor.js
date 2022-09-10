@@ -19,6 +19,7 @@ export const ViridianPokeCenterSecondFloor = {
         player: ({
             type: "Person",
             isPlayerControlled: true,
+            canRun: false,
         }),
         npcA: ({
             type: "Person",

@@ -13,6 +13,7 @@ import GettingObject from "../getting_object/GettingObject"
 import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
 import getPkmnSound from "../../../assets/audio/sound_effect/getpkmn.ogg"
+import getItemSound from "../../../assets/audio//sound_effect/overworld/getkeyitem.ogg"
 
 import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
 
@@ -112,6 +113,21 @@ export default class OverworldEvent extends React.Component {
       // get essential item 
       getEssentialItem(resolve) {
         window.playerState.addEssentialItem(this.event.id);
+
+        const music = getItemSound;
+        const getItemSounddEffect = new BackgroundMusic({
+                music, 
+                isBattle: true,
+        });
+        getItemSounddEffect.init(document.querySelector(".game-container"));
+        setTimeout(() => {
+                  const music = window.playerState.currentBackgroundMusic.music;
+                  const backgroundMusic = new BackgroundMusic({
+                  music, 
+                  });
+                  backgroundMusic.init(document.querySelector(".game-container"));
+        }, 1900)
+
         resolve();
       }
 

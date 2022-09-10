@@ -13,6 +13,8 @@ export default class Person extends GameObject {
         this.intentPosition = null; 
 
         this.isPlayerControlled = config.isPlayerControlled || false;
+        
+        this.canRun = config.canRun || false;
 
         this.directionUpdate = {
             "up": ["y", -1],
@@ -125,8 +127,15 @@ export default class Person extends GameObject {
 
     updatePosition() {
         const [property, change] = this.directionUpdate[this.direction];
+        
         this[property] += change;
         this.movingProgressRemaining -= 1;
+        
+        // can run ?
+        if (window.playerState.essentialItem.runningShoes && this.id === "player" && this.canRun) {
+            this[property] += change;
+            this.movingProgressRemaining -= 1;
+        }
 
         if (this.movingProgressRemaining === 0) {
             this.intentPosition = null;

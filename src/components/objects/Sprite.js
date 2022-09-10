@@ -38,9 +38,14 @@ export default class Sprite extends React.Component {
         };
         this.currentAnimation = config.currentAnimation || "idle-down";
         this.currentAnimationFrame = 0;
+        this.gameObject = config.gameObject;
 
+        if (window.playerState.essentialItem.runningShoes && config.gameObject.props.canRun) {
+            this.animationFrameLimit = config.animationFrameLimit || 12; // frame speed running
+        } else {
+            this.animationFrameLimit = config.animationFrameLimit || 24; // frame speed
+        }
 
-        this.animationFrameLimit = config.animationFrameLimit || 24; // frame speed
         this.animationFrameProgress = this.animationFrameLimit;
 
         // ref game object
@@ -94,7 +99,6 @@ export default class Sprite extends React.Component {
             32,
             48
         )
-        
         this.updateAnimationProgress();
     };
 };

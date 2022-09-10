@@ -3,7 +3,7 @@ import React from 'react';
 import Sprite from "./Sprite";
 import OverworldEvent from '../overworld/event/OverworldEvent';
 
-import playerImg from "../../assets/graphics/characters/player.png";
+import playerImg from "../../assets/graphics/characters/playerSprite.png";
 
 export default class GameObject extends React.Component { 
     constructor(config) {
@@ -68,7 +68,7 @@ export default class GameObject extends React.Component {
         }, 1);
     };
 
-    update() {};
+    // update() {};
 
     async doBehaviorEvent(map) {
         // stop if cutscene
