@@ -14,6 +14,7 @@ import BackgroundMusic from '../../audio/background_music/BackgroundMusic';
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
 import getPkmnSound from "../../../assets/audio/sound_effect/getpkmn.ogg"
 import getItemSound from "../../../assets/audio//sound_effect/overworld/getkeyitem.ogg"
+import battleTeasingMusic from "../../../assets/audio/background_music/EyesMeet.ogg"
 
 import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduction"
 
@@ -253,6 +254,42 @@ export default class OverworldEvent extends React.Component {
       })
       menu.init(document.querySelector(".game-container"));
     }
+
+    battleTeasing(resolve) {
+      let who = this.map.gameObjects[this.event.who]
+
+          // launch music 
+          const music = battleTeasingMusic;
+          const backgroundMusic = new BackgroundMusic({
+              music, 
+              isBattle: true,
+          });
+          backgroundMusic.init(document.querySelector(".game-container"));
+
+          let counter = 0;
+          const objectBump = setInterval(() => {
+              counter++
+              who.y -= 1;
+              if (counter > 20) {
+                  clearInterval(objectBump)
+              }
+          }, 5) 
+          
+          setTimeout(() => {
+              const objectbumpDown = setInterval(() => {
+                  counter--
+                  who.y += 1;
+                  if (counter  <= 0) {
+                      clearInterval(objectbumpDown)
+                  }
+              }, 5) 
+          }, 100)
+
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    }
+
 
     init() {
         return new Promise(resolve => {

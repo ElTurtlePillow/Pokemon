@@ -498,6 +498,7 @@ export const ViridianCity = {
         [asGridCoords(31, 19)]: [
             {
                 events: [
+                    { type: "battleTeasing", who: "teamRocketA" },
                     { who: "player",type: "stand", direction: "left"},
                     { type: "textMessage", text: "No one is waiting for you there.", },
                     { type: "battle", enemyId: "teamRocketA" },
