@@ -255,19 +255,62 @@ export const pokemon = {
 		Evolutions: ["RAICHU", "Item", "THUNDER STONE"],
 		Moves: ["THUNDERSHOCK", "TAILWHIP", "GROWL"],
 	},
-
-
-
-
-
-
-
-
-
-
-
-
-	
+	nidoranfe: {
+		Name : "Nidoran♀",
+		InternalName: "NIDORANfE",
+		Type1 : "POISON",
+		BaseStats : [55,47,52,41,40,40],
+		GenderRatio : "AlwaysFemale",
+		GrowthRate : "Parabolic",
+		BaseEXP : 55,
+		EVs : ["HP",1],
+		CatchRate : 235,
+		Happiness : 50,
+		Abilities : ["POISONPOINT","RIVALRY"],
+		HiddenAbilities : "HUSTLE",
+		Moves : [1,"GROWL",1,"POISONSTING",5,"SCRATCH",10,"TAILWHIP",15,"FURYSWIPES",20,"TOXICSPIKES",25,"DOUBLEKICK",30,"BITE",35,"HELPINGHAND",40,"TOXIC",45,"FLATTER",50,"CRUNCH",55,"EARTHPOWER"],
+		EggGroups : ["Monster","Field"],
+		HatchSteps : 5120,
+		Offspring : ["NIDORANfE","NIDORANmA"],
+		Height : 0.4,
+		Weight : 7.0,
+		Color : "Blue",
+		Shape : "Quadruped",
+		Habitat : "Grassland",
+		Category : ["Poison", "Pin"],
+		Pokedex : "Its highly toxic barbs are thought to have developed as protection for this small-bodied Pokémon. When enraged, it releases a horrible toxin from its horn.",
+		Generation : 1,
+		Evolutions : ["NIDORINA","Level",16],
+		Moves : [ "GROWL", "TACKLE"]
+	},
+	nidoranma: {
+		Name : "Nidoran♂",
+		InternalName: "NIDORANmA",
+		Type1 : "POISON",
+		BaseStats : [ 46,57,40,50,40,40],
+		GenderRatio : "AlwaysMale",
+		GrowthRate : "Parabolic",
+		BaseEXP : 55,
+		EVs : ["HP",1],
+		CatchRate : 235,
+		Happiness : 50,
+		Abilities : ["POISONPOINT","RIVALRY"],
+		HiddenAbilities : "HUSTLE",
+		Moves : [1,"GROWL",1,"POISONSTING",5,"SCRATCH",10,"TAILWHIP",15,"FURYSWIPES",20,"TOXICSPIKES",25,"DOUBLEKICK",30,"BITE",35,"HELPINGHAND",40,"TOXIC",45,"FLATTER",50,"CRUNCH",55,"EARTHPOWER"],
+		EggGroups : ["Monster","Field"],
+		HatchSteps : 5120,
+		Offspring : ["NIDORANfE","NIDORANmA"],
+		Height : 0.4,
+		Weight : 7.0,
+		Color : "Blue",
+		Shape : "Quadruped",
+		Habitat : "Grassland",
+		Category : ["Poison", "Pin"],
+		Pokedex : "Its highly toxic barbs are thought to have developed as protection for this small-bodied Pokémon. When enraged, it releases a horrible toxin from its horn.",
+		Generation : 1,
+		Evolutions : ["NIDORINA","Level",16],
+		Moves : ["TAILWHIP", "PECK"]
+	},
     charmander: {
 		Name: "Charmander",
 		InternalName: "CHARMANDER",

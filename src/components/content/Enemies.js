@@ -17,21 +17,40 @@ export const enemies = {
 			},
 		},
 	},
-	// beth: {
-	// 	name: "Beth",
-	// 	pokemons: {
-	// 		a: {
-	// 			hp: 1,
-	// 			pokemonId: "eevee",
-	// 			maxHp: 90,
-	// 			level: 1,
-	// 		},
-    //         b: {
-	// 			hp: 1,
-	// 			pokemonId: "eevee",
-	// 			maxHp: 90,
-	// 			level: 1,
-	// 		},
-	// 	},
-	// },
+	crazyLouis: {
+		name: "Crazy Louis",
+		src: "SUPERNERD",
+		pokemons: {
+			a: {
+				hp: 25,
+				pokemonId: "nidoranfe",
+				maxHp: 25,
+				level: 4,
+			},
+            b: {
+				hp: 25,
+				pokemonId: "nidoranma",
+				maxHp: 25,
+				level: 5,
+			},
+		},
+	},
+	teamRocketA: {
+		name: "Sbire Matthew",
+		src: "TEAMROCKET_M",
+		pokemons: {
+			a: {
+				hp: 23,
+				pokemonId: "spearow",
+				maxHp: 23,
+				level: 4,
+			},
+            b: {
+				hp: 25,
+				pokemonId: "weedle",
+				maxHp: 25,
+				level: 6,
+			},
+		},
+	},
 }

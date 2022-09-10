@@ -62,7 +62,7 @@ export const ViridianHouseOne = {
             y: withGrid(15),
             src: npcTImg,
             behaviorLoop: [
-                { type: "stand", direction: "right", time: 1200},
+                { type: "stand", direction: "right", time: 5200},
                 { type: "stand", direction: "up", time: 3200},
                 { type: "stand", direction: "left", time: 4200},
                 { type: "stand", direction: "down", time: 2200},
@@ -104,7 +104,6 @@ export const ViridianHouseOne = {
                         type: "changeMap", 
                         map: "ViridianCity",
                         soundEffect: "doors",
-                        changeMusic: musicBg,
                         x: withGrid(53),
                         y: withGrid(58),
                         direction: 'down',

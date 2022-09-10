@@ -42,7 +42,7 @@ export default class BattleEvent extends React.Component {
 
         // damage
         if (damage) {
-            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10)) - 3;
+            let initialDamage = Math.floor((damage * casterStat.level / 20) + (casterStat.BaseStats[1] / 10) - (who.BaseStats[2] / 10));
 
             let criticalStrike = Math.floor(Math.random() * 10);
 

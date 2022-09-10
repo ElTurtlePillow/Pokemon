@@ -32,16 +32,21 @@ export const ViridianHouseTwo = {
             ],
             talking : [
                 {
+                    required: ["GET_RUNNING_SHOES"],
+                    events: [
+                        { type: "textMessage", text: "Enjoy your new shoes!", facePlayer: "npcA"},
+                    ]
+                },
+                {
                     events: [
                         { type: "textMessage", text: "I can't walk anymore.", facePlayer: "npcA" },
                         { type: "textMessage", text: "You should take my running shoes.", facePlayer: "npcA" },
                         { type: "getEssentialItem", id:"runningShoes"},
-
-                        { who: "npcA", type: "stand", direction: "down", time: 1900},
                         { type: "textMessage", text: "You can now run outside.", facePlayer: "npcA" },
+                        // { type: "stand", who: "player", time:1900, },
 
                         
-                    { type: "addStoryFlag", flag: "GET_RUNNING_SHOES"},
+                        { type: "addStoryFlag", flag: "GET_RUNNING_SHOES"},
 
                     ]
                 }
@@ -75,8 +80,15 @@ export const ViridianHouseTwo = {
             ],
             talking : [
                 {
+                    required: ["GET_RUNNING_SHOES"],
                     events: [
-                        { type: "textMessage", text: "I'm exhausted.", facePlayer: "npcC" },
+                        { type: "textMessage", text: "You will run faster now!", facePlayer: "npcC"},
+                    ]
+                },
+                {
+                    events: [
+                        { type: "textMessage", text: "Go see my husband.", facePlayer: "npcC" },
+                        { type: "textMessage", text: "He will give you nice shoes.", facePlayer: "npcC" },
                     ]
                 }
             ]

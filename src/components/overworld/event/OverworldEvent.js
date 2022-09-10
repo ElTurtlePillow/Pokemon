@@ -211,16 +211,25 @@ export default class OverworldEvent extends React.Component {
 
         window.playerState.healing = this.event.position;
 
-        const music = healingSound;
-        const healingSoundEffect = new SoundEffect({
-          music, 
-        });
-        healingSoundEffect.init(document.querySelector(".game-container"));
+        
+            const music = healingSound;
+          const healingSoundEffect = new BackgroundMusic({
+                  music, 
+                  isBattle: true,
+          });
+          healingSoundEffect.init(document.querySelector(".game-container"));
+          setTimeout(() => {
+                    const music = window.playerState.currentBackgroundMusic.music;
+                    const backgroundMusic = new BackgroundMusic({
+                    music, 
+                    });
+                    backgroundMusic.init(document.querySelector(".game-container"));
+          }, 1900)
 
         setTimeout(() => {
           resolve();
           healingTransition.fadeOut();
-        },3300)
+        },3100)
     }
 
     addStoryFlag(resolve) {

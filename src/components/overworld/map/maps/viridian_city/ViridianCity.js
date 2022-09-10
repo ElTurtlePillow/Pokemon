@@ -8,6 +8,16 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 import blank from "../../../../../assets/graphics/characters/blank.png";
 
 import npcJImg from "../../../../../assets/graphics/characters/npcJ.png";
+import npcIImg from "../../../../../assets/graphics/characters/npcI.png";
+import npcWImg from "../../../../../assets/graphics/characters/npcW.png";
+import npcXImg from "../../../../../assets/graphics/characters/npcX.png";
+import npcYImg from "../../../../../assets/graphics/characters/npcY.png";
+import npcZImg from "../../../../../assets/graphics/characters/npcZ.png";
+import npc2Img from "../../../../../assets/graphics/characters/npc2.png";
+import npcOImg from "../../../../../assets/graphics/characters/npcO.png";
+import npcVImg from "../../../../../assets/graphics/characters/npcV.png";
+import npc3Img from "../../../../../assets/graphics/characters/npc3.png";
+import npcTeamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
 
 
 import palletTownBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
@@ -40,6 +50,214 @@ export const ViridianCity = {
                         { type: "textMessage", text: "You need the 7 badges to continue.", facePlayer: "npcA" },
                     ]
                 }
+            ]
+        }),
+        npcB: ({
+            type: "Person",
+            x: withGrid(50),
+            y: withGrid(26),
+            src: npcIImg,
+            behaviorLoop: [
+                { type: "stand", direction: "up", time: 2200},
+                { type: "walk", direction: "right"},
+                { type: "stand", direction: "up", time: 3200},
+                { type: "walk", direction: "left"},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "Viridian Forest is burning!", facePlayer: "npcB" },
+                        { type: "textMessage", text: "But i'm too afraid to go see.", facePlayer: "npcB" },
+                    ]
+                }
+            ]
+        }),
+        npcC: ({
+            type: "Person",
+            x: withGrid(47),
+            y: withGrid(50),
+            src: npcWImg,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 2200},
+                { type: "stand", direction: "right", time: 3200},
+            ],
+            talking : [
+                {
+                required: ["GET_RUNNING_SHOES"],
+                events: [
+                    { type: "textMessage", text: "These shoes look great on you.", facePlayer: "npcC"},
+                ]
+                },
+                {
+                    events: [
+                        { type: "textMessage", text: "We live right here.", facePlayer: "npcC" },
+                        { type: "textMessage", text: "My father donates his old shoes.", facePlayer: "npcC" },
+                    ]
+                }
+            ]
+        }),
+        npcD: ({
+            type: "Person",
+            x: withGrid(25),
+            y: withGrid(55),
+            src: npcXImg,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 2200},
+                { type: "stand", direction: "left", time: 3200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "This is the road for the pokemon league.", facePlayer: "npcD" },
+                        { type: "textMessage", text: "Unfortunately a trainer stripped me!", facePlayer: "npcD" },
+                    ]
+                }
+            ]
+        }),
+        npcE: ({
+            type: "Person",
+            x: withGrid(54),
+            y: withGrid(71),
+            src: npcZImg,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 2200},
+                { type: "walk", direction: "right",},
+                { type: "stand", direction: "right", time: 3200},
+                { type: "walk", direction: "left",},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "The gym is closed.", facePlayer: "npcE" },
+                        { type: "textMessage", text: "It's been a long time since we've seen the leader.", facePlayer: "npcE" },
+                    ]
+                }
+            ]
+        }),
+        npcF: ({
+            type: "Person",
+            x: withGrid(69),
+            y: withGrid(56),
+            src: npc2Img,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 2200},
+                { type: "walk", direction: "right",},
+                { type: "stand", direction: "right", time: 3200},
+                { type: "walk", direction: "up",},
+                { type: "stand", direction: "up", time: 3200},
+                { type: "walk", direction: "left",},
+                { type: "stand", direction: "left", time: 3300},
+                { type: "walk", direction: "down",},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "I hate him,", facePlayer: "npcF" },
+                        { type: "textMessage", text: "But I wish I was as rich as Jiff Bosis.", facePlayer: "npcF" },
+                    ]
+                }
+            ]
+        }),
+        npcG: ({
+            type: "Person",
+            x: withGrid(58),
+            y: withGrid(21),
+            src: npcOImg,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 2200},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "The smoke is coming so far.", facePlayer: "npcG" },
+                    ]
+                }
+            ]
+        }),
+        npcH: ({
+            type: "Person",
+            x: withGrid(58),
+            y: withGrid(22),
+            src: npcVImg,
+            behaviorLoop: [
+                { type: "stand", direction: "up", time: 2200},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "It smells burnt.", facePlayer: "npcH" },
+                    ]
+                }
+            ]
+        }),
+        npcI: ({
+            type: "Person",
+            x: withGrid(47),
+            y: withGrid(36),
+            src: npc3Img,
+            behaviorLoop: [
+                { type: "stand", direction: "up", time: 2200},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "It is really impressive.", facePlayer: "npcI" },
+                        { type: "textMessage", text: "All this fire...", facePlayer: "npcI" },
+                    ]
+                }
+            ]
+        }),
+
+        // trainers
+        crazyLouis: ({
+            type: "Person",
+            x: withGrid(17),
+            y: withGrid(52),
+            src: npcYImg,
+            behaviorLoop: [
+                { type: "stand", direction: "left", time: 2200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "I try to rob the passersby.", facePlayer: "crazyLouis" },
+                    ]
+                }
+            ]
+        }),
+        teamRocketA: ({
+            type: "Person",
+            x: withGrid(30),
+            y: withGrid(19),
+            src: npcTeamRocketA,
+            behaviorLoop: [
+                { type: "stand", direction: "right", time: 2200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "We are almost done with our operation.", facePlayer: "teamRocketA" },
+                    ]
+                }
+            ]
+        }),
+
+        // objects
+        gymDoor: ({
+            type: "Person",
+            x: withGrid(66),
+            y: withGrid(48),
+            src: blank,
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "The gym is closed."},
+                    ]
+                },
             ]
         }),
         signA: ({
@@ -236,6 +454,64 @@ export const ViridianCity = {
                     },
                 ]
             }
+        ],
+
+        // trainers 
+        [asGridCoords(16, 52)]: [
+            {
+                events: [
+                    { who: "player",type: "stand", direction: "right"},
+                    { type: "textMessage", text: "You have way too much hope.", },
+                    { type: "battle", enemyId: "crazyLouis" },
+
+                    { type: "textMessage", text: "I underestimated you.", },
+                    { type: "addStoryFlag", flag: "DEFEAT_CRAZY_LOUIS"},
+                ]
+            },
+            {
+                required: "//",
+            },
+            {
+                nothing: "DEFEAT_CRAZY_LOUIS",
+            },
+        ],
+        [asGridCoords(15, 52)]: [
+            {
+                events: [
+                    { who: "player",type: "stand", direction: "right"},
+                    { who: "crazyLouis",type: "walk", direction: "left"},
+                    { type: "textMessage", text: "You have way too much hope.", },
+                    { type: "battle", enemyId: "crazyLouis" },
+
+                    { type: "textMessage", text: "I underestimated you.", },
+                    { type: "addStoryFlag", flag: "DEFEAT_CRAZY_LOUIS"},
+                ]
+            },
+            {
+                required: "//",
+            },
+            {
+                nothing: "DEFEAT_CRAZY_LOUIS",
+            },
+        ],
+
+        [asGridCoords(31, 19)]: [
+            {
+                events: [
+                    { who: "player",type: "stand", direction: "left"},
+                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "battle", enemyId: "teamRocketA" },
+
+                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
+                ]
+            },
+            {
+                required: "//",
+            },
+            {
+                nothing: "DEFEAT_TEAM_ROCKET_A",
+            },
         ],
     }
 }
