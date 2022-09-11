@@ -22,7 +22,6 @@ export default class Overworld extends React.Component {
 
     startGameLoop() {
         const step = () => {
-
             // clear
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 

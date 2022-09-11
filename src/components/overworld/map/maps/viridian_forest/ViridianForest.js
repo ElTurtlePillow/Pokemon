@@ -6,6 +6,8 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png";
+import npcA from "../../../../../assets/graphics/characters/npcA.png";
+import charizard from "../../../../../assets/graphics/story/charizardtest.gif"
 
 import ViridianCityBg  from "../../../../../assets/audio/background_music/ViridianCity.ogg"
 
@@ -17,8 +19,30 @@ export const ViridianForest = {
     configObjects: {
         player: ({
             type: "Person",
-            isPlayerControlled: true,
             canRun: true,
+            isPlayerControlled: true,
+        }),
+        npcA: ({
+            type: "Person",
+            x: withGrid(28),
+            y: withGrid(41),
+            src: npcA,
+            behaviorLoop: [
+                { type: "stand", direction: "up", time: 1200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "..."},
+                    ]
+                },
+            ]
+        }),
+        charizard: ({
+            type: "Person",
+            x: withGrid(30),
+            y: withGrid(42),
+            src: charizard,
         }),
     },
     walls: loadWall(collisions),
@@ -48,12 +72,13 @@ export const ViridianForest = {
                     { who: "player",type: "walk", direction: "up"},
                     { who: "player",type: "walk", direction: "up"},
                     { who: "player",type: "walk", direction: "up"},
-                    { type: "textMessage", text: "Nooo!", },
-                    { type: "textMessage", text: "POKEMON !", },
-                    { type: "textMessage", text: "STOP!", },
+                    { type: "textMessage", text: "CHARIZARD!!!", },
+                    { type: "textMessage", text: "STOP!!!", },
+                    
+                    { who: "player",type: "walk", direction: "up"},
 
 
-                    { type: "cameraPosition", x: 500, y:500, },
+                    // { type: "cameraPosition", npc: "npcA", },
                 ]
             },
             {

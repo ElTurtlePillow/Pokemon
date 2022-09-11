@@ -52,7 +52,6 @@ export default class OverworldMap extends React.Component {
         this.isCutscenePlaying = false;
         this.isPaused = false;
     };
-
     drawLowerImage(ctx, cameraPerson) {
         ctx.drawImage(
             this.lowerImage, 
