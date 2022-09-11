@@ -118,26 +118,26 @@ export default class TurnCycle extends React.Component {
             statsHandler = event.statsHandler;
             superEffective = event.superEffective;
             notEffective = event.notEffective;
+            
+                // is super effective ? 
+                if (superEffective) {
+                    await this.onNewEvent({
+                        type: "textMessage", text: `It's super effective!`
+                    })
+                }
+
+                // is not effective ? 
+                if (notEffective) {
+                    await this.onNewEvent({
+                        type: "textMessage", text: `Not very effective...`
+                    })
+                }
         }
 
         // is damage critical ? 
         if (criticalStrike) {
             await this.onNewEvent({
                 type: "textMessage", text: `A critical hit!`
-            })
-        }
-
-        // is super effective ? 
-        if (superEffective) {
-            await this.onNewEvent({
-                type: "textMessage", text: `It's super effective!`
-            })
-        }
-
-        // is not effective ? 
-        if (notEffective) {
-            await this.onNewEvent({
-                type: "textMessage", text: `Not very effective...`
             })
         }
 
@@ -241,13 +241,20 @@ export default class TurnCycle extends React.Component {
 
             
                 if (this.battle.enemy.name !== "Wild") {
+                    
+                    window.playerState.monney += this.battle.enemy.giveMonney;
+
                     await this.onNewEvent({
                         type: "textMessage",
                         text: `WINNER : ${winner},`
                     })
                     await this.onNewEvent({
                         type: "textMessage",
-                        text: `You get a lot of monney`
+                        text: `${this.battle.enemy.name} give you ${this.battle.enemy.giveMonney}¥`
+                    })
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `${this.battle.enemy.name}: ${this.battle.enemy.lastLineOfDialog}`
                     })
                 }
 
@@ -341,6 +348,10 @@ export default class TurnCycle extends React.Component {
             await this.onNewEvent({
                 type: "textMessage",
                 text: `${this.battle.enemy.name} would like to battle!`
+            })
+            await this.onNewEvent({
+                type: "textMessage",
+                text: `${this.battle.enemy.name}: ${this.battle.enemy.firstLineOfDialog}`
             })
         }
 

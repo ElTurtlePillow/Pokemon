@@ -21,6 +21,7 @@ export default class PlayerState extends React.Component {
         };
 
         this.healing = "MomHouseFirstFloor";
+        this.monney = 100;
     };
 
     addPokemon(pokemonId, stats) {

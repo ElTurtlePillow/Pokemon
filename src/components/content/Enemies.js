@@ -6,8 +6,8 @@ export const enemies = {
     rivalA: {
 		name: "Green",
 		src: "rivalA",
-		firstLineOfdialog : "Let me show you!",
-		// last line of dialog : "What? Unbelievable!"
+		firstLineOfDialog : "Let me show you!",
+		lastLineOfDialog: "What? Unbelievable!",
 		pokemons: {
 			a: {
 				pokemonId: "pikachu",
@@ -16,10 +16,13 @@ export const enemies = {
 				// more...
 			},
 		},
+		giveMonney: 248,
 	},
 	crazyLouis: {
 		name: "Crazy Louis",
 		src: "SUPERNERD",
+		firstLineOfDialog : "I choose people who pass here.",
+		lastLineOfDialog: "Ok you can pass...",
 		pokemons: {
 			a: {
 				hp: 25,
@@ -34,10 +37,13 @@ export const enemies = {
 				level: 5,
 			},
 		},
+		giveMonney: 324,
 	},
 	teamRocketA: {
 		name: "Sbire Matthew",
 		src: "TEAMROCKET_M",
+		firstLineOfDialog : "You should not pass!",
+		lastLineOfDialog: "My boss will kill me.",
 		pokemons: {
 			a: {
 				hp: 23,
@@ -52,5 +58,6 @@ export const enemies = {
 				level: 6,
 			},
 		},
+		giveMonney: 420,
 	},
 }

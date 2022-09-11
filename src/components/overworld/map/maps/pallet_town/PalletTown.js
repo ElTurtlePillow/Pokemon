@@ -406,6 +406,8 @@ export const PalletTown = {
                     { type: "textMessage", text: "Green: Haha sad little shit." },
                     
                     { who: "player", type: "walk", direction: "up"},
+                    { who: "player", type: "walk", direction: "left"},
+                    { who: "player", type: "stand", direction: "up", time: 400},
                     { who: "bully", type: "stand", direction: "down", time: 400},
                     { type: "textMessage", text: "Green: What do you want?" },
                     { who: "bully", type: "stand", direction: "down", time: 600},

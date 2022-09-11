@@ -28,7 +28,7 @@ export const NewGame = {
             y: withGrid(13),
             src: momImg,
             behaviorLoop: [
-                { type: "stand", direction: "up", time: 1000},
+                { type: "stand", direction: "up", time: 100},
             ],
         }),
     },
@@ -63,7 +63,7 @@ export const NewGame = {
                     { who: "npcMom", type: "walk", direction: "up"},
 
                     
-                    { who: "npcMom", type: "stand", direction: "down", time: 9},
+                    { who: "npcMom", type: "stand", direction: "down", time: 1},
 
                     { who: "player", type: "walk", direction: "up"},
                 ]

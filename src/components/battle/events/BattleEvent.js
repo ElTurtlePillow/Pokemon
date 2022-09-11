@@ -65,7 +65,7 @@ export default class BattleEvent extends React.Component {
             for (const [key, value] of Object.entries(pokemonTypes)) {
                 for (let i = 0; i < value.Weaknesses.length; i ++) {
                     if ((target.Type1 === key.toLocaleUpperCase() || target.Type2 === key.toLocaleUpperCase()) && move.MoveType === value.Weaknesses[i]) {
-                        console.log("It's super effective!");
+ 
                         this.event.superEffective = true;
 
                         initialDamage += Math.floor(initialDamage/4);
@@ -80,9 +80,8 @@ export default class BattleEvent extends React.Component {
 
                 for (let i = 0; i < value.Resistances.length; i ++) {
                     if ((target.Type1 === key.toLocaleUpperCase() || target.Type2 === key.toLocaleUpperCase()) && move.MoveType === value.Resistances[i]) {
-                        console.log("Not very effective...");
+
                         this.event.notEffective = true;
-                        
                         initialDamage -= Math.floor(initialDamage/4);
 
                         const music = weakSound;
