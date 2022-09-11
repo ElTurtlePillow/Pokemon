@@ -2,14 +2,13 @@ import React from 'react';
 
 import SoundEffect from "../audio/sound_effect/SoundEffect"
 import levelUpSound from "../../assets/audio/sound_effect/battle/pkmnlvlup.ogg"
-
-
+import runSound from "../../assets/audio/sound_effect/run.ogg"
 
 import BackgroundMusic from '../audio/background_music/BackgroundMusic';
 
 import wildVictory from "../../assets/audio/background_music/BattleWildVictory.ogg"
 import trainerVictory from "../../assets/audio/background_music/BattleTrainerVictory.ogg"
-import { withGrid } from '../../Utils';
+import { wait, withGrid } from '../../Utils';
 
 export default class TurnCycle extends React.Component { 
     constructor({battle, onNewEvent, onWinner}) {
@@ -34,6 +33,47 @@ export default class TurnCycle extends React.Component {
             caster,
 			enemy,
         })
+
+        // stop here if try to run 
+        if (submission.enemyId) {
+            if (submission.enemyId === "e_wild") {
+                await this.onNewEvent({
+                    type: "textMessage",
+                    text: `You try to run away.`
+                })
+
+                let chanceToEscape = Math.floor(Math.random() * 10);
+                if (chanceToEscape < 8) {
+                    const music = runSound;
+                    const runSoundEffect = new SoundEffect({
+                    music, 
+                    });
+                    runSoundEffect.init(document.querySelector(".game-container"));
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `You escape!`
+                    })
+                    this.onWinner("runAway");
+                    return;
+                } 
+                else {
+                    await this.onNewEvent({
+                        type: "textMessage",
+                        text: `But it fails!`
+                    })
+                }
+            } 
+            
+            else {
+                await this.onNewEvent({
+                    type: "textMessage",
+                    text: `You cannot run away from a trainer!`
+                })
+            }
+
+            this.nextTurn();
+            return;
+        }
 
         // stop here if remplacing pokemon
         if (submission.replacement) {

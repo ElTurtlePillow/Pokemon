@@ -186,7 +186,10 @@ export default class Battle extends React.Component {
 
 					// send signal to update
 					emitEvent("PlayerStateUpdated");
-                };
+                } 
+                else if (winner === "runAway") {
+                    winner = "player"
+                }
                 
 
                 // animate ending battle here

@@ -243,7 +243,8 @@ export const ViridianCity = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "Haha it's too late!", facePlayer: "npcJ" },
+                        { type: "textMessage", text: "It didn't go as planned at all...", facePlayer: "npcJ" },
+                        { type: "textMessage", text: "We are really sorry.", facePlayer: "npcJ" },
                     ]
                 }
             ]
@@ -277,7 +278,7 @@ export const ViridianCity = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "We are almost done with our operation.", facePlayer: "teamRocketA" },
+                        { type: "textMessage", text: "We didn't want the fire to spread like this!", facePlayer: "teamRocketA" },
                     ]
                 }
             ]
@@ -511,6 +512,7 @@ export const ViridianCity = {
         [asGridCoords(16, 52)]: [
             {
                 events: [
+                    { type: "battleTeasing", who: "crazyLouis" },
                     { who: "player",type: "stand", direction: "right"},
                     { type: "textMessage", text: "You have way too much hope.", },
                     { type: "battle", enemyId: "crazyLouis" },
@@ -552,10 +554,10 @@ export const ViridianCity = {
                 events: [
                     { type: "battleTeasing", who: "teamRocketA" },
                     { who: "player",type: "stand", direction: "left"},
-                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "textMessage", text: "They told me not to let anyone pass.", },
                     { type: "battle", enemyId: "teamRocketA" },
 
-                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "textMessage", text: "We can no longer control the fire!", },
                     { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
                 ]
             },
@@ -572,10 +574,10 @@ export const ViridianCity = {
                     { type: "battleTeasing", who: "teamRocketA" },
                     { who: "player",type: "stand", direction: "left"},
                     { who: "teamRocketA",type: "walk", direction: "right"},
-                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "textMessage", text: "They told me not to let anyone pass.", },
                     { type: "battle", enemyId: "teamRocketA" },
 
-                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "textMessage", text: "We can no longer control the fire!", },
                     { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
                 ]
             },
@@ -593,10 +595,10 @@ export const ViridianCity = {
                     { who: "player",type: "stand", direction: "left"},
                     { who: "teamRocketA",type: "walk", direction: "right"},
                     { who: "teamRocketA",type: "walk", direction: "right"},
-                    { type: "textMessage", text: "No one is waiting for you there.", },
+                    { type: "textMessage", text: "They told me not to let anyone pass.", },
                     { type: "battle", enemyId: "teamRocketA" },
 
-                    { type: "textMessage", text: "Anyway it's almost over.", },
+                    { type: "textMessage", text: "We can no longer control the fire!", },
                     { type: "addStoryFlag", flag: "DEFEAT_TEAM_ROCKET_A"},
                 ]
             },

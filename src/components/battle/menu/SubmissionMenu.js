@@ -47,7 +47,7 @@ export default class SubmissionMenu extends React.Component {
 			root: [
 				{
 					label: "FIGHT",
-					description: `What will ${this.caster.Name} do ?`,
+					description: `What will ${this.caster.Name} do?`,
 					handler: () => {
 						this.keyboardMenu.setOptions(this.getPages().attacks);
 					},
@@ -68,9 +68,9 @@ export default class SubmissionMenu extends React.Component {
 				},
 				{
 					label: "RUN",
-					description: "Leave the battle",
+					description: "Try to leave the battle",
 					handler: () => {
-						this.keyboardMenu.setOptions(this.getPages().run);
+						this.runSubmit(this.enemy.id);
 					},
 				},
 			],
@@ -116,10 +116,13 @@ export default class SubmissionMenu extends React.Component {
 				}),
 				backOption,
 			],
-            run: [
-            //    RUN
-                    backOption,
-                ],
+            // run: [
+			// 	Object.values(this.enemy).forEach(function(val, index) {
+			// 		if (val === "e_wild") {
+			// 			console.log(val, index);
+			// 		}
+			// 	  })
+            //     ],
 		};
 	}
 
@@ -137,6 +140,11 @@ export default class SubmissionMenu extends React.Component {
 			target: move.TargetType === "friendly" ? this.caster : this.enemy,
 			instanceId,
 		});
+	}
+
+	runSubmit(enemyId) {
+		this.keyboardMenu?.end();
+		this.onComplete({ enemyId });
 	}
 
 	// enmy choice 
