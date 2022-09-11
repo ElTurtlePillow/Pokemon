@@ -241,16 +241,15 @@ export default class TurnCycle extends React.Component {
 
             
                 if (this.battle.enemy.name !== "Wild") {
-                    
                     window.playerState.monney += this.battle.enemy.giveMonney;
 
                     await this.onNewEvent({
                         type: "textMessage",
-                        text: `WINNER : ${winner},`
+                        text: `You defeated ${this.battle.enemy.name}!`
                     })
                     await this.onNewEvent({
                         type: "textMessage",
-                        text: `${this.battle.enemy.name} give you ${this.battle.enemy.giveMonney}¥`
+                        text: `${this.battle.enemy.name} give you ${this.battle.enemy.giveMonney}¥.`
                     })
                     await this.onNewEvent({
                         type: "textMessage",

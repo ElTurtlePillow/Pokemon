@@ -16,4 +16,16 @@ export const encounter = {
             "spearow"
         ]
     },
+    ViridianForest: {
+        level : 4,
+        pokemons : [
+            // "rattata",
+            // "pidgey",
+            "caterpie",
+            "weedle",
+            // "spearow",
+            "nidoranfe",
+            "nidoranma",
+        ]
+    },
 }

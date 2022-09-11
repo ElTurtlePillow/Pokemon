@@ -216,7 +216,7 @@ export default class BattleEvent extends React.Component {
 				if (combatant.xp === combatant.maxXp) {
 
 					combatant.xp = 0;
-					combatant.maxXp += 17 + (combatant.level * 2);
+					combatant.maxXp += 11 + (combatant.level * 2);
                     combatant.hp += 3;
                     combatant.maxHp += 3;
 					combatant.level += 1;

@@ -25,6 +25,7 @@ import npcTeamRocketB from "../../../../../assets/graphics/characters/npcTeamRoc
 import palletTownBg from "../../../../../assets/audio/background_music/PalletTown.ogg"
 import pokeCenterMsc from "../../../../../assets/audio/background_music/PokeCenter.ogg"
 import pokeMarketMsc from "../../../../../assets/audio/background_music/PokeMarket.ogg"
+import ViridianForestBurning from "../../../../../assets/audio/background_music/ViridianForestBurning.ogg"
 
 export const ViridianCity = {
     id: "ViridianCity",
@@ -500,8 +501,9 @@ export const ViridianCity = {
                         type: "changeMap", 
                         map: "ViridianForest",
                         soundEffect: "stairs",
-                        x: withGrid(0),
-                        y: withGrid(0),
+                        changeMusic: ViridianForestBurning,
+                        x: withGrid(28),
+                        y: withGrid(49),
                         direction: 'up',
                     },
                 ]
