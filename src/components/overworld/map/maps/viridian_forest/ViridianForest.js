@@ -6,8 +6,7 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png";
-import npcA from "../../../../../assets/graphics/characters/npcA.png";
-import charizard from "../../../../../assets/graphics/story/charizardtest.gif"
+import teamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
 
 import ViridianCityBg  from "../../../../../assets/audio/background_music/ViridianCity.ogg"
 
@@ -22,13 +21,13 @@ export const ViridianForest = {
             canRun: true,
             isPlayerControlled: true,
         }),
-        npcA: ({
+        teamRocketA: ({
             type: "Person",
-            x: withGrid(28),
-            y: withGrid(41),
-            src: npcA,
+            x: withGrid(26),
+            y: withGrid(42),
+            src: teamRocketB,
             behaviorLoop: [
-                { type: "stand", direction: "up", time: 1200},
+                { type: "stand", direction: "right", time: 1200},
             ],
             talking : [
                 {
@@ -38,12 +37,12 @@ export const ViridianForest = {
                 },
             ]
         }),
-        charizard: ({
-            type: "Person",
-            x: withGrid(30),
-            y: withGrid(42),
-            src: charizard,
-        }),
+        // charizard: ({
+        //     type: "Person",
+        //     x: withGrid(30),
+        //     y: withGrid(42),
+        //     src: charizard,
+        // }),
     },
     walls: loadWall(collisions),
     grass: loadGrass(grass),
@@ -74,16 +73,21 @@ export const ViridianForest = {
                     { who: "player",type: "walk", direction: "up"},
                     { type: "textMessage", text: "CHARIZARD!!!", },
                     { type: "textMessage", text: "STOP!!!", },
+                    { who: "player", type: "walk", direction: "up"},
                     
-                    { who: "player",type: "walk", direction: "up"},
-
-
-                    { type: "cameraPosition", x:-208, y:20 },
-                    { type: "textMessage", text: "We didn't wnt that!", },
+                    
+                    
+                    { type: "cameraPosition", x:-208, y:-10 },
+                    { type: "playSoundEffect", soundEffect:"roar"},
+                    { type: "clientEvent", what:"charizard"},
+                    
+                    { who: "player", type: "stand", direction: "up", time: 3000},
+                    { type: "textMessage", text: "CHAAAAAAAARIIIZAAAAARD!!!", },
 
                     
-                    { type: "cameraPosition", x:-208, y:-112 },
-                    { type: "textMessage", text: "We didn't wnt that!", },
+                    //reset
+                    // { type: "cameraPosition", x:-208, y:-112 },
+                    // { type: "textMessage", text: "We didn't wnt that!", },
                 ]
             },
             {

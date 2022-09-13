@@ -5,6 +5,7 @@ import doors from "../../../assets/audio/sound_effect/doors.ogg"
 import mimikyuScream from "../../../assets/audio/sound_effect/mimikyuscream.ogg"
 import getpkmn from "../../../assets/audio/sound_effect/getpkmn.ogg"
 import run from "../../../assets/audio/sound_effect/run.ogg"
+import roar from "../../../assets/audio/sound_effect/roar.ogg"
 
 export default class SoundEffect extends React.Component { 
     constructor(song) {
@@ -33,16 +34,17 @@ export default class SoundEffect extends React.Component {
         if (soundEffect === "run") {
             soundEffect = run
         }
- 
+        if (soundEffect === "roar") {
+            soundEffect = roar
+        }
 
         this.element = document.createElement("div");
-        this.element.classList.add("sound-effect");
         this.element.innerHTML= (`
         <audio src=${soundEffect} autoplay ></audio>
         `)
         setTimeout(() => {
             this.close()
-        }, 3000) // to do fct duration
+        }, 7000) // to do fct duration
 
     }
 

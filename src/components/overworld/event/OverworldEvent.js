@@ -7,6 +7,7 @@ import { enemies } from '../../content/Enemies';
 import TextMessage from '../../text/TextMessage';
 import PauseMenu from '../pause_menu/PauseMenu';
 import SceneTransition from './SceneTransition';
+import ClientEvents from './client_events/ClientEvents';
 
 import GettingObject from "../getting_object/GettingObject"
 
@@ -20,8 +21,6 @@ import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduct
 
 import Healing from './client_events/healing/Healing';
 import healingSound from "../../../assets/audio/sound_effect/overworld/pkmnhealing.ogg"
-import { wait } from '@testing-library/user-event/dist/utils';
-// import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -298,6 +297,21 @@ export default class OverworldEvent extends React.Component {
       setTimeout(() => {
         resolve()
       }, 1000)
+    }
+    clientEvent(resolve) {
+      const clientEvent = new ClientEvents(this.event.what)
+      clientEvent.init(document.querySelector(".game-container"))
+
+      resolve()
+    }
+    playSoundEffect(resolve) {
+        const music = this.event.soundEffect;
+        const soundEffect = new SoundEffect({
+          music, 
+        });
+        soundEffect.init(document.querySelector(".game-container"));
+
+      resolve()
     }
 
     init() {
