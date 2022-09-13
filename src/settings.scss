@@ -34,12 +34,15 @@ h2 {
     position: relative;
     width: 512px;
     height: 288px;
-    margin: 200px auto ;
+    margin: 2% auto ;
     outline: 1px solid #fff;
     overflow: hidden;
+    transform-origin: top ;
     canvas {
+        position: absolute;
         image-rendering: pixelated;
         transform: translateY(-112px) translateX(-208px);
         transition: 1000ms;
     }
+    
 }

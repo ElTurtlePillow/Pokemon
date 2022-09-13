@@ -8,13 +8,30 @@ const Main = () => {
           init()
 
           const gameContainer = document.querySelector(".game-container");
-          gameContainer.style.transform = `scale(${window.innerWidth/700})`
+          let value = window.innerWidth
+            gameContainer.style.transform = `scale(${value/700})`
+            if (value > 1100) {
+              value = 1100;
+              gameContainer.style.transform = `scale(${value/700})`
+            }
+            if (value < 512) {
+              value = 512;
+              gameContainer.style.transform = `scale(${value/800}) translateX(-21%)`
+              console.log(gameContainer.style.transform);
+            } 
+
           window.addEventListener("resize", () => {
             let value = window.innerWidth
-            if (value > 1500) {
-              value = 1500;
-            }
             gameContainer.style.transform = `scale(${value/700})`
+              if (value > 1100) {
+                value = 1100;
+                gameContainer.style.transform = `scale(${value/700})`
+              }
+              if (value < 512) {
+                value = 512;
+                gameContainer.style.transform = `scale(${value/800}) translateX(-21%)`
+                console.log(gameContainer.style.transform);
+              } 
           })
     })
     

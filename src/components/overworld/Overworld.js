@@ -7,6 +7,7 @@ import Progress from "../progress/Progress"
 
 import OverworldMap from './map/OverworldMap';
 import DirectionInputs from '../player_inputs/DirectionInputs';
+import TouchInput from '../player_inputs/touch_input/TouchInput';
 import KeyPressListener from '../player_inputs/KeyPressListener';
 import Hud from "./hud/Hud"
 
@@ -141,6 +142,9 @@ export default class Overworld extends React.Component {
 
         this.directionInput = new DirectionInputs();
         this.directionInput.init();
+        
+        this.touchInput = new TouchInput();
+        this.touchInput.init(document.querySelector(".game-container"));
 
         // launch
         this.startGameLoop();

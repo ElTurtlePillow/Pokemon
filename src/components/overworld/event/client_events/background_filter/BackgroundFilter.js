@@ -12,12 +12,12 @@ export default class BackgroundFilter extends React.Component {
 		this.element.classList.add("background-filter");
 		this.element.classList.add(`background-filter__${this.props}`);
 
-        function importAll(r) {
-            let images = {};
-            r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); return true});
-            return images;
-        }
-        const particlesImg = importAll(require.context('../../../../../assets/graphics/weather', false, /\.(gif|png|jpe?g|svg)$/));
+        // function importAll(r) {
+        //     let images = {};
+        //     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); return true});
+        //     return images;
+        // }
+        // const particlesImg = importAll(require.context('../../../../../assets/graphics/weather', false, /\.(gif|png|jpe?g|svg)$/));
         // this.element.innerHTML += `<img src=${particlesImg[`${this.props}_particles.png`]} alt="particles" class="particle_background" />`
 
 
