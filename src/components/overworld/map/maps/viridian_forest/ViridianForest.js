@@ -78,7 +78,12 @@ export const ViridianForest = {
                     { who: "player",type: "walk", direction: "up"},
 
 
-                    // { type: "cameraPosition", npc: "npcA", },
+                    { type: "cameraPosition", x:-208, y:20 },
+                    { type: "textMessage", text: "We didn't wnt that!", },
+
+                    
+                    { type: "cameraPosition", x:-208, y:-112 },
+                    { type: "textMessage", text: "We didn't wnt that!", },
                 ]
             },
             {

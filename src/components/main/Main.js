@@ -22,7 +22,7 @@ const Main = () => {
     return (
       <div className="App">
         <div className="game-container">
-            <canvas className="game-canvas" width="512" height="288">
+            <canvas className="game-canvas" width="768" height="432">
             </canvas>
         </div>
       </div>

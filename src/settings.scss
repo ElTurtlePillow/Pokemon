@@ -36,8 +36,11 @@ h2 {
     height: 288px;
     margin: 200px auto ;
     outline: 1px solid #fff;
+    overflow: hidden;
     canvas {
         image-rendering: pixelated;
+        transform: translateY(-112px) translateX(-208px);
+        transition: 1000ms;
     }
 }
 .client-events {

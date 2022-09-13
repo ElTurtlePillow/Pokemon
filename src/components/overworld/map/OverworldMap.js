@@ -55,15 +55,15 @@ export default class OverworldMap extends React.Component {
     drawLowerImage(ctx, cameraPerson) {
         ctx.drawImage(
             this.lowerImage, 
-            withGrid(7) - cameraPerson.x, 
-            withGrid(4) - cameraPerson.y, 
+            withGrid(14) - cameraPerson.x, 
+            withGrid(8) - cameraPerson.y, 
         );
     };
     drawUpperImage(ctx, cameraPerson) {
         ctx.drawImage(
             this.upperImage, 
-            withGrid(7) - cameraPerson.x, 
-            withGrid(4) - cameraPerson.y, 
+            withGrid(14) - cameraPerson.x, 
+            withGrid(8) - cameraPerson.y, 
         );
     };
 

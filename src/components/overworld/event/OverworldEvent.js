@@ -20,6 +20,7 @@ import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduct
 
 import Healing from './client_events/healing/Healing';
 import healingSound from "../../../assets/audio/sound_effect/overworld/pkmnhealing.ogg"
+import { wait } from '@testing-library/user-event/dist/utils';
 // import ClientsEvents from './client_events/ClientEvents';
 
 export default class OverworldEvent extends React.Component { 
@@ -290,6 +291,14 @@ export default class OverworldEvent extends React.Component {
       }, 1000)
     }
 
+    cameraPosition(resolve) {
+      const canvas = document.querySelector(".game-canvas");
+      canvas.style.transform = `translateY(${this.event.y}px) translateX(${this.event.x}px)`;
+
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    }
 
     init() {
         return new Promise(resolve => {

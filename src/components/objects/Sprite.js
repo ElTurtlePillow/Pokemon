@@ -81,8 +81,8 @@ export default class Sprite extends React.Component {
     }
 
     draw(ctx, cameraPerson) {
-        const x = this.gameObject.x + withGrid(7) - cameraPerson.x; 
-        const y = this.gameObject.y - 16 + withGrid(4) - cameraPerson.y;
+        const x = this.gameObject.x + withGrid(14) - cameraPerson.x; 
+        const y = this.gameObject.y - 16 + withGrid(8) - cameraPerson.y;
 
         this.isShadowLoaded && ctx.drawImage(this.shadow, x, y);
 
