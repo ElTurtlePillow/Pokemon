@@ -263,8 +263,8 @@ export const ViridianCity = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "It didn't go as planned at all...", facePlayer: "npcJ" },
-                        { type: "textMessage", text: "We are really sorry.", facePlayer: "npcJ" },
+                        { type: "textMessage", text: "It didn't go as planned at all...", facePlayer: "npcTeamRocketB" },
+                        { type: "textMessage", text: "We are really sorry.", facePlayer: "npcTeamRocketB" },
                     ]
                 }
             ]

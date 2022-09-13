@@ -8,6 +8,7 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 import blank from "../../../../../assets/graphics/characters/blank.png";
 import teamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
 import teamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
+import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
 
 import ViridianCityBg  from "../../../../../assets/audio/background_music/ViridianCity.ogg"
 
@@ -27,6 +28,7 @@ export const ViridianForest = {
             x: withGrid(26),
             y: withGrid(42),
             src: teamRocketB,
+            canRun: true,
             behaviorLoop: [
                 { type: "stand", direction: "right", time: 1200},
             ],
@@ -45,6 +47,22 @@ export const ViridianForest = {
             src: teamRocketA,
             behaviorLoop: [
                 { type: "stand", direction: "right", time: 1200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "..."},
+                    ]
+                },
+            ]
+        }),
+        mimikyu: ({
+            type: "Person",
+            x: withGrid(26),
+            y: withGrid(37),
+            src: mimikyu,
+            behaviorLoop: [
+                { type: "stand", direction: "down", time: 1200},
             ],
             talking : [
                 {
@@ -73,6 +91,7 @@ export const ViridianForest = {
                         map: "ViridianCity",
                         soundEffect: "stairs",
                         changeMusic: ViridianCityBg,
+                        setFilter: "null",
                         x: withGrid(53),
                         y: withGrid(11),
                         direction: 'down',
@@ -88,7 +107,7 @@ export const ViridianForest = {
                     { who: "player",type: "walk", direction: "up"},
                     { who: "player",type: "walk", direction: "up"},
                     { who: "player",type: "walk", direction: "up"},
-                    { type: "textMessage", text: "CHARIZARD!!!", },
+                    { type: "textMessage", text: "CHARIZARD!!! PLEASE!", },
                     { type: "textMessage", text: "STOP!!!", },
                     { who: "player", type: "walk", direction: "up"},
                     
@@ -108,8 +127,52 @@ export const ViridianForest = {
                     
                     { type: "textMessage", text: "CHAAAAAAAAAAA!!!", },
 
-                    { who: "teamRocketA", type: "stand", direction: "down", time: 2000},
+                    { who: "teamRocketA", type: "stand", direction: "down", time: 1000},
+                    { type: "textMessage", text: "He is completely uncontrollable.", },
+                    { who: "teamRocketB", type: "stand", direction: "down", time: 1000},
+                    { type: "textMessage", text: "We wanted to keep the trainers away,", },
+                    { type: "textMessage", text: "So that we could save all Pokemon in this forest.", },
+                    { type: "textMessage", text: "But Charizard became very violent.", },
+                    { type: "textMessage", text: "And now there's nothing we can do", }, 
 
+                    
+                    { type: "clientEvent", what:"charizard-fire"},
+
+                    { who: "teamRocketA", type: "stand", direction: "right", time: 500},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "stand", direction: "right", time: 400},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+                    { who: "teamRocketA", type: "walk", direction: "left"},
+
+                    
+                    { type: "textMessage", text: "HELP!!!", }, 
+                    { who: "teamRocketB", type: "walk", direction: "left"},
+                    { who: "teamRocketB", type: "walk", direction: "left"},
+                    { who: "teamRocketB", type: "walk", direction: "left"},
+                    { who: "teamRocketB", type: "walk", direction: "left"},
+                    { who: "teamRocketB", type: "walk", direction: "left"},
+
+                    
+                    { who: "mimikyu", type: "walk", direction: "down"},
+                    { who: "mimikyu", type: "walk", direction: "down"},
+                    { who: "mimikyu", type: "walk", direction: "down"},
+                    { who: "mimikyu", type: "walk", direction: "down"},
+                    { who: "mimikyu", type: "walk", direction: "down"},
+                    { who: "mimikyu", type: "stand", direction: "right", time: 1000},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 1234},
+                    
+                    
+                    { type: "textMessage", text: "Mimikyu...", }, 
+                    { who: "mimikyu", type: "walk", direction: "right"},
+                    { who: "mimikyu", type: "walk", direction: "right"},
+                    
+                    { who: "mimikyu", type: "stand", direction: "right", time: 777},
+                    { type: "textMessage", text: "Mimikyu!", }, 
+                    
                     
                     //reset
                     // { type: "cameraPosition", x:-208, y:-112 },

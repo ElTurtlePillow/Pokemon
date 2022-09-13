@@ -76,7 +76,6 @@ export default class TouchInput extends React.Component {
         for (let i = 0; i < buttons.length; i ++) {
             buttons[i].addEventListener("click", () => {
                 const dir = this.map[buttons[i].getAttribute("data")];
-                console.log(buttons[i].getAttribute("data"));
                 if (dir && this.heldDirections.indexOf(dir)) {
                     document.dispatchEvent(new KeyboardEvent('keydown', {'code': buttons[i].getAttribute("data")}));
 
