@@ -8,6 +8,7 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 import blank from "../../../../../assets/graphics/characters/blank.png";
 
 import npcJImg from "../../../../../assets/graphics/characters/npcJ.png";
+import npcGImg from "../../../../../assets/graphics/characters/npcG.png";
 import npcIImg from "../../../../../assets/graphics/characters/npcI.png";
 import npcWImg from "../../../../../assets/graphics/characters/npcW.png";
 import npcXImg from "../../../../../assets/graphics/characters/npcX.png";
@@ -228,6 +229,24 @@ export const ViridianCity = {
                 {
                     events: [
                         { type: "textMessage", text: "What are they doing...", facePlayer: "npcJ" },
+                    ]
+                }
+            ]
+        }),
+        npcK: ({
+            type: "Person",
+            x: withGrid(12),
+            y: withGrid(30),
+            src: npcGImg,
+            behaviorLoop: [
+                { type: "stand", direction: "right", time: 4444},
+                { type: "stand", direction: "down", time: 4444},
+                
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "I clearly don't have the level.", facePlayer: "npcK" },
                     ]
                 }
             ]
@@ -502,6 +521,7 @@ export const ViridianCity = {
                         map: "ViridianForest",
                         soundEffect: "stairs",
                         changeMusic: ViridianForestBurning,
+                        setFilter: "fire",
                         x: withGrid(28),
                         y: withGrid(49),
                         direction: 'up',

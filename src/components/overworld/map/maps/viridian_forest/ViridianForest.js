@@ -6,6 +6,7 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png";
+import teamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
 import teamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
 
 import ViridianCityBg  from "../../../../../assets/audio/background_music/ViridianCity.ogg"
@@ -26,6 +27,22 @@ export const ViridianForest = {
             x: withGrid(26),
             y: withGrid(42),
             src: teamRocketB,
+            behaviorLoop: [
+                { type: "stand", direction: "right", time: 1200},
+            ],
+            talking : [
+                {
+                    events: [
+                        { type: "textMessage", text: "..."},
+                    ]
+                },
+            ]
+        }),
+        teamRocketB: ({
+            type: "Person",
+            x: withGrid(24),
+            y: withGrid(41),
+            src: teamRocketA,
             behaviorLoop: [
                 { type: "stand", direction: "right", time: 1200},
             ],
@@ -77,12 +94,21 @@ export const ViridianForest = {
                     
                     
                     
-                    { type: "cameraPosition", x:-208, y:-10 },
+                    { type: "cameraPosition", x:-208, y:-64 },
                     { type: "playSoundEffect", soundEffect:"roar"},
                     { type: "clientEvent", what:"charizard"},
                     
                     { who: "player", type: "stand", direction: "up", time: 3000},
                     { type: "textMessage", text: "CHAAAAAAAARIIIZAAAAARD!!!", },
+                    
+                    { who: "player", type: "stand", direction: "up", time: 2000},
+                    { type: "textMessage", text: "What are you doing?!", },
+                    { type: "textMessage", text: "We just had to scare them!", },
+                    { type: "textMessage", text: "Not burn the whole forest!", },
+                    
+                    { type: "textMessage", text: "CHAAAAAAAAAAA!!!", },
+
+                    { who: "teamRocketA", type: "stand", direction: "down", time: 2000},
 
                     
                     //reset

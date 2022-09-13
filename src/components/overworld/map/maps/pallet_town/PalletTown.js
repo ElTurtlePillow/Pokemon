@@ -354,7 +354,8 @@ export const PalletTown = {
                     { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
-                    { who: "mimikyu", type: "stand", direction: "down", time: 600},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 800},
+                    { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
 
                     
@@ -422,7 +423,8 @@ export const PalletTown = {
                     { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
-                    { who: "mimikyu", type: "stand", direction: "down", time: 600},
+                    { who: "mimikyu", type: "stand", direction: "down", time: 800},
+                    { who: "mimikyu", type: "walk", direction: "up"},
                     { who: "mimikyu", type: "walk", direction: "up"},
 
                     

@@ -11,9 +11,6 @@ export default class ClientEvents extends React.Component {
 
 	createElement() {
 
-
-		console.log(this);
-
         function importAll(r) {
             let images = {};
             r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); return true});

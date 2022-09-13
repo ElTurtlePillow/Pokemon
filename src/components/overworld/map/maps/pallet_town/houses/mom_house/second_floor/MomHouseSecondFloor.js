@@ -41,8 +41,10 @@ export const MomHouseSecondFloor = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: '"I\'m tired of being what you want me to be"'},
-                        { type: "textMessage", text: '"Feeling so faithless, lost under the surface"'},
+                        { type: "textMessage", text: '"Every challenge along the way,"'},
+                        { type: "textMessage", text: '"With courage I will face,"'},
+                        { type: "textMessage", text: '"I will battle everyday,"'},
+                        { type: "textMessage", text: '"To claim my rightful place!"'},
                     ]
                 },
             ]
