@@ -157,8 +157,8 @@ export const ViridianCity = {
             talking : [
                 {
                     events: [
-                        { type: "textMessage", text: "I hate him,", facePlayer: "npcF" },
-                        { type: "textMessage", text: "But I wish I was as rich as Jiff Bosis.", facePlayer: "npcF" },
+                        { type: "textMessage", text: "It's been a while since Team Rocket and Team Plasma are at war.", facePlayer: "npcF" },
+                        { type: "textMessage", text: "And disasters keep coming.", facePlayer: "npcF" },
                     ]
                 }
             ]
@@ -193,6 +193,7 @@ export const ViridianCity = {
                 {
                     events: [
                         { type: "textMessage", text: "It smells burnt.", facePlayer: "npcH" },
+                        { type: "textMessage", text: "I heard it was Team Rocket again.", facePlayer: "npcH" },
                     ]
                 }
             ]
@@ -264,7 +265,7 @@ export const ViridianCity = {
                 {
                     events: [
                         { type: "textMessage", text: "It didn't go as planned at all...", facePlayer: "npcTeamRocketB" },
-                        { type: "textMessage", text: "We are really sorry.", facePlayer: "npcTeamRocketB" },
+                        { type: "textMessage", text: "The beast is unleashed.", facePlayer: "npcTeamRocketB" },
                     ]
                 }
             ]

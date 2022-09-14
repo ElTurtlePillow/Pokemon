@@ -13,11 +13,23 @@ export default class KeyboardMenu extends React.Component {
     };
 
     setOptions(options) {
+
+
+		function importAll(r) {
+            let images = {};
+            r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); return true});
+            return images;
+        }
+        const itemsImg = importAll(require.context('./../../assets/graphics/items', false, /\.(png|jpe?g|svg)$/));
+
+
 		this.options = options;
         this.element.innerHTML = this.options.map((option, index) => {
-                const disableAttribute = option.disabled ? "disabled" : "";
+        const disableAttribute = option.disabled ? "disabled" : "";
             return(`
                 <div class="keyboard-menu-option" >
+					${option.src ? `<img src=${itemsImg[`${option.src}.png`]} class="item-ico" alt=${option.label} />` :  ""}
+					
                     <button ${disableAttribute} data-button="${index}" data-description="${option.description}">
                         ${option.label}
                     </button>

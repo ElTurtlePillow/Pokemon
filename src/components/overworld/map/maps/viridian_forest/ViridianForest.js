@@ -9,7 +9,7 @@ import blank from "../../../../../assets/graphics/characters/blank.png";
 
 import teamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
 import teamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
-import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
+import mimikyu from "../../../../../assets/graphics/characters/mimikyu-undesguised-v2.png";
 
 import ViridianCityBg  from "../../../../../assets/audio/background_music/ViridianCity.ogg"
 
@@ -39,7 +39,8 @@ export const ViridianForest = {
                         { type: "textMessage", text: "..."},
                     ]
                 },
-            ]
+            ],
+            isNotHere: "MIAMIKYU",
         }),
         teamRocketB: ({
             type: "Person",
@@ -55,7 +56,8 @@ export const ViridianForest = {
                         { type: "textMessage", text: "..."},
                     ]
                 },
-            ]
+            ],
+            isNotHere: "MIAMIKYU",
         }),
         mimikyu: ({
             type: "Person",
@@ -71,7 +73,8 @@ export const ViridianForest = {
                         { type: "textMessage", text: "..."},
                     ]
                 },
-            ]
+            ],
+            isNotHere: "MIAMIKYU",
         }),
     },
     walls: loadWall(collisions),
@@ -126,9 +129,9 @@ export const ViridianForest = {
                     { type: "textMessage", text: "He is completely uncontrollable.", },
                     { who: "teamRocketB", type: "stand", direction: "down", time: 1000},
                     { type: "textMessage", text: "We wanted to keep the trainers away,", },
-                    { type: "textMessage", text: "So that we could save all Pokemon in this forest.", },
-                    { type: "textMessage", text: "But Charizard became very violent.", },
-                    { type: "textMessage", text: "And now there's nothing we can do", }, 
+                    { type: "textMessage", text: "So that we could steal all Pokemon in this forest.", },
+                    { type: "textMessage", text: "But Charizard start to burn everything.", },
+                    { type: "textMessage", text: "And now there's nothing we can do!", }, 
 
                     
                     { type: "clientEvent", what:"charizard-fire"},
@@ -144,7 +147,7 @@ export const ViridianForest = {
                     { who: "teamRocketA", type: "walk", direction: "left"},
 
                     
-                    { type: "textMessage", text: "HELP!!!", }, 
+                    { type: "textMessage", text: "Good luck with that!", }, 
                     { who: "teamRocketB", type: "walk", direction: "left"},
                     { who: "teamRocketB", type: "walk", direction: "left"},
                     { who: "teamRocketB", type: "walk", direction: "left"},
@@ -158,26 +161,42 @@ export const ViridianForest = {
                     { who: "mimikyu", type: "walk", direction: "down"},
                     { who: "mimikyu", type: "walk", direction: "down"},
                     { who: "mimikyu", type: "stand", direction: "right", time: 1000},
-                    { who: "mimikyu", type: "stand", direction: "down", time: 1234},
                     
                     
                     { type: "textMessage", text: "Mimikyu...", }, 
                     { who: "mimikyu", type: "walk", direction: "right"},
                     { who: "mimikyu", type: "walk", direction: "right"},
                     
-                    { who: "mimikyu", type: "stand", direction: "right", time: 777},
-                    { type: "textMessage", text: "Mimikyu!", }, 
+                    { who: "mimikyu", type: "stand", direction: "right", time:333 },
+                    { type: "textMessage", text: "MIMIKYU!!!", }, 
+
+                    { type: "clientEvent", what:"miamikyu"},
+                    { type: "addStoryFlag", flag: "MIAMIKYU"},
+                    { who: "mimikyu", type: "stand", direction: "right", time:333},
+
+
+                        { 
+                            type: "changeMap", 
+                            map: "ViridianForest",
+                            soundEffect: "mimikyuScream",
+                            x: withGrid(28),
+                            y: withGrid(44),
+                            direction: 'up',
+                        },
+                    { type: "clientEvent", what:"reset"},
+                   
                     
+                    { who: "player", type: "stand", direction: "up", time:444},
                     
-                    //reset
-                    // { type: "cameraPosition", x:-208, y:-112 },
+                    // reset
+                    { type: "cameraPosition", x:-208, y:-112 },
                 ]
             },
             {
                 required: "//",
             },
             {
-                nothing: "//",
+                nothing: "MIAMIKYU",
             },
         ],
     }

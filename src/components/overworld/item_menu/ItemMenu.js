@@ -10,6 +10,7 @@ import {items} from "../../content/Items";
 
 import SoundEffect from '../../audio/sound_effect/SoundEffect';
 import canBuySound from "../../../assets/audio/sound_effect/overworld/martbuyitem.ogg"
+import TextMessage from '../../text/TextMessage';
 
 export default class ItemMenu extends React.Component { 
     constructor({onComplete, itemsToBuy}) {
@@ -29,6 +30,7 @@ export default class ItemMenu extends React.Component {
 					label: base.Name,
 					description: base.Description,
                     price: base.Price,
+                    src: base.Src,
 					handler: () => {
 						this.handlePurchase(id, base.Price)
 					},
@@ -66,26 +68,35 @@ export default class ItemMenu extends React.Component {
 
     handlePurchase(id, price) {
         const {items, money} = window.playerState;
-
+        const moneyContainer = document.querySelector(".player-money");
+        const moneyValue = document.querySelector(".money-value");
+        
         // you can buy
-        if (price < money) {
+        if (price <= money) {
             window.playerState.money -= price;
-            document.querySelector(".money-value").innerHTML = window.playerState.money;
+            
             items.push({
                 itemId: id,
                 instanceId: Date.now() + Math.floor(Math.random() * 99999)
             })
-            const music = canBuySound;
+                const music = canBuySound;
                     const canBuySoundEffect = new SoundEffect({
                     music, 
                     });
-                    canBuySoundEffect.init(document.querySelector(".game-container"));
+                canBuySoundEffect.init(document.querySelector(".game-container"));
             emitEvent("PlayerStateUpdated");
-            console.log( window.playerState.money);
+            moneyValue.classList.add("red-fade")
+            setTimeout(() => {
+                moneyValue.classList.remove("red-fade");
+                moneyValue.innerHTML = window.playerState.money;
+            }, 333)
         } 
         // you don't have enough money
         else {
-            console.log("you dont have enough money");
+            moneyContainer.classList.add("vibring")
+            setTimeout(() => {
+                moneyContainer.classList.remove("vibring")
+            }, 900)
         }
     }
 

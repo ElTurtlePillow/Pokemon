@@ -17,7 +17,6 @@ const Main = () => {
             if (value < 512) {
               value = 512;
               gameContainer.style.transform = `scale(${value/800}) translateX(-21%)`
-              console.log(gameContainer.style.transform);
             } 
 
           window.addEventListener("resize", () => {
@@ -30,7 +29,6 @@ const Main = () => {
               if (value < 512) {
                 value = 512;
                 gameContainer.style.transform = `scale(${value/800}) translateX(-21%)`
-                console.log(gameContainer.style.transform);
               } 
           })
     })

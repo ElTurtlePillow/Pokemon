@@ -11,6 +11,8 @@ import PlayerStatus from "./player_status/PlayerStatus"
 
 
 import savedSound from "../../../assets/audio/sound_effect/overworld/savegame.ogg"
+import openMenuSound from "../../../assets/audio/sound_effect/overworld/menuopen.ogg"
+import closeMenuSound from "../../../assets/audio/sound_effect/overworld/menuclose.ogg"
 
 import PlayerState from '../../state/PlayerState';
 import { pokemon } from '../../content/Pokemon';
@@ -121,6 +123,12 @@ export default class PauseMenu extends React.Component {
 		this.element.remove();
 		this.onComplete();
 		document.querySelector(".hud").style.display = "none";
+
+		const music = closeMenuSound;
+		const closeMenuSoundEffect = new SoundEffect({
+			music, 
+		});
+		closeMenuSoundEffect.init(document.querySelector(".game-container"));
 	}
 
     async init(container) {
@@ -132,6 +140,12 @@ export default class PauseMenu extends React.Component {
 		this.keyboardMenu.setOptions(this.getOptions("root"));
 
 		container.appendChild(this.element);
+
+		const music = openMenuSound;
+		const openMenuSoundEffect = new SoundEffect({
+			music, 
+			});
+		openMenuSoundEffect.init(document.querySelector(".game-container"));
 
 		wait(200);
 		this.esc = new KeyPressListener("Escape", () => {

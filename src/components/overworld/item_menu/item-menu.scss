@@ -4,8 +4,9 @@
     height: 100%;
     .player-money {
         position: absolute;
+        display: flex;
         top: 175px;
-        left: 128px;
+        left: 90px;
         z-index: 2;
         padding: 14px 0 0 12px;
         color: rgb(44, 44, 44);    
@@ -26,8 +27,18 @@
             z-index: -1;
         }
     }
+    .vibring {
+        animation: vibring 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+    .red-fade {
+        display: flex;
+        animation: red-fade 0.33s cubic-bezier(.36,.07,.19,.97) forwards;
+    }
     .keyboard-menu {
-        width: 42%;
+        width: 47%;
         height: 255px;
         top: 8px;
         right: 12px;
@@ -47,7 +58,14 @@
         }
         .keyboard-menu-option {
             position: relative;
-            margin-bottom: 8px;
+            margin: 0 0 8px 22px;
+            .item-ico {
+                position: absolute;
+                left: -24px;
+                top: 4px;
+                width: 16px;
+                object-fit: cover;
+            }
             .price {
                 position: absolute;
                 right: 0;
@@ -74,4 +92,29 @@
           font-size: 11px;
         }
     }
+}
+
+@keyframes vibring {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+      
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+    
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+    
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+}
+@keyframes red-fade {
+  to {
+    transform: translateY(-20px);
+    color: red;
+    opacity: 0;
+  }
 }

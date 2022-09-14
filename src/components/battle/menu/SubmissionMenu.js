@@ -116,13 +116,6 @@ export default class SubmissionMenu extends React.Component {
 				}),
 				backOption,
 			],
-            // run: [
-			// 	Object.values(this.enemy).forEach(function(val, index) {
-			// 		if (val === "e_wild") {
-			// 			console.log(val, index);
-			// 		}
-			// 	  })
-            //     ],
 		};
 	}
 

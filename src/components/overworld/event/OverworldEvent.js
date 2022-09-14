@@ -317,9 +317,15 @@ export default class OverworldEvent extends React.Component {
       }, 1000)
     }
     clientEvent(resolve) {
-      const clientEvent = new ClientEvents(this.event.what)
-      clientEvent.init(document.querySelector(".game-container"))
-
+      if (this.event.what === "reset") {
+        const events = document.querySelectorAll(".client-events");
+        for (let i = 0; i < events.length; i ++) {
+          events[i].remove();
+        }
+      } else {
+        const clientEvent = new ClientEvents(this.event.what)
+        clientEvent.init(document.querySelector(".game-container"))
+      }
       resolve()
     }
     playSoundEffect(resolve) {
