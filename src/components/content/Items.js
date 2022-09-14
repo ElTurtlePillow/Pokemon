@@ -4,7 +4,7 @@ export const items = {
         PluralName: "Potions",
 		Description: "A spray-type medicine for wounds. It restores the HP of one Pokémon by just 20 points.",
         TargetType: "friendly",
-		Price : 200,
+		Price : 100,
 		Success: [
 			{
 				type: "textMessage",

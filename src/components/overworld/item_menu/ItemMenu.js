@@ -2,11 +2,14 @@ import React from 'react';
 
 import "./item-menu.scss"
 
-import { wait } from '../../../Utils';
+import { emitEvent, wait } from '../../../Utils';
 import KeyboardMenu from '../../player_inputs/KeyboardMenu';
 import KeyPressListener from '../../player_inputs/KeyPressListener';
 
 import {items} from "../../content/Items";
+
+import SoundEffect from '../../audio/sound_effect/SoundEffect';
+import canBuySound from "../../../assets/audio/sound_effect/overworld/martbuyitem.ogg"
 
 export default class ItemMenu extends React.Component { 
     constructor({onComplete, itemsToBuy}) {
@@ -34,6 +37,14 @@ export default class ItemMenu extends React.Component {
 
 			return [
 				...itemsList,
+                {
+                    label: "Return",
+                        description: "Back",
+                        id: "back",
+                        handler: () => {
+                    this.close();
+                    },
+                }
                 // {
 				// 	label: "item1",
 				// 	description: "Do thing",
@@ -54,13 +65,28 @@ export default class ItemMenu extends React.Component {
     }
 
     handlePurchase(id, price) {
-        console.log(window.playerState.items);
+        const {items, money} = window.playerState;
 
-        window.playerState.items.push({
-            itemId: id,
-            instanceId: Date.now() + Math.floor(Math.random() * 99999)
-        })
-        console.log(window.playerState.items);
+        // you can buy
+        if (price < money) {
+            window.playerState.money -= price;
+            document.querySelector(".money-value").innerHTML = window.playerState.money;
+            items.push({
+                itemId: id,
+                instanceId: Date.now() + Math.floor(Math.random() * 99999)
+            })
+            const music = canBuySound;
+                    const canBuySoundEffect = new SoundEffect({
+                    music, 
+                    });
+                    canBuySoundEffect.init(document.querySelector(".game-container"));
+            emitEvent("PlayerStateUpdated");
+            console.log( window.playerState.money);
+        } 
+        // you don't have enough money
+        else {
+            console.log("you dont have enough money");
+        }
     }
 
     createElement() {
@@ -68,8 +94,9 @@ export default class ItemMenu extends React.Component {
         this.element.classList.add("item-menu");
 
         const playerMoney = `
-            <div>MONEY: ${window.playerState.money}</div>
+            <div class="player-money">Money: <span class="money-value">${window.playerState.money}</span>¥</div>
         `
+        this.element.innerHTML += playerMoney;
     }
     
     close() {
