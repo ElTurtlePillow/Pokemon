@@ -16,7 +16,7 @@ export const enemies = {
 				// more...
 			},
 		},
-		giveMonney: 248,
+		giveMoney: 248,
 	},
 	crazyLouis: {
 		name: "Crazy Louis",
@@ -37,7 +37,7 @@ export const enemies = {
 				level: 5,
 			},
 		},
-		giveMonney: 324,
+		giveMoney: 324,
 	},
 	teamRocketA: {
 		name: "Sbire Matthew",
@@ -58,6 +58,6 @@ export const enemies = {
 				level: 6,
 			},
 		},
-		giveMonney: 420,
+		giveMoney: 420,
 	},
 }

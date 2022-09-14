@@ -75,7 +75,6 @@ export default class TitleScreen extends React.Component {
             this.keyboardMenu = new KeyboardMenu();
             this.keyboardMenu.init(this.element);
             this.keyboardMenu.setOptions(this.getOptions(resolve))
-
         })
     }
 };

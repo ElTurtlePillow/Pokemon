@@ -241,7 +241,7 @@ export default class TurnCycle extends React.Component {
 
             
                 if (this.battle.enemy.name !== "Wild") {
-                    window.playerState.monney += this.battle.enemy.giveMonney;
+                    window.playerState.money += this.battle.enemy.giveMoney;
 
                     await this.onNewEvent({
                         type: "textMessage",
@@ -249,7 +249,7 @@ export default class TurnCycle extends React.Component {
                     })
                     await this.onNewEvent({
                         type: "textMessage",
-                        text: `${this.battle.enemy.name} give you ${this.battle.enemy.giveMonney}¥.`
+                        text: `${this.battle.enemy.name} give you ${this.battle.enemy.giveMoney}¥.`
                     })
                     await this.onNewEvent({
                         type: "textMessage",

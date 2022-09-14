@@ -9,12 +9,17 @@
         height: 15%;
         background-color: transparent;
         opacity: 0.2;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.4;
+        }
         &:active {
             opacity: 0.6;
         }
         img {
             object-fit: cover;
             padding: 10px;
+            height: 100%;
         }
     }
     .controller {

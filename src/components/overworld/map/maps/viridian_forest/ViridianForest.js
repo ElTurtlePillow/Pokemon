@@ -6,6 +6,7 @@ import { asGridCoords, loadWall, withGrid, loadGrass, loadBump } from '../../../
 
 
 import blank from "../../../../../assets/graphics/characters/blank.png";
+
 import teamRocketA from "../../../../../assets/graphics/characters/npcTeamRocketA.png";
 import teamRocketB from "../../../../../assets/graphics/characters/npcTeamRocketB.png";
 import mimikyu from "../../../../../assets/graphics/characters/mimikyu.png";
@@ -72,12 +73,6 @@ export const ViridianForest = {
                 },
             ]
         }),
-        // charizard: ({
-        //     type: "Person",
-        //     x: withGrid(30),
-        //     y: withGrid(42),
-        //     src: charizard,
-        // }),
     },
     walls: loadWall(collisions),
     grass: loadGrass(grass),
@@ -176,7 +171,6 @@ export const ViridianForest = {
                     
                     //reset
                     // { type: "cameraPosition", x:-208, y:-112 },
-                    // { type: "textMessage", text: "We didn't wnt that!", },
                 ]
             },
             {

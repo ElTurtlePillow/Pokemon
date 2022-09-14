@@ -51,7 +51,7 @@ export const ViridianCity = {
                 {
                     events: [
                         { type: "textMessage", text: "This is the Pokémon League Reception Gate.", facePlayer: "npcA" },
-                        { type: "textMessage", text: "You need the 7 badges to continue.", facePlayer: "npcA" },
+                        { type: "textMessage", text: "You need the 8 badges to continue.", facePlayer: "npcA" },
                     ]
                 }
             ]

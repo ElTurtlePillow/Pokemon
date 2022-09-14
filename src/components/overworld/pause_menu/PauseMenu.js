@@ -5,6 +5,12 @@ import "./pause-menu.scss"
 import { wait } from '../../../Utils';
 import KeyboardMenu from '../../battle/menu/KeyboardMenu';
 import KeyPressListener from '../../player_inputs/KeyPressListener';
+import TextMessage from "../../text/TextMessage"
+import SoundEffect from "../../audio/sound_effect/SoundEffect"
+import PlayerStatus from "./player_status/PlayerStatus"
+
+
+import savedSound from "../../../assets/audio/sound_effect/overworld/savegame.ogg"
 
 import PlayerState from '../../state/PlayerState';
 import { pokemon } from '../../content/Pokemon';
@@ -40,14 +46,32 @@ export default class PauseMenu extends React.Component {
 					description: "Save your progress.",
 					handler: () => {
 						this.progress.save();
-						this.close();
+						const message = new TextMessage({
+							text: "Saving... Please don't turn off your device...",
+							onComplete: () => {
+								this.close()
+								const music = savedSound;
+								const savedSoundEffect = new SoundEffect({
+								music, 
+								});
+								savedSoundEffect.init(document.querySelector(".game-container"));
+							},
+						});
+						message.init(document.querySelector(".game-container"));
+						message.done()
 					},
 				},
-                {
-					label: "Items",
-					description: "Use items.",
+				{
+					label: "RED",
+					description: "Display your status.",
 					handler: () => {
-						//
+						this.keyboardMenu.end()
+						const playerStatus = new PlayerStatus({
+							onComplete: () => {
+								// complete
+							}
+						});
+						playerStatus.init(document.querySelector(".game-container"))
 					},
 				},
 				{
@@ -57,6 +81,14 @@ export default class PauseMenu extends React.Component {
 						//
 					},
 				},
+                {
+					label: "Items",
+					description: "Use items.",
+					handler: () => {
+						//
+					},
+				},
+				
 				{
 					label: "Map",
 					description: "Display the map.",
@@ -80,6 +112,46 @@ export default class PauseMenu extends React.Component {
 				},
 			];
 		}
+
+
+    }
+
+    createElement() {
+        this.element = document.createElement("div");
+        this.element.classList.add("pause-menu");
+        document.querySelector(".hud").style.display = "block";
+    }
+    
+    close() {
+		this.esc?.unbind();
+		this.keyboardMenu.end();
+		this.element.remove();
+		this.onComplete();
+		document.querySelector(".hud").style.display = "none";
+	}
+
+    async init(container) {
+		this.createElement();
+		this.keyboardMenu = new KeyboardMenu({
+			descriptionContainer: container,
+		});
+		this.keyboardMenu.init(this.element);
+		this.keyboardMenu.setOptions(this.getOptions("root"));
+
+		container.appendChild(this.element);
+
+		wait(200);
+		this.esc = new KeyPressListener("Escape", () => {
+			this.close();
+		});
+	}
+};
+
+
+
+
+
+
 
         // case 2 show options for pokemonId
         // const {playerState} = window;
@@ -115,36 +187,3 @@ export default class PauseMenu extends React.Component {
         //         }
         //     },
         // ];
-
-    }
-
-    createElement() {
-        this.element = document.createElement("div");
-        this.element.classList.add("pause-menu");
-        document.querySelector(".hud").style.display = "block";
-    }
-    
-    close() {
-		this.esc?.unbind();
-		this.keyboardMenu.end();
-		this.element.remove();
-		this.onComplete();
-		document.querySelector(".hud").style.display = "none";
-	}
-
-    async init(container) {
-		this.createElement();
-		this.keyboardMenu = new KeyboardMenu({
-			descriptionContainer: container,
-		});
-		this.keyboardMenu.init(this.element);
-		this.keyboardMenu.setOptions(this.getOptions("root"));
-
-		container.appendChild(this.element);
-
-		wait(200);
-		this.esc = new KeyPressListener("Escape", () => {
-			this.close();
-		});
-	}
-};
