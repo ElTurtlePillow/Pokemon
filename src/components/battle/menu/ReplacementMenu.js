@@ -1,5 +1,5 @@
 import React from 'react';
-import KeyboardMenu from './KeyboardMenu';
+import KeyboardMenu from '../../player_inputs/KeyboardMenu';
 
 export default class ReplacementMenu extends React.Component { 
     constructor({ replacements, onComplete }) {

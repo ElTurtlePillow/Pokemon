@@ -10,7 +10,8 @@ export default class PlayerState extends React.Component {
         this.lineup = [];
         this.items = [
             { itemId: "POTION", instanceId: "item2", },
-            // { itemId: "FULLHEAL", instanceId: "item1", },
+            { itemId: "POTION", instanceId: "item3", },
+            { itemId: "FULLHEAL", instanceId: "item1", },
         ];
         this.storyFlags = {};
         this.position = "";

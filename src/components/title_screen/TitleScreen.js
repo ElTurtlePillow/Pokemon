@@ -2,7 +2,7 @@ import React from 'react';
 
 import "./title-screen.scss"
 
-import KeyboardMenu from '../battle/menu/KeyboardMenu';
+import KeyboardMenu from '../player_inputs/KeyboardMenu';
 
 import titleScreen from "../../assets/graphics/pictures/v3.png"
 import bg from "../../assets/graphics/pictures/titlescreenbg.gif"

@@ -3,7 +3,7 @@ import "./submission-menu.scss"
 
 import {moves} from "../../content/Moves"
 import {items} from "../../content/Items"
-import KeyboardMenu from './KeyboardMenu';
+import KeyboardMenu from '../../player_inputs/KeyboardMenu';
 
 export default class SubmissionMenu extends React.Component { 
     constructor({ caster, enemy, onComplete, items, replacements }) {

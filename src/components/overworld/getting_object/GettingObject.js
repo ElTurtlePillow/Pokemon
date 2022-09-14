@@ -1,5 +1,5 @@
 import React from 'react';
-import KeyboardMenu from '../../battle/menu/KeyboardMenu';
+import KeyboardMenu from '../../player_inputs/KeyboardMenu';
 import { pokemon } from '../../content/Pokemon';
 
 export default class GettingObject extends React.Component { 

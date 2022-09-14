@@ -22,6 +22,7 @@ import BattleIntroduction from "../../battle/battle_introduction/BattleIntroduct
 import Healing from './client_events/healing/Healing';
 import healingSound from "../../../assets/audio/sound_effect/overworld/pkmnhealing.ogg"
 import BackgroundFilter from './client_events/background_filter/BackgroundFilter';
+import ItemMenu from '../item_menu/ItemMenu';
 
 export default class OverworldEvent extends React.Component { 
     constructor({map, event}) {
@@ -211,6 +212,16 @@ export default class OverworldEvent extends React.Component {
         }
       });
       menu.init(document.querySelector('.game-container'))
+    }
+
+    shopMenu(resolve) {
+      const itemMenu = new ItemMenu({
+        itemsToBuy: this.event.itemsToBuy,
+        onComplete: () => {
+          resolve();
+        }
+      })
+    itemMenu.init(document.querySelector(".game-container"))
     }
 
     healing(resolve) {

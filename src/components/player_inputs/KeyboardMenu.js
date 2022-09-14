@@ -1,5 +1,5 @@
 import React from 'react';
-import KeyPressListener from '../../player_inputs/KeyPressListener';
+import KeyPressListener from './KeyPressListener';
 
 export default class KeyboardMenu extends React.Component { 
     constructor() {
@@ -13,7 +13,7 @@ export default class KeyboardMenu extends React.Component {
     };
 
     setOptions(options) {
-        this.options = options;
+		this.options = options;
         this.element.innerHTML = this.options.map((option, index) => {
                 const disableAttribute = option.disabled ? "disabled" : "";
             return(`
@@ -22,6 +22,8 @@ export default class KeyboardMenu extends React.Component {
                         ${option.label}
                     </button>
                     <span class="right">${option.right ? option.right() : ""}</span>
+                    <span class="price">${option.price ? option.price + "¥" : ""}</span>
+
                 </div>
             `)
         }).join("");

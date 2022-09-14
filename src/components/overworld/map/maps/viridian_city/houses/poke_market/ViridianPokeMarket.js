@@ -36,7 +36,11 @@ export const ViridianPokeMarket = {
                 {
                     events: [
                         { type: "textMessage", text: "Hello,", facePlayer: "npcC" },
+                        { type: "textMessage", text: "Team Rocket stole all my Pokeballs but,", facePlayer: "npcC" },
                         { type: "textMessage", text: "Do you need anything?", facePlayer: "npcC" },
+                        { type: "shopMenu", itemsToBuy: ["POTION", "ANTIDOTE", "PARALYZEHEAL", "FULLHEAL",]},
+                        
+                        { type: "textMessage", text: "Thank you!", facePlayer: "npcC" },
                     ]
                 }
             ]
@@ -53,7 +57,11 @@ export const ViridianPokeMarket = {
                 {
                     events: [
                         { type: "textMessage", text: "Hello,", facePlayer: "npcC" },
+                        { type: "textMessage", text: "Team Rocket stole all my Pokeballs but,", facePlayer: "npcC" },
                         { type: "textMessage", text: "Do you need anything?", facePlayer: "npcC" },
+                        { type: "shopMenu", itemsToBuy: ["POTION", "ANTIDOTE", "PARALYZEHEAL", "FULLHEAL",]},
+                        
+                        { type: "textMessage", text: "Thank you!", facePlayer: "npcC" },
                     ]
                 }
             ]

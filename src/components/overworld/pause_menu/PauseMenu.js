@@ -3,7 +3,7 @@ import React from 'react';
 import "./pause-menu.scss"
 
 import { wait } from '../../../Utils';
-import KeyboardMenu from '../../battle/menu/KeyboardMenu';
+import KeyboardMenu from '../../player_inputs/KeyboardMenu';
 import KeyPressListener from '../../player_inputs/KeyPressListener';
 import TextMessage from "../../text/TextMessage"
 import SoundEffect from "../../audio/sound_effect/SoundEffect"
@@ -42,6 +42,27 @@ export default class PauseMenu extends React.Component {
 			return [
 				// ...lineupPokemons,
 				{
+					label: "Profil",
+					description: "Display your status.",
+					handler: () => {
+						this.keyboardMenu.end()
+						document.querySelector(".hud").style.display = "none";
+						const playerStatus = new PlayerStatus({
+							onComplete: () => {
+								// complete
+							}
+						});
+						playerStatus.init(document.querySelector(".game-container"))
+					},
+				},
+                {
+					label: "Items",
+					description: "Use items.",
+					handler: () => {
+						//
+					},
+				},
+				{
 					label: "Save",
 					description: "Save your progress.",
 					handler: () => {
@@ -61,34 +82,6 @@ export default class PauseMenu extends React.Component {
 						message.done()
 					},
 				},
-				{
-					label: "RED",
-					description: "Display your status.",
-					handler: () => {
-						this.keyboardMenu.end()
-						const playerStatus = new PlayerStatus({
-							onComplete: () => {
-								// complete
-							}
-						});
-						playerStatus.init(document.querySelector(".game-container"))
-					},
-				},
-				{
-					label: "Pokemon",
-					description: "Change your team order.",
-					handler: () => {
-						//
-					},
-				},
-                {
-					label: "Items",
-					description: "Use items.",
-					handler: () => {
-						//
-					},
-				},
-				
 				{
 					label: "Map",
 					description: "Display the map.",
